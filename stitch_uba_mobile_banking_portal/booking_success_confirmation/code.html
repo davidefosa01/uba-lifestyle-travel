@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Booking Confirmed | UBA Lifestyle Travel</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .celebration-gradient {
+            background: radial-gradient(circle at top, rgba(215, 25, 32, 0.03) 0%, rgba(255, 255, 255, 0) 70%);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#1b1c1c",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed": "#410002",
+                        "surface-dim": "#dbdad9",
+                        "on-secondary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "surface-bright": "#fbf9f9",
+                        "on-primary-fixed-variant": "#93000d",
+                        "primary-container": "#d71920",
+                        "on-surface": "#1b1c1c",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#f5f3f3",
+                        "primary": "#ae0011",
+                        "primary-fixed": "#ffdad6",
+                        "secondary": "#5f5e5e",
+                        "surface": "#fbf9f9",
+                        "surface-container": "#efeded",
+                        "secondary-fixed": "#e4e2e1",
+                        "primary-fixed-dim": "#ffb4ab",
+                        "secondary-container": "#e4e2e1",
+                        "on-surface-variant": "#5d3f3c",
+                        "on-tertiary-container": "#eff0f1",
+                        "on-tertiary-fixed-variant": "#454748",
+                        "on-tertiary-fixed": "#191c1d",
+                        "tertiary-fixed": "#e1e3e4",
+                        "surface-variant": "#e3e2e2",
+                        "inverse-primary": "#ffb4ab",
+                        "surface-tint": "#c00014",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "inverse-surface": "#303031",
+                        "secondary-fixed-dim": "#c8c6c6",
+                        "surface-container-highest": "#e3e2e2",
+                        "tertiary": "#525556",
+                        "outline-variant": "#e6bdb8",
+                        "tertiary-container": "#6b6d6e",
+                        "background": "#fbf9f9",
+                        "tertiary-fixed-dim": "#c5c7c8",
+                        "on-secondary-fixed-variant": "#474747",
+                        "outline": "#926f6b",
+                        "surface-container-high": "#e9e8e7",
+                        "on-primary-container": "#ffece9",
+                        "on-secondary-container": "#656464",
+                        "error-container": "#ffdad6",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#f2f0f0"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "section-gap": "64px",
+                        "container-margin-mb": "20px",
+                        "stack-md": "16px",
+                        "container-margin-dt": "80px",
+                        "stack-lg": "32px",
+                        "stack-sm": "8px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "flexpay-badge": ["Montserrat"],
+                        "headline-lg": ["Montserrat"],
+                        "headline-lg-mobile": ["Montserrat"],
+                        "display-lg": ["Montserrat"],
+                        "body-lg": ["Inter"],
+                        "title-md": ["Inter"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "flexpay-badge": ["12px", {"lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "800"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background selection:bg-primary-fixed selection:text-on-primary-fixed celebration-gradient min-h-screen">
+<!-- Top Navigation Anchor -->
+<header class="flex justify-between items-center w-full px-container-margin-mb py-4 z-50 bg-surface dark:bg-surface shadow-sm md:px-container-dt">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary cursor-pointer" data-icon="menu">menu</span>
+<h1 class="text-title-md font-headline-lg-mobile font-bold text-primary dark:text-primary-fixed">TravelMarket</h1>
+</div>
+<div class="flex items-center gap-stack-md">
+<div class="hidden md:flex gap-stack-lg mr-stack-lg">
+<a class="font-label-md text-label-md text-secondary hover:text-primary transition-colors" href="#">Home</a>
+<a class="font-label-md text-label-md text-secondary hover:text-primary transition-colors" href="#">Explore</a>
+<a class="font-label-md text-label-md text-primary font-bold" href="#">Bookings</a>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center overflow-hidden border border-outline-variant">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A professional and clean studio headshot of a person with a friendly expression. The lighting is soft and high-key, emphasizing a modern and premium corporate aesthetic. The background is a solid, light neutral grey that complements the minimalist UI of the travel platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQsBURUAGykRNQ_tFZK1Ysc3VzUbRIqkzLkjGhJgMnBpg2-WkIi5tZ03FLpQagSqu9-TQ5Ir6VONhPXA3ZG1Y59rQv9z2rZWSBmD5wFPIkRJ8Pksw34glJMgSIBR9njn0fqIvFf6XOPjfZwuuWUWGn0UJ83tPyZAT3NybgsV1x9zo-Wyb9-O51rypSsUgzNNXu66aEYwz8G1qpoyjKi-T5mmCSM76FZ2LrqXReCMFEbGLhGsq0fjyD4TUDswivEkGopSZJMxXWQ5Vn"/>
+</div>
+</div>
+</header>
+<main class="max-w-[1280px] mx-auto px-container-margin-mb md:px-container-dt pb-section-gap">
+<!-- Success Hero Section -->
+<section class="flex flex-col items-center pt-12 md:pt-20 text-center">
+<div class="relative w-full max-w-2xl mb-stack-lg">
+<div class="absolute inset-0 bg-primary opacity-5 blur-[100px] rounded-full"></div>
+<img alt="Azure Sanctuary Resort" class="w-full h-64 md:h-96 object-cover rounded-xl shadow-2xl relative z-10" data-alt="A breathtaking aerial view of a luxury island resort called The Azure Sanctuary. Pristine white sand beaches meet crystal clear turquoise waters under a vibrant tropical sun. Minimalist overwater villas are arranged in a curated, asymmetric pattern. The lighting is bright, airy, and high-contrast, conveying a sense of exclusive luxury and tranquility." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPoHeCqdIGBZfkTm_Mz74Z0wtNTfB254nJPCFezOJxYOtDXEktf1q0jaDocYNlFtJMPIj-eNSrRjQwkUo1j7xWC1lZAyfSM6AOZDAapPHZvf3NL81ECsiZVKP9wTfYh3U_6GlFL0dTsXs9gsscsxSxLLhEQ1Eu1L3Q7kdbAMNgao7eun0i9n9tslHcqPZaAz2G33InoHQ_1VV4gui29IaEpCKbwYsKXXPxVNHjkfwQNf0Nz9SJmDOmqbvb69QeSI0GSM0PRc1C-TXU"/>
+<div class="absolute -bottom-6 left-1/2 -translate-x-1/2 z-20 bg-surface rounded-full p-4 shadow-lg border border-outline-variant">
+<div class="bg-primary p-4 rounded-full">
+<span class="material-symbols-outlined text-on-primary text-4xl" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+</div>
+<div class="mt-8 space-y-2">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-background">Booking Confirmed!</h2>
+<p class="font-body-lg text-body-lg text-secondary max-w-lg mx-auto">Your luxury escape to <span class="text-on-background font-semibold">The Azure Sanctuary Resort</span> is secured.</p>
+<div class="pt-4">
+<span class="font-label-md text-label-md text-secondary uppercase tracking-widest">Confirmation Number</span>
+<p class="font-title-md text-title-md text-primary font-bold mt-1">UB-LT-88291-CONF</p>
+</div>
+</div>
+</section>
+<!-- Summary & Actions Grid -->
+<section class="mt-section-gap grid grid-cols-1 md:grid-cols-12 gap-stack-lg items-start">
+<!-- Booking Summary Card -->
+<div class="md:col-span-7 bg-surface-container-lowest border border-outline-variant rounded-xl p-stack-lg shadow-[0_16px_32px_rgba(51,51,51,0.04)]">
+<h3 class="font-title-md text-title-md mb-stack-lg border-b border-surface-variant pb-4">Booking Summary</h3>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-stack-lg">
+<div class="space-y-1">
+<span class="font-label-md text-label-md text-secondary">Dates</span>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="calendar_today">calendar_today</span>
+<p class="font-body-md text-body-md font-semibold">Oct 12 — Oct 19, 2024</p>
+</div>
+<p class="text-[12px] text-secondary ml-6">7 Nights stay</p>
+</div>
+<div class="space-y-1">
+<span class="font-label-md text-label-md text-secondary">Guests</span>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="group">group</span>
+<p class="font-body-md text-body-md font-semibold">2 Adults, 1 Child</p>
+</div>
+<p class="text-[12px] text-secondary ml-6">Suite Premium Azure</p>
+</div>
+</div>
+<div class="mt-stack-lg pt-stack-lg border-t border-surface-variant flex justify-between items-end">
+<div>
+<span class="font-label-md text-label-md text-secondary">Total Amount Paid</span>
+<div class="flex items-center gap-2 mt-1">
+<p class="font-headline-lg-mobile text-headline-lg-mobile text-on-background">$4,850.00</p>
+<span class="bg-primary/10 text-primary px-3 py-1 rounded-full font-flexpay-badge text-flexpay-badge">FLEXPAY ACTIVE</span>
+</div>
+</div>
+<button class="flex items-center gap-2 text-primary font-label-md text-label-md hover:underline decoration-2 underline-offset-4 transition-all group">
+                        View Itemized Invoice
+                        <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Side Actions & Context -->
+<div class="md:col-span-5 space-y-stack-md">
+<div class="flex flex-col gap-4">
+<button class="w-full bg-primary text-on-primary py-4 rounded-lg font-headline-lg-mobile text-headline-lg-mobile hover:bg-primary-container active:scale-[0.98] transition-all flex items-center justify-center gap-3">
+<span class="material-symbols-outlined" data-icon="travel_explore">travel_explore</span>
+                        Track Booking
+                    </button>
+<button class="w-full bg-transparent border-2 border-on-background text-on-background py-4 rounded-lg font-label-md text-label-md font-bold hover:bg-surface-container-low active:scale-[0.98] transition-all flex items-center justify-center gap-3">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+                        Download Receipt
+                    </button>
+</div>
+<div class="bg-surface-container-low rounded-xl p-6 mt-stack-lg border border-transparent hover:border-primary/20 transition-all cursor-pointer group">
+<div class="flex items-start gap-4">
+<div class="bg-primary text-on-primary p-3 rounded-lg">
+<span class="material-symbols-outlined" data-icon="account_balance">account_balance</span>
+</div>
+<div class="flex-1">
+<h4 class="font-title-md text-title-md text-on-background group-hover:text-primary transition-colors">View in your UBA Dashboard</h4>
+<p class="font-body-md text-body-md text-secondary mt-1">Manage your FlexPay installments and travel insurance directly from your main banking hub.</p>
+</div>
+<span class="material-symbols-outlined text-secondary" data-icon="open_in_new">open_in_new</span>
+</div>
+</div>
+<!-- Subtle Help Text -->
+<p class="text-center font-label-md text-label-md text-secondary pt-4">
+                    Need assistance? <a class="text-primary font-bold" href="#">Contact Lifestyle Concierge</a>
+</p>
+</div>
+</section>
+<!-- Upsell/Related (Bento Style) -->
+<section class="mt-section-gap">
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile mb-stack-lg">Enhance Your Escape</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-stack-md">
+<div class="md:col-span-2 relative h-64 rounded-xl overflow-hidden group cursor-pointer">
+<img alt="Spa Treatment" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A serene and luxurious spa treatment room with soft, warm ambient lighting. A minimalist massage table is draped in premium white linen. Accents of aromatic candles and exotic flowers add to the professional and restorative atmosphere. The color palette consists of soft beiges, warm whites, and subtle hints of natural wood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNxUz8lwdIVP5yVMR1_3q37qmtqnvP9MyifJUQwwHbYWp3u9HUGTMQzlFk9x7LBBw5bIceUpq3gfiRvICzDDKtLYr6-M734vY7LtIoY2Dyn9c7Jh6GbY7kb7eO59JW1czCkaEvPzDvgI03TEBVj2xQ94nddXuG-V_OutWIwrK0hgq5q7dcGhDvdbz5UjW46kx1-4Jh3TThNk03Z_tuAiIn1QIKmCsbQHVZEBoHpw5Sq_cV3fACqTDh70WCHrkLiNKTD96Vp--DBYcS"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-background/80 to-transparent"></div>
+<div class="absolute bottom-6 left-6 text-on-tertiary">
+<span class="bg-primary text-[10px] px-2 py-1 rounded-full font-bold mb-2 inline-block">MEMBER EXCLUSIVE</span>
+<h4 class="font-title-md text-title-md font-bold">Azure Serenity Spa</h4>
+<p class="text-sm opacity-80">Book a treatment now for 15% off</p>
+</div>
+</div>
+<div class="bg-surface-container-highest rounded-xl p-6 flex flex-col justify-between border border-outline-variant">
+<span class="material-symbols-outlined text-primary text-4xl" data-icon="restaurant">restaurant</span>
+<div>
+<h4 class="font-title-md text-title-md font-bold">Private Dining</h4>
+<p class="text-sm text-secondary mt-1">Reserve a beachside dinner for your first night.</p>
+</div>
+<button class="mt-4 text-primary font-bold text-sm flex items-center gap-1">
+                        Explore Menus <span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Mobile Navigation Shell -->
+<nav class="md:hidden fixed bottom-0 w-full flex justify-around items-center bg-surface dark:bg-surface px-4 py-2 border-t border-surface-variant z-50 shadow-[0_-4px_16px_rgba(51,51,51,0.04)]">
+<div class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="font-label-md text-label-md">Explore</span>
+</div>
+<div class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed font-bold">
+<span class="material-symbols-outlined" data-icon="confirmation_number" style="font-variation-settings: 'FILL' 1;">confirmation_number</span>
+<span class="font-label-md text-label-md">Bookings</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</div>
+</nav>
+<script>
+        // Micro-interactions for buttons
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mousedown', () => {
+                button.classList.add('scale-95');
+            });
+            button.addEventListener('mouseup', () => {
+                button.classList.remove('scale-95');
+            });
+            button.addEventListener('mouseleave', () => {
+                button.classList.remove('scale-95');
+            });
+        });
+
+        // Add a gentle fade-in animation to the card on load
+        window.addEventListener('DOMContentLoaded', () => {
+            const mainContent = document.querySelector('main');
+            mainContent.style.opacity = '0';
+            mainContent.style.transform = 'translateY(20px)';
+            mainContent.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+            
+            setTimeout(() => {
+                mainContent.style.opacity = '1';
+                mainContent.style.transform = 'translateY(0)';
+            }, 100);
+        });
+    </script>
+</body></html>

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TravelMarket - Explore Destinations</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-background": "#1b1c1c",
+                    "on-tertiary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed": "#410002",
+                    "surface-dim": "#dbdad9",
+                    "on-secondary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "surface-bright": "#fbf9f9",
+                    "on-primary-fixed-variant": "#93000d",
+                    "primary-container": "#d71920",
+                    "on-surface": "#1b1c1c",
+                    "on-error": "#ffffff",
+                    "surface-container-low": "#f5f3f3",
+                    "primary": "#ae0011",
+                    "primary-fixed": "#ffdad6",
+                    "secondary": "#5f5e5e",
+                    "surface": "#fbf9f9",
+                    "surface-container": "#efeded",
+                    "secondary-fixed": "#e4e2e1",
+                    "primary-fixed-dim": "#ffb4ab",
+                    "secondary-container": "#e4e2e1",
+                    "on-surface-variant": "#5d3f3c",
+                    "on-tertiary-container": "#eff0f1",
+                    "on-tertiary-fixed-variant": "#454748",
+                    "on-tertiary-fixed": "#191c1d",
+                    "tertiary-fixed": "#e1e3e4",
+                    "surface-variant": "#e3e2e2",
+                    "inverse-primary": "#ffb4ab",
+                    "surface-tint": "#c00014",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed": "#1b1c1c",
+                    "inverse-surface": "#303031",
+                    "secondary-fixed-dim": "#c8c6c6",
+                    "surface-container-highest": "#e3e2e2",
+                    "tertiary": "#525556",
+                    "outline-variant": "#e6bdb8",
+                    "tertiary-container": "#6b6d6e",
+                    "background": "#fbf9f9",
+                    "tertiary-fixed-dim": "#c5c7c8",
+                    "on-secondary-fixed-variant": "#474747",
+                    "outline": "#926f6b",
+                    "surface-container-high": "#e9e8e7",
+                    "on-primary-container": "#ffece9",
+                    "on-secondary-container": "#656464",
+                    "error-container": "#ffdad6",
+                    "on-primary": "#ffffff",
+                    "inverse-on-surface": "#f2f0f0"
+            },
+            "borderRadius": {
+                    "DEFAULT": "4px",
+                    "lg": "8px",
+                    "xl": "12px",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "4px",
+                    "section-gap": "64px",
+                    "container-margin-mb": "20px",
+                    "stack-md": "16px",
+                    "container-margin-dt": "80px",
+                    "stack-lg": "32px",
+                    "stack-sm": "8px",
+                    "gutter": "16px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "flexpay-badge": ["Montserrat"],
+                    "headline-lg": ["Montserrat"],
+                    "headline-lg-mobile": ["Montserrat"],
+                    "display-lg": ["Montserrat"],
+                    "body-lg": ["Inter"],
+                    "title-md": ["Inter"],
+                    "label-md": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "flexpay-badge": ["12px", {"lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "800"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="bg-surface flex justify-between items-center w-full px-container-margin-mb py-4 z-50 sticky top-0 shadow-sm md:px-container-margin-dt">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary hover:bg-surface-container-low transition-colors p-2 rounded-full active:scale-95 duration-150">menu</button>
+<h1 class="text-title-md font-headline-lg-mobile font-bold text-primary">TravelMarket</h1>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center gap-6 mr-8">
+<a class="font-label-md text-label-md text-secondary hover:text-primary transition-colors" href="#">Flights</a>
+<a class="font-label-md text-label-md text-primary font-bold" href="#">Stays</a>
+<a class="font-label-md text-label-md text-secondary hover:text-primary transition-colors" href="#">Experiences</a>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center overflow-hidden border border-outline-variant">
+<img alt="Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3AdX0_FWCHmmSoNrFfTw9llIOFghqBQGrVmhOsSluE_LdAQ7dxzbepgO07w8ZHTwTGxWCSKMKphen14dGbVw9wYpK1gZoy8vlfBKaEf9PVupbiUivR63iE2JvJgML1z4A2WWkftV8PrieB5RCOGnG9FZdjpdzekDv-5fAdsdII4Be5msiR2zaArVi8eA-bJ-0Wo4TUpQDmzpQ2ZxRJnFICEc7WfIBf7FIkhkCEin4ehKXo74E7Kphs79qgrXzEpHhKB9Q8ZkDo5tM"/>
+</div>
+</div>
+</header>
+<main class="max-w-[1280px] mx-auto px-container-margin-mb md:px-container-margin-dt">
+<!-- Search & Filter Bar (Hero section vibe) -->
+<section class="py-stack-lg">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm p-4 md:p-2 flex flex-col md:flex-row items-center gap-2">
+<div class="flex items-center flex-1 w-full px-4 border-b md:border-b-0 md:border-r border-outline-variant py-3 md:py-0">
+<span class="material-symbols-outlined text-secondary mr-3">location_on</span>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase font-bold text-secondary tracking-wider">Location</span>
+<input class="bg-transparent border-none p-0 focus:ring-0 font-title-md text-on-surface placeholder:text-secondary-fixed-dim w-full" placeholder="Where are you going?" type="text"/>
+</div>
+</div>
+<div class="flex items-center flex-1 w-full px-4 border-b md:border-b-0 md:border-r border-outline-variant py-3 md:py-0">
+<span class="material-symbols-outlined text-secondary mr-3">calendar_today</span>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase font-bold text-secondary tracking-wider">Dates</span>
+<input class="bg-transparent border-none p-0 focus:ring-0 font-title-md text-on-surface placeholder:text-secondary-fixed-dim w-full" placeholder="Add dates" type="text"/>
+</div>
+</div>
+<div class="flex items-center flex-1 w-full px-4 py-3 md:py-0">
+<span class="material-symbols-outlined text-secondary mr-3">group</span>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase font-bold text-secondary tracking-wider">Guests</span>
+<input class="bg-transparent border-none p-0 focus:ring-0 font-title-md text-on-surface placeholder:text-secondary-fixed-dim w-full" placeholder="Add guests" type="text"/>
+</div>
+</div>
+<button class="bg-primary text-on-primary rounded-lg px-8 py-4 md:py-3 w-full md:w-auto font-bold flex items-center justify-center gap-2 active:scale-95 transition-transform">
+<span class="material-symbols-outlined">search</span>
+<span>Search</span>
+</button>
+</div>
+</section>
+<!-- Filter Chips Section -->
+<section class="flex items-center gap-3 overflow-x-auto hide-scrollbar pb-4 -mx-container-margin-mb px-container-margin-mb md:mx-0 md:px-0">
+<button class="flex items-center gap-2 px-4 py-2 rounded-full border-1.5 border-on-surface text-on-surface font-label-md border-2">
+<span class="material-symbols-outlined text-[20px]">tune</span>
+<span>Filters</span>
+</button>
+<div class="h-6 w-[1px] bg-outline-variant mx-2"></div>
+<button class="px-5 py-2 rounded-full border border-outline-variant bg-surface hover:bg-surface-container-low transition-colors whitespace-nowrap font-label-md text-secondary">Price</button>
+<button class="px-5 py-2 rounded-full border border-outline-variant bg-surface hover:bg-surface-container-low transition-colors whitespace-nowrap font-label-md text-secondary">Rating 4.5+</button>
+<button class="px-5 py-2 rounded-full border border-outline-variant bg-surface hover:bg-surface-container-low transition-colors whitespace-nowrap font-label-md text-secondary">Villa</button>
+<button class="px-5 py-2 rounded-full border border-outline-variant bg-surface hover:bg-surface-container-low transition-colors whitespace-nowrap font-label-md text-secondary">Boutique Hotel</button>
+<button class="px-5 py-2 rounded-full border border-outline-variant bg-surface hover:bg-surface-container-low transition-colors whitespace-nowrap font-label-md text-secondary">Cancellation Policy</button>
+<button class="px-5 py-2 rounded-full border border-outline-variant bg-surface hover:bg-surface-container-low transition-colors whitespace-nowrap font-label-md text-secondary">Verified</button>
+</section>
+<!-- Results Header -->
+<div class="flex justify-between items-end mt-stack-lg mb-stack-md">
+<div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-surface">Stays in Lagos, Nigeria</h2>
+<p class="text-secondary font-body-md">342 verified properties available</p>
+</div>
+<button class="flex items-center gap-2 bg-on-background text-on-tertiary px-5 py-2.5 rounded-full font-label-md shadow-lg hover:opacity-90 transition-opacity active:scale-95">
+<span class="material-symbols-outlined text-[20px]">map</span>
+<span>Show Map</span>
+</button>
+</div>
+<!-- Listing Grid -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-gutter gap-y-stack-lg mt-stack-md">
+<!-- Card 1 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[4/3] overflow-hidden rounded-lg mb-4">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A luxury contemporary boutique hotel room in Lagos with high-end finishes, warm ambient lighting, and floor-to-ceiling windows overlooking a tropical garden. The space features clean minimalist furniture in neutral tones with a pop of vibrant red in the decor. The atmosphere is sophisticated and elite, representing a high-trust banking travel lifestyle." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnNIngPH2cWIbWhsXA0pMHoc_kiAL81Nu1ws9MTfeYJ2KjLbgdbpojOa5x8URn1UPCqJXr1LHNmPyW7V_tWxiEhYFS9w5zSmLOyVH_hJF2Ry9JRciipToLO8BxouafCH0oTCWZNRrhyeCBm5bbMULyOcyqG0HIZKEz4TzuZX4897uMIkB0XWo6fVvkfRLiRfBXfflRFvMuUU9fgedNqJqjUJel95ojOc_03JJgDuV3qWOl8jVgf67ICQGEwPyPbKN4nwLZoUcyxqbK"/>
+<button class="absolute top-4 right-4 bg-white/20 backdrop-blur-md p-2 rounded-full text-white hover:bg-white/40 transition-colors">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+<div class="absolute top-4 left-4 flex flex-col gap-2">
+<span class="bg-primary text-white font-flexpay-badge text-flexpay-badge px-3 py-1 rounded-full uppercase">FlexPay Available</span>
+<div class="flex items-center gap-1 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-md border border-outline-variant">
+<span class="material-symbols-outlined text-primary text-[16px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-[10px] font-bold text-on-surface uppercase tracking-tighter">UBA Verified</span>
+</div>
+</div>
+</div>
+<div class="flex justify-between items-start">
+<div class="flex-1 pr-4">
+<h3 class="font-title-md text-title-md text-on-surface group-hover:text-primary transition-colors truncate">The Lennox Luxury Suites</h3>
+<p class="text-secondary font-body-md">Victoria Island, Lagos</p>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[16px] text-amber-500" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-on-surface font-bold text-label-md">4.92</span>
+<span class="text-secondary text-label-md">(124 reviews)</span>
+</div>
+</div>
+<div class="text-right">
+<p class="text-on-surface font-bold text-title-md">₦145,000</p>
+<p class="text-secondary text-label-md">/ night</p>
+<p class="text-primary font-bold text-[10px] mt-1">From ₦36,250/mo</p>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[4/3] overflow-hidden rounded-lg mb-4">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="An expansive luxury villa pool deck at sunset, featuring sleek marble surfaces and minimalist outdoor loungers. The sky is a deep orange and purple, reflecting in the crystal clear water. The aesthetic is clean and professional with high-contrast elements and a sense of premium privacy. Subtle red lighting accents the architecture to align with the brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuByycqdeSB6LeJMs4D8DhL3e1444ziwz0_fPpVKV8huslNhxUjOYpxUgpIu17vzFH02WE1xJvmn6TiXmE844GmKi1_XZeemdHz-egvgV2r0mrvGMh2JWUQvOXyPX26DqVSaN12Jczi3pNcMg0tVb2QK89owt7X-nfMHOyO440B-C9QN04QDp2k89hQ6eQoW9lbMMPHeS0ydld8cPbsx1er2gCku0WEGjC1ZpLWiaP6Yp61u0SsLiFWZqXF4nQh6cngAZ-ykqgCasBuP"/>
+<button class="absolute top-4 right-4 bg-white/20 backdrop-blur-md p-2 rounded-full text-white">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+<div class="absolute top-4 left-4 flex flex-col gap-2">
+<span class="bg-primary text-white font-flexpay-badge text-flexpay-badge px-3 py-1 rounded-full uppercase">FlexPay Available</span>
+</div>
+</div>
+<div class="flex justify-between items-start">
+<div class="flex-1 pr-4">
+<h3 class="font-title-md text-title-md text-on-surface group-hover:text-primary transition-colors truncate">Zircon Sea View Villa</h3>
+<p class="text-secondary font-body-md">Lekki Phase 1, Lagos</p>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[16px] text-amber-500" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-on-surface font-bold text-label-md">4.85</span>
+<span class="text-secondary text-label-md">(89 reviews)</span>
+</div>
+</div>
+<div class="text-right">
+<p class="text-on-surface font-bold text-title-md">₦210,000</p>
+<p class="text-secondary text-label-md">/ night</p>
+<p class="text-primary font-bold text-[10px] mt-1">From ₦52,500/mo</p>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[4/3] overflow-hidden rounded-lg mb-4">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A grand hotel lobby with soaring ceilings, polished stone floors, and a massive crystal chandelier. The space is filled with bright natural light from large arched windows. The design is a mix of classical elegance and modern corporate minimalism, utilizing a palette of crisp whites, soft greys, and iconic red highlights in the furniture. It exudes banking-grade reliability and luxury." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfXoiOFe8VUaQVqCvwHrZ14kJXaBhDAPrXx3PHpbYnvjLeImth-cRv8_pyV7qFi0WeVYIkoN0afpD1h2aZ4dsE50apLu_0jZCEveUq5URfsIV7Jf0OjU3_lmFkzmDNfD97XgSHTl0szdLjmpKWFuc231nHB6oqxS9R_XjCrXDUoATBOy4EORxogZDpCERtUlxo8FCfcpYwWJudNxCHVEl-clHm1SFslCwy_mMCItzCJ-WOYbjeQWn43_K77oKcWwDRhfSripNjUGPy"/>
+<button class="absolute top-4 right-4 bg-white/20 backdrop-blur-md p-2 rounded-full text-white">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+<div class="absolute top-4 left-4 flex flex-col gap-2">
+<div class="flex items-center gap-1 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-md border border-outline-variant">
+<span class="material-symbols-outlined text-primary text-[16px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-[10px] font-bold text-on-surface uppercase tracking-tighter">UBA Verified</span>
+</div>
+</div>
+</div>
+<div class="flex justify-between items-start">
+<div class="flex-1 pr-4">
+<h3 class="font-title-md text-title-md text-on-surface group-hover:text-primary transition-colors truncate">Radisson Blu Anchorage</h3>
+<p class="text-secondary font-body-md">Victoria Island, Lagos</p>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[16px] text-amber-500" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-on-surface font-bold text-label-md">4.78</span>
+<span class="text-secondary text-label-md">(542 reviews)</span>
+</div>
+</div>
+<div class="text-right">
+<p class="text-on-surface font-bold text-title-md">₦98,000</p>
+<p class="text-secondary text-label-md">/ night</p>
+</div>
+</div>
+</div>
+<!-- Card 4 (Bento-style wide card on desktop) -->
+<div class="md:col-span-2 group cursor-pointer bg-surface-container-low rounded-xl overflow-hidden flex flex-col md:flex-row shadow-sm hover:shadow-md transition-shadow">
+<div class="relative w-full md:w-1/2 aspect-[4/3] md:aspect-auto">
+<img class="w-full h-full object-cover" data-alt="A modern tropical resort exterior featuring asymmetric architecture and lush green landscaping. A infinity pool reflects the white geometric buildings. The lighting is high-key and bright, emphasizing a light-mode UI aesthetic. The color scheme is dominated by white and natural greens, with precise red branding elements visible in the poolside amenities." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHE1VrAaYISf1ph7f5jqTyHA3YccEkVRnOWV1yfg2B4HZxXaOnDdliYMyjNX72RtXOrotuAEttf01xrTMeqMmb4o7xDQjyoDm2iXS_j_DAQr0ZQe-PeLiJKcXR7KtAnrZwe3tAV8uT86S0Wj_osZzAPfVEliTvNdT9vAWYUy1JIcaOm42hhLXZWS6swINuBOYXQxCRy4shGXYvNLZUqaNj-SDEl4hzczfXMZ_HWXAzQ1E9CAPYFjdvoc_G3XZEiyyZqBUSSmDQ9uo7"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent md:hidden"></div>
+</div>
+<div class="p-6 flex flex-col justify-between flex-1">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="bg-primary text-white font-flexpay-badge text-[10px] px-2 py-0.5 rounded uppercase">Exclusive Offer</span>
+<div class="flex items-center gap-1 bg-white/90 px-2 py-0.5 rounded border border-outline-variant">
+<span class="material-symbols-outlined text-primary text-[14px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-[9px] font-bold text-on-surface uppercase tracking-tighter">UBA Gold Verified</span>
+</div>
+</div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-2">Eko Atlantic Penthouse</h3>
+<p class="text-secondary font-body-md mb-4">A sprawling 4-bedroom sanctuary with private helipad and 360-degree ocean views. Designed for the discerning traveler who values absolute privacy and unparalleled luxury.</p>
+<ul class="flex flex-wrap gap-x-4 gap-y-2 mb-6">
+<li class="flex items-center gap-1 text-label-md text-secondary"><span class="material-symbols-outlined text-[18px]">pool</span> Infinity Pool</li>
+<li class="flex items-center gap-1 text-label-md text-secondary"><span class="material-symbols-outlined text-[18px]">workspace_premium</span> Concierge</li>
+<li class="flex items-center gap-1 text-label-md text-secondary"><span class="material-symbols-outlined text-[18px]">local_parking</span> Private Parking</li>
+</ul>
+</div>
+<div class="flex items-center justify-between border-t border-outline-variant pt-4">
+<div>
+<p class="text-on-surface font-bold text-headline-lg-mobile">₦450,000 <span class="text-label-md font-normal text-secondary">/ night</span></p>
+<p class="text-primary font-bold text-label-md">₦112,500/mo with FlexPay</p>
+</div>
+<button class="bg-on-background text-on-tertiary px-6 py-2.5 rounded-lg font-bold hover:bg-primary transition-colors active:scale-95">Book Now</button>
+</div>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[4/3] overflow-hidden rounded-lg mb-4">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A tranquil luxury spa interior with bamboo accents, soft warm lighting, and a minimalist stone soaking tub. The atmosphere is extremely calm and serene, utilizing a refined palette of earth tones, whites, and a single deep red accent flower. The image represents the high-end curated experiences available through the travel marketplace." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-N-0vagR6ZMWlMYFVcAv09hk6oO4dA6DnUerPaC4u3RJmiExudkt79g0P3_tpiq3ZOS53hv6vxxyTqp-WeFq5LFvV0cEgo3Kdf-T04XfBJ6bhJS3CF5kJo0UPzkAM1oVuv3KA0_awPGZU0aqPihn-SgFPDabKhHahRw9I1vUEwzjaXiOwWQ2SZ-Cp_LebQRt3LVNOqaAX8n5I4Ol98PL3o7FrfJrdvbFcmydbQd2pLm3hr9_hioJ1tA5dtsNnd8kwZ_HVLN_WG5_Y"/>
+<button class="absolute top-4 right-4 bg-white/20 backdrop-blur-md p-2 rounded-full text-white">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+</div>
+<div class="flex justify-between items-start">
+<div class="flex-1 pr-4">
+<h3 class="font-title-md text-title-md text-on-surface group-hover:text-primary transition-colors truncate">The Wheatbaker Hotel</h3>
+<p class="text-secondary font-body-md">Ikoyi, Lagos</p>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[16px] text-amber-500" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-on-surface font-bold text-label-md">4.95</span>
+<span class="text-secondary text-label-md">(310 reviews)</span>
+</div>
+</div>
+<div class="text-right">
+<p class="text-on-surface font-bold text-title-md">₦125,000</p>
+<p class="text-secondary text-label-md">/ night</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Pagination/Load More -->
+<div class="flex flex-col items-center justify-center py-section-gap">
+<p class="text-secondary font-body-md mb-4">Showing 1 – 12 of 342 properties</p>
+<div class="flex items-center gap-2">
+<button class="w-10 h-10 flex items-center justify-center rounded-full border border-outline-variant text-secondary hover:bg-surface-container-low disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-on-background text-on-tertiary font-bold">1</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low text-on-surface">2</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low text-on-surface">3</button>
+<span class="px-2">...</span>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low text-on-surface">28</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full border border-outline-variant text-secondary hover:bg-surface-container-low">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile only) -->
+<nav class="md:hidden fixed bottom-0 w-full flex justify-around items-center bg-surface dark:bg-surface px-4 py-2 border-t border-surface-variant z-50 shadow-[0_-4px_16px_rgba(51,51,51,0.04)]">
+<a class="flex flex-col items-center justify-center text-secondary" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary font-bold" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">explore</span>
+<span class="font-label-md text-label-md">Explore</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary" href="#">
+<span class="material-symbols-outlined">confirmation_number</span>
+<span class="font-label-md text-label-md">Bookings</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+</nav>
+<!-- Floating Action Button for Map on Mobile (Contextual Suppression Logic applied, keeping on search page) -->
+<button class="md:hidden fixed right-6 bottom-24 bg-on-background text-on-tertiary w-14 h-14 rounded-full shadow-2xl flex items-center justify-center active:scale-95 transition-transform z-40">
+<span class="material-symbols-outlined">map</span>
+</button>
+<script>
+        // Simple micro-interactions
+        document.querySelectorAll('.group').forEach(card => {
+            card.addEventListener('mousedown', () => {
+                card.style.transform = 'scale(0.98)';
+                card.style.transition = 'transform 0.1s ease';
+            });
+            card.addEventListener('mouseup', () => {
+                card.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body></html>

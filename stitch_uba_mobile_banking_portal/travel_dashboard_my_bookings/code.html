@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>UBA Lifestyle Travel - Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Montserrat:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-background": "#1b1c1c",
+                      "on-tertiary": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "on-primary-fixed": "#410002",
+                      "surface-dim": "#dbdad9",
+                      "on-secondary": "#ffffff",
+                      "error": "#ba1a1a",
+                      "surface-bright": "#fbf9f9",
+                      "on-primary-fixed-variant": "#93000d",
+                      "primary-container": "#d71920",
+                      "on-surface": "#1b1c1c",
+                      "on-error": "#ffffff",
+                      "surface-container-low": "#f5f3f3",
+                      "primary": "#ae0011",
+                      "primary-fixed": "#ffdad6",
+                      "secondary": "#5f5e5e",
+                      "surface": "#fbf9f9",
+                      "surface-container": "#efeded",
+                      "secondary-fixed": "#e4e2e1",
+                      "primary-fixed-dim": "#ffb4ab",
+                      "secondary-container": "#e4e2e1",
+                      "on-surface-variant": "#5d3f3c",
+                      "on-tertiary-container": "#eff0f1",
+                      "on-tertiary-fixed-variant": "#454748",
+                      "on-tertiary-fixed": "#191c1d",
+                      "tertiary-fixed": "#e1e3e4",
+                      "surface-variant": "#e3e2e2",
+                      "inverse-primary": "#ffb4ab",
+                      "surface-tint": "#c00014",
+                      "surface-container-lowest": "#ffffff",
+                      "on-secondary-fixed": "#1b1c1c",
+                      "inverse-surface": "#303031",
+                      "secondary-fixed-dim": "#c8c6c6",
+                      "surface-container-highest": "#e3e2e2",
+                      "tertiary": "#525556",
+                      "outline-variant": "#e6bdb8",
+                      "tertiary-container": "#6b6d6e",
+                      "background": "#fbf9f9",
+                      "tertiary-fixed-dim": "#c5c7c8",
+                      "on-secondary-fixed-variant": "#474747",
+                      "outline": "#926f6b",
+                      "surface-container-high": "#e9e8e7",
+                      "on-primary-container": "#ffece9",
+                      "on-secondary-container": "#656464",
+                      "error-container": "#ffdad6",
+                      "on-primary": "#ffffff",
+                      "inverse-on-surface": "#f2f0f0"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "unit": "4px",
+                      "section-gap": "64px",
+                      "container-margin-mb": "20px",
+                      "stack-md": "16px",
+                      "container-margin-dt": "80px",
+                      "stack-lg": "32px",
+                      "stack-sm": "8px",
+                      "gutter": "16px"
+              },
+              "fontFamily": {
+                      "body-md": ["Inter"],
+                      "flexpay-badge": ["Montserrat"],
+                      "headline-lg": ["Montserrat"],
+                      "headline-lg-mobile": ["Montserrat"],
+                      "display-lg": ["Montserrat"],
+                      "body-lg": ["Inter"],
+                      "title-md": ["Inter"],
+                      "label-md": ["Inter"]
+              },
+              "fontSize": {
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "flexpay-badge": ["12px", {"lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "800"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        h1, h2, h3, .font-headline { font-family: 'Montserrat', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .glass-card { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(238, 238, 238, 1); }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-24 md:pb-0">
+<!-- Top Navigation Bar -->
+<header class="bg-surface shadow-sm sticky top-0 w-full flex justify-between items-center px-container-margin-mb md:px-container-margin-dt py-4 z-50 transition-all duration-300">
+<div class="flex items-center gap-4">
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="text-title-md font-headline-lg-mobile font-bold text-primary">TravelMarket</h1>
+</div>
+<div class="hidden md:flex items-center space-x-8">
+<nav class="flex space-x-6">
+<a class="text-secondary font-label-md text-label-md hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-secondary font-label-md text-label-md hover:text-primary transition-colors" href="#">Explore</a>
+<a class="text-primary font-label-md text-label-md font-bold" href="#">Bookings</a>
+<a class="text-secondary font-label-md text-label-md hover:text-primary transition-colors" href="#">Support</a>
+</nav>
+<div class="h-8 w-px bg-surface-variant"></div>
+<div class="flex items-center gap-3">
+<div class="text-right">
+<p class="text-label-md font-bold leading-none">James Wilson</p>
+<p class="text-[10px] text-secondary uppercase tracking-widest font-bold">Elite Member</p>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-surface-variant">
+<img alt="Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPVV-lcuVynn-lMatUirCLHYpM-4jIpFJ8KZZfTPXkJHUYdbRTlS2dztEGTJMRTEbosPK3IuBUdRWm-Jfqa4lFCADledhlhcyJFZhu2l5jaCybL1PzlQ6PwHYXP9tP3DeBiunfBFwL5XQvM-o3IBcqIGa2X55FhiLobXhJBE_G6HRvB-o-1PKnSKPasadMjlPuUsxlmfsbS5uO6SugpabXkGpDXnEiSoxH__1_iED3YVZFrY-bvTYkUu8bGiNm4F6Qa7l5WD3nXt_v"/>
+</div>
+</div>
+</div>
+<div class="md:hidden">
+<div class="w-8 h-8 rounded-full overflow-hidden">
+<img alt="Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBO_UB1FsA520BluDiI1cWUCpyElQqWPt8svCU5P2UMWTUZP0VMqcc4tm4fEX75OGLszkbe-FFidoNpx1kOWSUNlXDGr3-2ads7cw4fLm89yTL84QIQCgIOh97K6FPuTdQNwGI7ffFAhz4RYRpyMQdb2xDCG4yuI4jnpol-3_q6gj1wMT11TI2LzJyxzoZFgyacjqF93D8yFZ46SvhWxfL8elzXG_9kw6Kmln8-gjA9tsS-sJVhgLvwxNOMt2KblmrpyG82rloJotDz"/>
+</div>
+</div>
+</header>
+<main class="max-w-[1280px] mx-auto px-container-margin-mb md:px-container-margin-dt py-8 space-y-section-gap">
+<!-- Dashboard Welcome & Alerts -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-start">
+<div class="md:col-span-8">
+<h2 class="font-headline-lg text-headline-lg text-on-background mb-2">Travel Dashboard</h2>
+<p class="text-body-md text-secondary">Welcome back, James. You have 2 upcoming trips and 1 pending payment.</p>
+</div>
+<div class="md:col-span-4 space-y-stack-sm">
+<div class="bg-primary-container text-on-primary-container p-stack-md rounded-lg flex items-start gap-3 shadow-sm animate-pulse-subtle">
+<span class="material-symbols-outlined mt-0.5" data-icon="notifications_active">notifications_active</span>
+<div>
+<p class="font-bold text-label-md">FlexPay Reminder</p>
+<p class="text-xs opacity-90">Your payment for 'Maldives Getaway' is due in 3 days.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Quick Links Bento -->
+<section class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<a class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-surface-variant hover:border-primary transition-all group" href="#">
+<span class="material-symbols-outlined text-primary mb-4" data-icon="payments">payments</span>
+<p class="font-bold text-label-md block">Payment Methods</p>
+<p class="text-xs text-secondary mt-1">Manage cards &amp; UBA accounts</p>
+</a>
+<a class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-surface-variant hover:border-primary transition-all group" href="#">
+<span class="material-symbols-outlined text-primary mb-4" data-icon="verified_user">verified_user</span>
+<p class="font-bold text-label-md block">Secure Documents</p>
+<p class="text-xs text-secondary mt-1">Passports &amp; Visas</p>
+</a>
+<a class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-surface-variant hover:border-primary transition-all group" href="#">
+<span class="material-symbols-outlined text-primary mb-4" data-icon="support_agent">support_agent</span>
+<p class="font-bold text-label-md block">24/7 Concierge</p>
+<p class="text-xs text-secondary mt-1">Priority banking support</p>
+</a>
+<a class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-surface-variant hover:border-primary transition-all group" href="#">
+<span class="material-symbols-outlined text-primary mb-4" data-icon="wallet">wallet</span>
+<p class="font-bold text-label-md block">Loyalty Points</p>
+<p class="text-xs text-secondary mt-1">45,200 Miles available</p>
+</a>
+</section>
+<!-- Upcoming Bookings - Horizontal Scroll -->
+<section>
+<div class="flex justify-between items-end mb-stack-md">
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-background">Upcoming Bookings</h3>
+<a class="text-primary font-bold text-label-md flex items-center hover:underline" href="#">View All <span class="material-symbols-outlined text-sm ml-1" data-icon="arrow_forward">arrow_forward</span></a>
+</div>
+<div class="flex overflow-x-auto gap-6 no-scrollbar pb-4 -mx-4 px-4">
+<!-- Trip Card 1 -->
+<div class="flex-none w-[300px] md:w-[400px] bg-white rounded-xl shadow-sm border border-surface-variant overflow-hidden group">
+<div class="relative h-48">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A luxurious overwater villa in the Maldives at sunset. The sky is filled with vibrant oranges and deep purples, reflecting on the crystal clear turquoise water. The wooden walkway to the villa is softly lit, creating a serene and exclusive vacation atmosphere with a premium high-trust banking travel aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMMBfgB4LnEGX1oW5gJlO4WTYvHBtA0ZPZyVCU4KHOWH7Usn7J5FZbcACBFHiukkco0td-4NwHJ_dlxIeYB8sDRtNDtQYA0VI1g63vZbdNUklbh9bxgk7nhypgGRrxhm-3YZRDYSG0zPX6Wi-CcPxdE4vhUTXdfjl7hupKfCK6yMXsTnrFPWar1MSQ5Ezdsn3Shnqo6-foGm77es17E9qujuJpBYEDgaqY0wHvkR7lqMn8vPW9rMbrNOnVcue1u4IN0YzlczX6KmNQ"/>
+<div class="absolute top-4 left-4 bg-primary text-white text-flexpay-badge font-flexpay-badge px-3 py-1 rounded-full shadow-lg">FLEXPAY ACTIVE</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-bold text-title-md">Lux Resort &amp; Spa</h4>
+<span class="bg-surface-container-high px-2 py-1 rounded text-[10px] font-bold uppercase">5 Days Left</span>
+</div>
+<p class="text-secondary text-label-md mb-4 flex items-center gap-1"><span class="material-symbols-outlined text-sm" data-icon="location_on">location_on</span> Male, Maldives</p>
+<div class="flex justify-between items-center pt-4 border-t border-surface-variant">
+<div>
+<p class="text-[10px] text-secondary uppercase font-bold">Check-in</p>
+<p class="font-bold text-label-md">Oct 24, 2024</p>
+</div>
+<button class="border-[1.5px] border-on-background px-4 py-2 rounded-lg text-label-md font-bold hover:bg-on-background hover:text-white transition-colors">Details</button>
+</div>
+</div>
+</div>
+<!-- Trip Card 2 -->
+<div class="flex-none w-[300px] md:w-[400px] bg-white rounded-xl shadow-sm border border-surface-variant overflow-hidden group">
+<div class="relative h-48">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="The Eiffel Tower standing majestically in Paris during a crisp morning. The soft morning light illuminates the intricate ironwork against a pale blue sky. The scene is shot from a quiet cobblestone street, conveying a sense of timeless elegance and curated travel luxury in a clean, minimalist professional style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHlc1Ewj9sTtxW6PdE3fsk4gD4FcZeWsvhZlGAkDSbtttbbIe_baqw0vxroSUxrLSYuY8VByeGBc6JFTOelNUNnR_tHzIz-nLE-wGmJb4H_v1F_THUWLHF05mqhIUKVPH7lfIgyxQcEPbqhG61sit3PXQrYnH59FmiGivNg3a-JthTpK1Sjgk6o_nnLP6j5RXEtGgs4Q0_plrFMGGpIbirq3tHjKE0XQUCLRmtY8168l30v9RcZMyq-6GOd6Wc2OPq_use1FfZsjHL"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-bold text-title-md">Paris Business Loft</h4>
+<span class="bg-surface-container-high px-2 py-1 rounded text-[10px] font-bold uppercase">Nov 12 - Nov 18</span>
+</div>
+<p class="text-secondary text-label-md mb-4 flex items-center gap-1"><span class="material-symbols-outlined text-sm" data-icon="location_on">location_on</span> Paris, France</p>
+<div class="flex justify-between items-center pt-4 border-t border-surface-variant">
+<div>
+<p class="text-[10px] text-secondary uppercase font-bold">Status</p>
+<p class="font-bold text-label-md text-green-600">Confirmed</p>
+</div>
+<button class="border-[1.5px] border-on-background px-4 py-2 rounded-lg text-label-md font-bold hover:bg-on-background hover:text-white transition-colors">Manage</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Active FlexPay Plans -->
+<section class="bg-on-background text-white rounded-2xl p-8 md:p-12 shadow-xl relative overflow-hidden">
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary rounded-full blur-[100px] opacity-20 -mr-32 -mt-32"></div>
+<div class="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-stack-lg">
+<div class="md:col-span-4">
+<div class="inline-block bg-primary px-3 py-1 rounded-full text-flexpay-badge font-flexpay-badge mb-4">FLEXPAY SUITE</div>
+<h3 class="font-headline-lg text-headline-lg mb-4">Active Financing</h3>
+<p class="text-tertiary-fixed font-body-md">Split your travel costs into manageable monthly installments with UBA's 0% interest offer.</p>
+</div>
+<div class="md:col-span-8 grid grid-cols-1 gap-gutter">
+<div class="bg-white/10 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h4 class="font-bold text-body-lg">Maldives Luxury Escape</h4>
+<p class="text-tertiary-fixed text-xs">Merchant: LuxResorts International</p>
+</div>
+<div class="text-right">
+<p class="text-primary font-bold text-title-md">$1,250.00</p>
+<p class="text-tertiary-fixed text-[10px] uppercase font-bold">Total Remaining</p>
+</div>
+</div>
+<div class="space-y-2 mb-6">
+<div class="flex justify-between text-xs font-bold uppercase tracking-wider">
+<span>Progress</span>
+<span>3 of 6 Installments</span>
+</div>
+<div class="w-full h-2 bg-white/20 rounded-full overflow-hidden">
+<div class="w-1/2 h-full bg-primary rounded-full"></div>
+</div>
+</div>
+<div class="flex flex-wrap gap-stack-md justify-between items-center">
+<div class="flex items-center gap-4">
+<div class="bg-white/5 p-3 rounded-lg">
+<p class="text-[10px] text-tertiary-fixed uppercase font-bold">Next Payment</p>
+<p class="font-bold text-label-md">Oct 20, 2024</p>
+</div>
+<div class="bg-white/5 p-3 rounded-lg">
+<p class="text-[10px] text-tertiary-fixed uppercase font-bold">Amount</p>
+<p class="font-bold text-label-md">$416.67</p>
+</div>
+</div>
+<button class="bg-primary text-white font-bold text-label-md px-8 py-3 rounded-lg hover:bg-red-700 transition-colors shadow-lg active:scale-95 duration-150">Pay Early</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Booking History -->
+<section class="space-y-stack-md">
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-background">Booking History</h3>
+<div class="bg-white border border-surface-variant rounded-xl overflow-hidden shadow-sm">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low text-[10px] uppercase font-bold tracking-widest text-secondary">
+<tr>
+<th class="px-6 py-4">Destination / Hotel</th>
+<th class="px-6 py-4 hidden md:table-cell">Dates</th>
+<th class="px-6 py-4 hidden md:table-cell">Amount</th>
+<th class="px-6 py-4">Status</th>
+<th class="px-6 py-4 text-right">Invoice</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-variant">
+<tr class="hover:bg-surface-container-lowest transition-colors cursor-pointer group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A modern glass skyscraper against a bright blue sky in Singapore. The architecture is futuristic and clean, reflecting the vibrant city life and the high-end, professional nature of international business travel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQ6qzd7sVGH6-pSJ93nOOfU6A8bvyUyf_-VIKv-OxdxKuMo77mcKsyk5zMs2DGXXk6hlCjjlV63ilSRrrRi8N6NGsFrvhuqxbtgnGzk46_Cx6BJxODEjxVnEMYwAVmF4_Q-XXEfogydCeK4PjjeHpHMd1CXXgJXCBXVKY0JOxG_SwkYAtBdo5-GxW7dl--MVffQaQyTvO9c0KCwHRBgABpk0Oooo4oSWdsjE1WB9pGennJIzhkKlsro3UMJYvRzz-7Xcf7MfJbRGy1"/>
+</div>
+<div>
+<p class="font-bold text-label-md">Marina Bay Sands</p>
+<p class="text-xs text-secondary">Singapore</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 hidden md:table-cell">
+<p class="text-label-md">Aug 12 - 15, 2024</p>
+</td>
+<td class="px-6 py-4 hidden md:table-cell">
+<p class="text-label-md font-bold">$2,100.00</p>
+</td>
+<td class="px-6 py-4">
+<span class="bg-green-100 text-green-800 text-[10px] font-bold px-2 py-1 rounded">COMPLETED</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors cursor-pointer">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="The Shard in London, illuminated at dusk. The city lights of London bridge twinkle in the foreground, creating a sophisticated and luxurious atmosphere for a premium travel dashboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXtSXntogX7-ESEVetpVA9e9JYtln535ZXonNS0Org-xwvS15TVwgN2f4i2uwQfqJ6r2MZWNUfUg1ojEyPLW-hLJjgyIoJ9CGs0EXcmYuUe15zzty_fWOIlXnfkDxKwCRCqBVJkEjwWLpDXxoVwKBAEEXYkhXmU4ikU7hG9gbkJlBKoNaG9DpVGkvm6ccLWwoGStEpCKpg02Rz-vmo2TfAeqUaQP7FB0il1m1ueov78MiQIEljVurhj5DCzvxzDxTHMoORkMVJBJ4_"/>
+</div>
+<div>
+<p class="font-bold text-label-md">The Shard</p>
+<p class="text-xs text-secondary">London, UK</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 hidden md:table-cell">
+<p class="text-label-md">June 04 - 07, 2024</p>
+</td>
+<td class="px-6 py-4 hidden md:table-cell">
+<p class="text-label-md font-bold">$1,450.00</p>
+</td>
+<td class="px-6 py-4">
+<span class="bg-green-100 text-green-800 text-[10px] font-bold px-2 py-1 rounded">COMPLETED</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar (Mobile) -->
+<nav class="md:hidden fixed bottom-0 w-full flex justify-around items-center bg-surface dark:bg-surface px-4 py-2 border-t border-surface-variant z-50 shadow-[0_-4px_16px_rgba(51,51,51,0.04)]">
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-md text-[10px]">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed" href="#">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="font-label-md text-[10px]">Explore</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed font-bold" href="#">
+<span class="material-symbols-outlined" data-icon="confirmation_number" style="font-variation-settings: 'FILL' 1;">confirmation_number</span>
+<span class="font-label-md text-[10px]">Bookings</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-md text-[10px]">Profile</span>
+</a>
+</nav>
+<script>
+        // Micro-interactions and effects
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.group');
+            cards.forEach(card => {
+                card.addEventListener('mousedown', () => {
+                    card.style.transform = 'scale(0.98)';
+                });
+                card.addEventListener('mouseup', () => {
+                    card.style.transform = 'scale(1)';
+                });
+            });
+
+            // Sticky Header Blur on Scroll
+            window.addEventListener('scroll', () => {
+                const header = document.querySelector('header');
+                if (window.scrollY > 20) {
+                    header.classList.add('bg-white/90', 'backdrop-blur-md');
+                } else {
+                    header.classList.remove('bg-white/90', 'backdrop-blur-md');
+                }
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Booking Confirmed | TravelMarket</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-background": "#1b1c1c",
+                    "on-tertiary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed": "#410002",
+                    "surface-dim": "#dbdad9",
+                    "on-secondary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "surface-bright": "#fbf9f9",
+                    "on-primary-fixed-variant": "#93000d",
+                    "primary-container": "#d71920",
+                    "on-surface": "#1b1c1c",
+                    "on-error": "#ffffff",
+                    "surface-container-low": "#f5f3f3",
+                    "primary": "#ae0011",
+                    "primary-fixed": "#ffdad6",
+                    "secondary": "#5f5e5e",
+                    "surface": "#fbf9f9",
+                    "surface-container": "#efeded",
+                    "secondary-fixed": "#e4e2e1",
+                    "primary-fixed-dim": "#ffb4ab",
+                    "secondary-container": "#e4e2e1",
+                    "on-surface-variant": "#5d3f3c",
+                    "on-tertiary-container": "#eff0f1",
+                    "on-tertiary-fixed-variant": "#454748",
+                    "on-tertiary-fixed": "#191c1d",
+                    "tertiary-fixed": "#e1e3e4",
+                    "surface-variant": "#e3e2e2",
+                    "inverse-primary": "#ffb4ab",
+                    "surface-tint": "#c00014",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed": "#1b1c1c",
+                    "inverse-surface": "#303031",
+                    "secondary-fixed-dim": "#c8c6c6",
+                    "surface-container-highest": "#e3e2e2",
+                    "tertiary": "#525556",
+                    "outline-variant": "#e6bdb8",
+                    "tertiary-container": "#6b6d6e",
+                    "background": "#fbf9f9",
+                    "tertiary-fixed-dim": "#c5c7c8",
+                    "on-secondary-fixed-variant": "#474747",
+                    "outline": "#926f6b",
+                    "surface-container-high": "#e9e8e7",
+                    "on-primary-container": "#ffece9",
+                    "on-secondary-container": "#656464",
+                    "error-container": "#ffdad6",
+                    "on-primary": "#ffffff",
+                    "inverse-on-surface": "#f2f0f0"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "4px",
+                    "section-gap": "64px",
+                    "container-margin-mb": "20px",
+                    "stack-md": "16px",
+                    "container-margin-dt": "80px",
+                    "stack-lg": "32px",
+                    "stack-sm": "8px",
+                    "gutter": "16px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "flexpay-badge": ["Montserrat"],
+                    "headline-lg": ["Montserrat"],
+                    "headline-lg-mobile": ["Montserrat"],
+                    "display-lg": ["Montserrat"],
+                    "body-lg": ["Inter"],
+                    "title-md": ["Inter"],
+                    "label-md": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "flexpay-badge": ["12px", {"lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "800"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .animate-check {
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+            animation: dash 0.8s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+        }
+        @keyframes dash {
+            to { stroke-dashoffset: 0; }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+<!-- Top Navigation (Shell Implementation) -->
+<header class="bg-surface dark:bg-surface shadow-sm dark:shadow-none flex justify-between items-center w-full px-container-margin-mb md:px-container-margin-dt py-4 z-50 fixed top-0">
+<div class="flex items-center gap-4">
+<button class="hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors p-2 rounded-full active:scale-95 duration-150">
+<span class="material-symbols-outlined text-primary">menu</span>
+</button>
+<h1 class="text-title-md font-headline-lg-mobile font-bold text-primary dark:text-primary-fixed">TravelMarket</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="hidden md:block font-label-md text-secondary">USD ($)</span>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant">
+<img alt="User Profile" data-alt="A professional headshot of a smiling business professional in a well-lit modern office environment. The lighting is bright and high-key, reflecting a high-trust corporate aesthetic. The overall mood is confident and clean, perfectly matching a premium lifestyle banking application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCT43G5mZ9Q7NlLA-JKiTKV185WFo-Rmomme5olhwWggaCFYJBjpUfstM4h3gljt_EXVvbwOymNrfkPKmE8x_q2MCC-6GuJ7hFDriLHiAqROW2nuGb6aAZmRb2Nu4ttakw17OUUFdkjD2SxJZL7Ht-QJjY-i47tsamLAAVCmkk6JJ41JrNJywClLG0b5vWCDRx0QGdYnrGJrVC2wjyHNhDw3tNrRIP9TK25p_oMjIseOvaisphUjiUcNpcpE8hXZcFviPUw36ovtIIj"/>
+</div>
+</div>
+</header>
+<main class="flex-grow pt-24 pb-32 px-container-margin-mb md:px-container-margin-dt max-w-7xl mx-auto w-full">
+<!-- Success Section -->
+<section class="flex flex-col items-center text-center mb-section-gap animate-in fade-in slide-in-from-bottom-4 duration-700">
+<div class="w-20 h-20 bg-primary-container/10 rounded-full flex items-center justify-center mb-stack-md">
+<span class="material-symbols-outlined text-primary text-[48px] font-bold" data-weight="fill">check_circle</span>
+</div>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background mb-stack-sm">Availability Confirmed!</h2>
+<p class="font-body-md text-secondary max-w-lg">Great news! We've secured your selection. Complete your payment within the next 30 minutes to finalize your luxury experience.</p>
+<!-- Countdown Timer Chip -->
+<div class="mt-stack-md bg-primary-container text-on-primary-container px-4 py-2 rounded-full flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">timer</span>
+<span class="font-label-md font-bold tracking-wider" id="countdown">29:59</span>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter lg:gap-stack-lg">
+<!-- Booking Details (The Azure Sanctuary Resort) -->
+<div class="lg:col-span-7 space-y-stack-md">
+<div class="bg-surface-container-lowest border border-surface-variant rounded-xl overflow-hidden shadow-sm">
+<div class="relative h-64 w-full">
+<img class="w-full h-full object-cover" data-alt="An expansive aerial view of a luxurious overwater resort in the Maldives featuring pristine turquoise waters and white sandy beaches. The scene is bathed in golden hour sunlight, creating a serene and aspirational travel atmosphere. The photography style is high-end, crisp, and professional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdmKsbSTRQrWReEHN2M4nPSeSAp8tK_Tmd28f-N9LWZxHAqs8pBy0BI_ifptVpVkMy-pBbqmPbYtte372VPR7n2ljI2H1atgAMkZYar0mxMr0IW5juHZJ-_gtCci-caIPBqVfeHYhVGgSCr7phslVmGZ3KklYOrA351WSn_YbV7srDz1UKOGJDa5AjQ3CMA6gGqGoC2sNHn6HrnUyhPT3bvax58HHaN7DloqqPhI9Glr7q9FlKL8-1Cai_Zyf2XK6UwEM_LTwvv5zP"/>
+<div class="absolute top-4 left-4">
+<span class="bg-white/90 backdrop-blur-sm text-primary font-flexpay-badge text-flexpay-badge px-3 py-1.5 rounded-full shadow-sm uppercase">Confirmed</span>
+</div>
+</div>
+<div class="p-stack-lg">
+<div class="flex justify-between items-start mb-stack-sm">
+<div>
+<h3 class="font-title-md text-title-md text-on-background">The Azure Sanctuary Resort</h3>
+<p class="font-label-md text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+                                    Baa Atoll, Maldives
+                                </p>
+</div>
+<div class="flex text-[#FFD700]">
+<span class="material-symbols-outlined" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-weight="fill">star</span>
+</div>
+</div>
+<hr class="border-surface-variant my-stack-md"/>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-stack-md">
+<div>
+<p class="text-label-md font-label-md text-secondary uppercase tracking-tight">Check-in</p>
+<p class="text-body-md font-bold">Oct 12, 2024</p>
+</div>
+<div>
+<p class="text-label-md font-label-md text-secondary uppercase tracking-tight">Check-out</p>
+<p class="text-body-md font-bold">Oct 17, 2024</p>
+</div>
+<div>
+<p class="text-label-md font-label-md text-secondary uppercase tracking-tight">Guests</p>
+<p class="text-body-md font-bold">2 Adults, 1 Child</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Trust Badges -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-stack-sm">
+<div class="bg-surface-container-low p-4 rounded-lg flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">security</span>
+<p class="text-label-md font-medium">Bank-grade Security</p>
+</div>
+<div class="bg-surface-container-low p-4 rounded-lg flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">verified</span>
+<p class="text-label-md font-medium">UBA Verified Travel</p>
+</div>
+<div class="bg-surface-container-low p-4 rounded-lg flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">support_agent</span>
+<p class="text-label-md font-medium">24/7 Global Support</p>
+</div>
+</div>
+</div>
+<!-- Pricing Sidebar -->
+<div class="lg:col-span-5">
+<div class="bg-surface-container-lowest border border-surface-variant rounded-xl p-stack-lg shadow-sm sticky top-24">
+<h4 class="font-title-md text-title-md mb-stack-lg border-b border-surface-variant pb-stack-sm">Fare Breakdown</h4>
+<div class="space-y-4 mb-stack-lg">
+<div class="flex justify-between font-body-md">
+<span class="text-secondary">Ocean Villa (5 nights)</span>
+<span class="font-medium">$3,450.00</span>
+</div>
+<div class="flex justify-between font-body-md">
+<span class="text-secondary">Taxes &amp; Fees</span>
+<span class="font-medium">$412.50</span>
+</div>
+<div class="flex justify-between font-body-md">
+<span class="text-secondary">Resort Fee</span>
+<span class="font-medium">$150.00</span>
+</div>
+<div class="flex justify-between font-body-md pt-4 border-t border-dashed border-outline-variant">
+<span class="text-on-background font-bold">Total Amount</span>
+<span class="text-on-background font-bold text-title-md">$4,012.50</span>
+</div>
+</div>
+<!-- FlexPay Integration -->
+<div class="bg-primary-container/5 border border-primary-container/20 p-stack-md rounded-lg mb-stack-lg relative overflow-hidden">
+<div class="absolute -right-4 -top-4 w-16 h-16 bg-primary-container opacity-5 rounded-full"></div>
+<div class="flex items-center justify-between mb-2">
+<span class="bg-primary text-white font-flexpay-badge text-[10px] px-2 py-0.5 rounded-full uppercase">UBA FlexPay</span>
+<span class="font-label-md text-primary font-bold">From $668.75/mo</span>
+</div>
+<p class="text-label-md text-secondary">Pay in 6 interest-free installments with your UBA Visa Card.</p>
+</div>
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-headline-lg-mobile py-4 rounded-lg flex items-center justify-center gap-3 active:scale-[0.98] transition-all duration-150">
+                        Continue to Payment
+                        <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<p class="text-center text-label-md text-secondary mt-stack-md flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+                        Secure, encrypted transaction
+                    </p>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation (Shell Implementation - Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full flex justify-around items-center bg-surface dark:bg-surface border-t border-surface-variant dark:border-outline-variant px-4 py-2 z-50 shadow-[0_-4px_16px_rgba(51,51,51,0.04)]">
+<div class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed hover:bg-surface-container-lowest dark:hover:bg-surface-container-low px-4 py-1 rounded-lg">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed hover:bg-surface-container-lowest dark:hover:bg-surface-container-low px-4 py-1 rounded-lg">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-label-md text-label-md">Explore</span>
+</div>
+<div class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed font-bold hover:bg-surface-container-lowest dark:hover:bg-surface-container-low px-4 py-1 rounded-lg">
+<span class="material-symbols-outlined" data-weight="fill">confirmation_number</span>
+<span class="font-label-md text-label-md">Bookings</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed hover:bg-surface-container-lowest dark:hover:bg-surface-container-low px-4 py-1 rounded-lg">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</div>
+</nav>
+<script>
+        // Simple countdown logic
+        let time = 30 * 60; // 30 minutes in seconds
+        const countdownElement = document.getElementById('countdown');
+
+        function updateCountdown() {
+            const minutes = Math.floor(time / 60);
+            let seconds = time % 60;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+            countdownElement.textContent = `${minutes}:${seconds}`;
+            if (time > 0) time--;
+        }
+
+        setInterval(updateCountdown, 1000);
+
+        // Micro-interaction for primary button
+        const payBtn = document.querySelector('button.bg-primary');
+        payBtn.addEventListener('click', function() {
+            this.innerHTML = `<span class="material-symbols-outlined animate-spin">refresh</span> Securely Redirecting...`;
+            this.classList.add('opacity-80', 'cursor-not-allowed');
+            setTimeout(() => {
+                alert('Redirecting to UBA Secure Gateway...');
+            }, 800);
+        });
+    </script>
+</body></html>
