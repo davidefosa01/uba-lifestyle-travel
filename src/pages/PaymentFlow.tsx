@@ -36,18 +36,18 @@ export const PaymentFlow: React.FC = () => {
   return (
     <div className="px-container-margin-mb py-6 pb-24">
       <div className="flex items-center gap-4 mb-6">
-        <button onClick={() => navigate(-1)} className="material-symbols-outlined">arrow_back</button>
-        <h1 className="text-xl font-bold">Secure Payment</h1>
+        <button onClick={() => navigate(-1)} className="material-symbols-outlined hover:bg-surface-container-low p-2 rounded-full transition-colors">arrow_back</button>
+        <h1 className="text-xl font-bold font-montserrat">Secure Payment</h1>
       </div>
 
-      <div className="bg-surface-container-low rounded-2xl p-4 mb-6">
-        <h2 className="text-sm font-bold text-secondary uppercase mb-3">Booking Summary</h2>
+      <div className="bg-surface-container-low rounded-2xl p-4 mb-6 border border-surface-variant/50">
+        <h2 className="text-[10px] font-extrabold text-secondary uppercase tracking-widest mb-3 font-inter">Booking Summary</h2>
         <div className="flex gap-4">
-          <img src={listing.image} alt={listing.name} className="w-20 h-20 rounded-xl object-cover" />
+          <img src={listing.image} alt={listing.name} className="w-20 h-20 rounded-xl object-cover shadow-sm" />
           <div>
-            <h3 className="font-bold">{listing.name}</h3>
-            <p className="text-xs text-secondary">{booking.bookingReference}</p>
-            <p className="text-sm font-bold mt-1">₦{booking.totalPrice.toLocaleString()}</p>
+            <h3 className="font-bold font-montserrat text-on-surface">{listing.name}</h3>
+            <p className="text-[10px] text-secondary font-medium">{booking.bookingReference}</p>
+            <p className="text-sm font-bold mt-1 text-primary">₦{booking.totalPrice.toLocaleString()}</p>
           </div>
         </div>
       </div>
@@ -55,75 +55,78 @@ export const PaymentFlow: React.FC = () => {
       <div className="space-y-4 mb-8">
         <div
           onClick={() => setPaymentMethod('FULL')}
-          className={`p-4 rounded-2xl border-2 transition-all cursor-pointer ${paymentMethod === 'FULL' ? 'border-uba-red bg-red-50/50' : 'border-surface-variant bg-white'}`}
+          className={`p-4 rounded-2xl border-2 transition-all cursor-pointer ${paymentMethod === 'FULL' ? 'border-uba-red bg-white shadow-soft' : 'border-surface-variant bg-white'}`}
         >
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-3">
-              <span className="material-symbols-outlined text-uba-red">account_balance_wallet</span>
+              <span className={`material-symbols-outlined ${paymentMethod === 'FULL' ? 'text-uba-red' : 'text-secondary'}`}>account_balance_wallet</span>
               <div>
-                <p className="font-bold">Pay in Full</p>
-                <p className="text-xs text-secondary">Pay the total amount now</p>
+                <p className="font-bold font-montserrat">Pay in Full</p>
+                <p className="text-xs text-secondary font-inter">Pay the total amount now</p>
               </div>
             </div>
-            {paymentMethod === 'FULL' && <span className="material-symbols-outlined text-uba-red">check_circle</span>}
+            {paymentMethod === 'FULL' && <span className="material-symbols-outlined text-uba-red" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>}
           </div>
         </div>
 
         <div
           onClick={() => setPaymentMethod('FLEXPAY')}
-          className={`p-4 rounded-2xl border-2 transition-all cursor-pointer ${paymentMethod === 'FLEXPAY' ? 'border-uba-red bg-red-50/50' : 'border-surface-variant bg-white'}`}
+          className={`p-4 rounded-2xl border-2 transition-all cursor-pointer ${paymentMethod === 'FLEXPAY' ? 'border-uba-red bg-white shadow-flexpay' : 'border-surface-variant bg-white'}`}
         >
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-3">
-              <span className="material-symbols-outlined text-uba-red">payments</span>
+              <span className={`material-symbols-outlined ${paymentMethod === 'FLEXPAY' ? 'text-uba-red' : 'text-secondary'}`}>payments</span>
               <div>
-                <p className="font-bold">FlexPay Installments</p>
-                <p className="text-xs text-secondary">Spread payment over months</p>
+                <div className="flex items-center gap-2">
+                  <p className="font-bold font-montserrat">FlexPay Installments</p>
+                  <span className="bg-uba-red text-[8px] text-white px-1.5 py-0.5 rounded-full font-extrabold uppercase">Premium</span>
+                </div>
+                <p className="text-xs text-secondary font-inter">Spread payment over 3, 6, or 12 months</p>
               </div>
             </div>
-            {paymentMethod === 'FLEXPAY' && <span className="material-symbols-outlined text-uba-red">check_circle</span>}
+            {paymentMethod === 'FLEXPAY' && <span className="material-symbols-outlined text-uba-red" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>}
           </div>
 
           {paymentMethod === 'FLEXPAY' && flexPayStatus === 'IDLE' && (
-            <div className="mt-4 pt-4 border-t border-red-100">
-              <Button onClick={handleFlexPayCheck} className="w-full">Check Eligibility</Button>
+            <div className="mt-4 pt-4 border-t border-surface-variant/50">
+              <Button onClick={(e) => { e.stopPropagation(); handleFlexPayCheck(); }} className="w-full">Check Eligibility</Button>
             </div>
           )}
 
           {paymentMethod === 'FLEXPAY' && flexPayStatus === 'PROCESSING' && (
-            <div className="mt-4 pt-4 border-t border-red-100 text-center">
+            <div className="mt-4 pt-4 border-t border-surface-variant/50 text-center">
               <div className="inline-block animate-spin rounded-full h-8 w-8 border-4 border-uba-red border-t-transparent mb-2"></div>
-              <p className="text-sm font-bold">Evaluating your credit history...</p>
+              <p className="text-sm font-bold font-inter text-deep-slate">Evaluating your credit history...</p>
             </div>
           )}
 
           {paymentMethod === 'FLEXPAY' && flexPayStatus === 'APPROVED' && (
-            <div className="mt-4 pt-4 border-t border-red-100 animate-fadeIn">
+            <div className="mt-4 pt-4 border-t border-surface-variant/50 animate-fadeIn" onClick={(e) => e.stopPropagation()}>
               <div className="bg-green-50 text-green-700 p-3 rounded-xl flex items-center gap-2 mb-4">
-                <span className="material-symbols-outlined">verified</span>
-                <span className="text-sm font-bold">FlexPay Approved!</span>
+                <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>verified</span>
+                <span className="text-sm font-bold font-inter">FlexPay Approved!</span>
               </div>
 
-              <p className="text-xs font-bold text-secondary mb-3">SELECT TENOR</p>
+              <p className="text-[10px] font-extrabold text-secondary mb-3 tracking-widest font-inter uppercase">SELECT TENOR</p>
               <div className="grid grid-cols-3 gap-2 mb-4">
                 {[3, 6, 12].map(t => (
                   <button
                     key={t}
                     onClick={() => setFlexPayTenor(t)}
-                    className={`py-2 rounded-xl border text-sm font-bold ${flexPayTenor === t ? 'border-uba-red bg-uba-red text-white' : 'border-surface-variant bg-white'}`}
+                    className={`py-2 rounded-xl border text-sm font-bold transition-colors ${flexPayTenor === t ? 'border-uba-red bg-uba-red text-white' : 'border-surface-variant bg-white text-secondary'}`}
                   >
-                    {t} Months
+                    {t} Mo
                   </button>
                 ))}
               </div>
 
-              <div className="bg-surface p-3 rounded-xl">
-                <div className="flex justify-between text-xs mb-1">
-                  <span>Interest Rate</span>
+              <div className="bg-surface-container-low p-4 rounded-xl border border-surface-variant/30">
+                <div className="flex justify-between text-xs mb-2 text-secondary font-medium font-inter">
+                  <span>Annual Interest Rate</span>
                   <span>18% p.a.</span>
                 </div>
-                <div className="flex justify-between font-bold text-sm">
-                  <span>Monthly Installment</span>
+                <div className="flex justify-between font-bold text-base font-montserrat">
+                  <span className="text-deep-slate">Monthly Payment</span>
                   <span className="text-uba-red">₦{monthlyInstallment.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>
                 </div>
               </div>
@@ -131,10 +134,10 @@ export const PaymentFlow: React.FC = () => {
           )}
 
           {paymentMethod === 'FLEXPAY' && flexPayStatus === 'DECLINED' && (
-            <div className="mt-4 pt-4 border-t border-red-100">
+            <div className="mt-4 pt-4 border-t border-surface-variant/50" onClick={(e) => e.stopPropagation()}>
               <div className="bg-red-50 text-red-700 p-3 rounded-xl flex items-center gap-2">
-                <span className="material-symbols-outlined">error</span>
-                <span className="text-sm font-bold">Eligibility check failed. Please pay in full.</span>
+                <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>error</span>
+                <span className="text-sm font-bold font-inter">Eligibility check failed. Please pay in full.</span>
               </div>
             </div>
           )}
@@ -144,11 +147,12 @@ export const PaymentFlow: React.FC = () => {
       <div className="sticky bottom-4 left-0 right-0">
         <Button
           onClick={handlePayment}
-          className="w-full shadow-2xl"
+          className="w-full shadow-lg"
           size="lg"
+          variant="primary"
           disabled={paymentMethod === 'FLEXPAY' && flexPayStatus !== 'APPROVED'}
         >
-          {paymentMethod === 'FULL' ? `Pay ₦${booking.totalPrice.toLocaleString()}` : 'Confirm FlexPay Schedule'}
+          {paymentMethod === 'FULL' ? `Pay ₦${booking.totalPrice.toLocaleString()}` : 'Confirm Installment Plan'}
         </Button>
       </div>
     </div>
