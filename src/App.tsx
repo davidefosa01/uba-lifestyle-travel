@@ -11,7 +11,8 @@ import { Explore } from './pages/Explore';
 import { Profile } from './pages/Profile';
 import { MerchantDashboard } from './pages/MerchantDashboard';
 import { AdminDashboard } from './pages/AdminDashboard';
-import { Login } from './pages/Login';
+import { UbaLogin } from './pages/UbaLogin';
+import { UbaDashboard } from './pages/UbaDashboard';
 import { useAppContext } from './context/AppContext';
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -54,13 +55,25 @@ const AppContent = () => {
     );
   };
 
+  const isUbaDashboard = location.pathname === '/dashboard';
+  const isLogin = location.pathname === '/login';
+  const showTravelChrome = isAuthenticated && !isUbaDashboard && !isLogin;
+
   return (
-    <div className={`min-h-screen bg-background ${isAuthenticated ? 'pb-20' : ''}`}>
-      {isAuthenticated && <TopBar />}
-      <main className={`${isAuthenticated ? 'max-w-md mx-auto bg-white min-h-[calc(100vh-64px)] shadow-xl relative overflow-hidden' : ''}`}>
+    <div className={`min-h-screen bg-background ${showTravelChrome ? 'pb-20' : ''}`}>
+      {showTravelChrome && <TopBar />}
+      <main className={`${isAuthenticated ? 'max-w-md mx-auto bg-white min-h-screen shadow-xl relative overflow-hidden' : ''}`}>
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
-            <Route path="/login" element={<Login />} />
+            <Route path="/login" element={<UbaLogin />} />
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedRoute>
+                  <UbaDashboard />
+                </ProtectedRoute>
+              }
+            />
             <Route
               path="*"
               element={
@@ -73,7 +86,7 @@ const AppContent = () => {
             />
           </Routes>
         </AnimatePresence>
-        {isAuthenticated && <BottomNav />}
+        {showTravelChrome && <BottomNav />}
       </main>
     </div>
   );

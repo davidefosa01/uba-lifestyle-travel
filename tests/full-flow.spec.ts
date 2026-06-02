@@ -2,6 +2,13 @@ import { test, expect } from '@playwright/test';
 
 test('Full user flow - login and book hotel', async ({ page }) => {
   await page.goto('http://localhost:5173/login');
+
+  // Enter passcode "123456"
+  for (const num of "123456") {
+    await page.getByRole('button', { name: num, exact: true }).click();
+  }
+
+  await expect(page).toHaveURL('http://localhost:5173/dashboard');
   await page.getByText('Lifestyle Travel', { exact: false }).click();
   await expect(page).toHaveURL('http://localhost:5173/');
 
@@ -24,6 +31,9 @@ test('Full user flow - login and book hotel', async ({ page }) => {
 
 test('Role switching - Merchant', async ({ page }) => {
   await page.goto('http://localhost:5173/login');
+  for (const num of "123456") {
+    await page.getByRole('button', { name: num, exact: true }).click();
+  }
   await page.getByText('Lifestyle Travel', { exact: false }).click();
 
   // Switch to Merchant
@@ -33,6 +43,9 @@ test('Role switching - Merchant', async ({ page }) => {
 
 test('Role switching - Admin', async ({ page }) => {
   await page.goto('http://localhost:5173/login');
+  for (const num of "123456") {
+    await page.getByRole('button', { name: num, exact: true }).click();
+  }
   await page.getByText('Lifestyle Travel', { exact: false }).click();
 
   // Switch to Admin
@@ -42,6 +55,9 @@ test('Role switching - Admin', async ({ page }) => {
 
 test('FlexPay Flow', async ({ page }) => {
   await page.goto('http://localhost:5173/login');
+  for (const num of "123456") {
+    await page.getByRole('button', { name: num, exact: true }).click();
+  }
   await page.getByText('Lifestyle Travel', { exact: false }).click();
 
   // 1. Customer books
