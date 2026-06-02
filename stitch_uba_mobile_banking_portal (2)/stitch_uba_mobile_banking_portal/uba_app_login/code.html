@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>UBA - Premium Mobile Banking Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#1b1c1c",
+                        "tertiary": "#525556",
+                        "primary": "#ae0011",
+                        "on-tertiary-fixed": "#191c1d",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#d71920",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#ffece9",
+                        "on-secondary-fixed-variant": "#474747",
+                        "tertiary-fixed-dim": "#c5c7c8",
+                        "on-primary-fixed-variant": "#93000d",
+                        "background": "#fbf9f9",
+                        "surface-container": "#efeded",
+                        "on-background": "#1b1c1c",
+                        "surface-container-highest": "#e3e2e2",
+                        "surface-variant": "#e3e2e2",
+                        "tertiary-fixed": "#e1e3e4",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#6b6d6e",
+                        "surface-container-low": "#f5f3f3",
+                        "primary-fixed-dim": "#ffb4ab",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-container": "#eff0f1",
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff",
+                        "surface-container-high": "#e9e8e7",
+                        "secondary": "#5f5e5e",
+                        "inverse-surface": "#303031",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "on-tertiary-fixed-variant": "#454748",
+                        "primary-fixed": "#ffdad6",
+                        "inverse-primary": "#ffb4ab",
+                        "on-primary-fixed": "#410002",
+                        "surface-dim": "#dbdad9",
+                        "on-surface-variant": "#5d3f3c",
+                        "surface-tint": "#c00014",
+                        "secondary-container": "#e4e2e1",
+                        "surface-bright": "#fbf9f9",
+                        "outline-variant": "#e6bdb8",
+                        "on-secondary-container": "#656464",
+                        "secondary-fixed": "#e4e2e1",
+                        "secondary-fixed-dim": "#c8c6c6",
+                        "inverse-on-surface": "#f2f0f0",
+                        "surface": "#fbf9f9",
+                        "on-tertiary": "#ffffff",
+                        "outline": "#926f6b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "container-margin-dt": "80px",
+                        "unit": "4px",
+                        "stack-lg": "32px",
+                        "gutter": "16px",
+                        "stack-md": "16px",
+                        "section-gap": "64px",
+                        "container-margin-mb": "20px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Montserrat"],
+                        "flexpay-badge": ["Montserrat"],
+                        "display-lg": ["Montserrat"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "title-md": ["Inter"],
+                        "headline-lg-mobile": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "flexpay-badge": ["12px", {"lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "800"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            user-select: none;
+        }
+        .bg-login-gradient {
+            background: linear-gradient(180deg, #fbf9f9 0%, #ffffff 100%);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen flex flex-col font-body-md text-body-md overflow-x-hidden">
+<!-- Top Branding Section -->
+<header class="flex flex-col items-center pt-12 pb-8 animate-fade-in">
+<div class="mb-8">
+<!-- UBA Logo Placeholder -->
+<div class="h-16 w-16 bg-primary flex items-center justify-center rounded-lg shadow-lg">
+<span class="text-white font-headline-lg-mobile text-headline-lg-mobile font-extrabold tracking-tighter">UBA</span>
+</div>
+</div>
+<div class="text-center px-container-margin-mb">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary font-bold" id="greeting">Good Morning</h1>
+<p class="text-secondary font-body-md mt-2">Welcome back to your secure workspace.</p>
+</div>
+</header>
+<!-- Main Login Form -->
+<main class="flex-1 px-container-margin-mb pb-stack-lg max-w-md mx-auto w-full animate-fade-in" style="animation-delay: 0.2s;">
+<div class="glass-card p-6 rounded-xl border border-surface-container shadow-sm">
+<form class="space-y-6" onsubmit="event.preventDefault();">
+<!-- User ID Field -->
+<div class="space-y-2">
+<label class="block font-label-md text-label-md text-secondary ml-1" for="user_id">User ID / Account Number</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-4 text-tertiary">person</span>
+<input class="w-full pl-12 pr-4 py-4 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all font-body-md text-on-surface" id="user_id" placeholder="Enter ID" type="text"/>
+</div>
+</div>
+<!-- Password Field -->
+<div class="space-y-2">
+<label class="block font-label-md text-label-md text-secondary ml-1" for="password">Password</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-4 text-tertiary">lock</span>
+<input class="w-full pl-12 pr-12 py-4 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all font-body-md text-on-surface" id="password" placeholder="••••••••" type="password"/>
+<button class="absolute right-4 text-tertiary hover:text-primary transition-colors" onclick="togglePassword()" type="button">
+<span class="material-symbols-outlined" id="password-toggle-icon">visibility</span>
+</button>
+</div>
+</div>
+<!-- Forgot Password -->
+<div class="flex justify-end">
+<a class="text-primary font-label-md text-label-md hover:underline font-semibold" href="#">Forgot Password?</a>
+</div>
+<!-- Login Button -->
+<button class="w-full py-4 bg-primary text-white font-headline-lg-mobile text-headline-lg-mobile font-bold rounded-lg shadow-md hover:bg-primary-container active:scale-95 transition-all duration-150" type="submit">
+                    Login
+                </button>
+</form>
+<!-- Biometric Divider -->
+<div class="flex items-center my-8">
+<div class="flex-grow border-t border-surface-container-highest"></div>
+<span class="mx-4 text-secondary font-label-md text-label-md">OR LOGIN WITH</span>
+<div class="flex-grow border-t border-surface-container-highest"></div>
+</div>
+<!-- Biometric Option -->
+<div class="flex flex-col items-center">
+<button class="flex flex-col items-center gap-2 group">
+<div class="h-14 w-14 flex items-center justify-center rounded-full border-2 border-outline-variant group-hover:border-primary group-hover:bg-primary-container group-hover:bg-opacity-10 transition-all duration-300">
+<span class="material-symbols-outlined text-4xl text-primary" style="font-variation-settings: 'wght' 200;">fingerprint</span>
+</div>
+<span class="font-label-md text-label-md text-secondary group-hover:text-primary transition-colors">Biometric Login</span>
+</button>
+</div>
+</div>
+<!-- Secondary Actions -->
+<div class="mt-12 text-center space-y-4">
+<p class="text-on-surface font-body-md">
+                Don't have an account? 
+                <a class="text-primary font-bold hover:underline ml-1" href="#">Open Account</a>
+</p>
+<div class="flex justify-center gap-6 pt-4">
+<a class="flex items-center gap-2 text-secondary hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-lg">support_agent</span>
+<span class="text-label-md font-label-md">Support</span>
+</a>
+<a class="flex items-center gap-2 text-secondary hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-lg">location_on</span>
+<span class="text-label-md font-label-md">ATM/Branch</span>
+</a>
+</div>
+</div>
+</main>
+<!-- Footer Identity -->
+<footer class="py-8 text-center animate-fade-in" style="animation-delay: 0.4s;">
+<p class="text-[10px] uppercase tracking-widest text-tertiary-container font-semibold">United Bank for Africa PLC</p>
+<p class="text-[10px] text-secondary mt-1">Africa's Global Bank</p>
+</footer>
+<!-- Atmosphere/Micro-interactions Script -->
+<script>
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const toggleIcon = document.getElementById('password-toggle-icon');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.innerText = 'visibility_off';
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.innerText = 'visibility';
+            }
+        }
+
+        // Dynamic Greeting Based on Time
+        window.addEventListener('DOMContentLoaded', () => {
+            const greetingElement = document.getElementById('greeting');
+            const hour = new Date().getHours();
+            if (hour >= 5 && hour < 12) {
+                greetingElement.innerText = 'Good Morning';
+            } else if (hour >= 12 && hour < 18) {
+                greetingElement.innerText = 'Good Afternoon';
+            } else {
+                greetingElement.innerText = 'Good Evening';
+            }
+        });
+
+        // Simple Focus Effects
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.querySelector('.material-symbols-outlined').style.color = '#ae0011';
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.querySelector('.material-symbols-outlined').style.color = '#525556';
+            });
+        });
+    </script>
+</body></html>

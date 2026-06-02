@@ -1,5 +1,5 @@
 import type { UserRole, User, Booking, Notification, Listing } from '../types';
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 import type { ReactNode } from 'react';
 import { mockUsers, mockListings } from '../data/mockData';
 
@@ -15,21 +15,51 @@ interface AppContextType {
   addNotification: (notification: Omit<Notification, 'id' | 'createdAt' | 'read'>) => void;
   markNotificationRead: (id: string) => void;
   listings: Listing[];
+  isAuthenticated: boolean;
+  login: () => void;
+  logout: () => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState<User | null>(mockUsers[0]);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
+    return localStorage.getItem('uba_auth') === 'true';
+  });
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [role, setRole] = useState<UserRole>('CUSTOMER');
-  const [bookings, setBookings] = useState<Booking[]>([]);
+  const [bookings, setBookings] = useState<Booking[]>(() => {
+    const saved = localStorage.getItem('uba_bookings');
+    return saved ? JSON.parse(saved) : [];
+  });
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [listings] = useState<Listing[]>(mockListings);
 
+  useEffect(() => {
+    localStorage.setItem('uba_bookings', JSON.stringify(bookings));
+  }, [bookings]);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      const user = mockUsers.find(u => u.role === role) || mockUsers[0];
+      setCurrentUser(user);
+    } else {
+      setCurrentUser(null);
+    }
+  }, [isAuthenticated, role]);
+
+  const login = () => {
+    setIsAuthenticated(true);
+    localStorage.setItem('uba_auth', 'true');
+  };
+
+  const logout = () => {
+    setIsAuthenticated(false);
+    localStorage.removeItem('uba_auth');
+  };
+
   const switchRole = (newRole: UserRole) => {
     setRole(newRole);
-    const user = mockUsers.find(u => u.role === newRole) || null;
-    setCurrentUser(user);
   };
 
   const addBooking = (booking: Booking) => {
@@ -97,7 +127,8 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       role, switchRole,
       bookings, addBooking, updateBookingStatus,
       notifications, addNotification, markNotificationRead,
-      listings
+      listings,
+      isAuthenticated, login, logout
     }}>
       {children}
     </AppContext.Provider>

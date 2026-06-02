@@ -11,7 +11,7 @@ export const ListingCard: React.FC<ListingCardProps> = ({ listing, onClick, vari
     return (
       <div
         onClick={onClick}
-        className="group bg-surface border border-surface-variant rounded-xl overflow-hidden shadow-sm active:scale-[0.98] transition-transform cursor-pointer"
+        className="group bg-surface border border-surface-variant rounded-xl overflow-hidden shadow-soft active:scale-[0.98] transition-all cursor-pointer hover:shadow-lg"
       >
         <div className="h-40 overflow-hidden relative">
           <img
@@ -32,7 +32,7 @@ export const ListingCard: React.FC<ListingCardProps> = ({ listing, onClick, vari
   return (
     <div
       onClick={onClick}
-      className="group relative bg-surface border border-surface-variant rounded-xl overflow-hidden shadow-sm active:scale-[0.98] transition-transform duration-200 cursor-pointer"
+      className={`group relative bg-surface border border-surface-variant rounded-xl overflow-hidden shadow-soft active:scale-[0.98] transition-all duration-200 cursor-pointer hover:shadow-lg ${listing.flexPayAvailable ? 'hover:shadow-flexpay border-primary/10' : ''}`}
     >
       <div className="relative h-64 overflow-hidden">
         <img
@@ -46,7 +46,7 @@ export const ListingCard: React.FC<ListingCardProps> = ({ listing, onClick, vari
         </div>
         {listing.flexPayAvailable && (
           <div className="absolute bottom-4 left-4">
-            <span className="bg-primary text-on-primary text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
+            <span className="bg-primary text-on-primary text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider font-montserrat shadow-lg">
               FlexPay Available
             </span>
           </div>

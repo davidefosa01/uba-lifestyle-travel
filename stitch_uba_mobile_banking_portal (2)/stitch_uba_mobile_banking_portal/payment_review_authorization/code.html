@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Review &amp; Pay | TravelMarket</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#1b1c1c",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed": "#410002",
+                        "surface-dim": "#dbdad9",
+                        "on-secondary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "surface-bright": "#fbf9f9",
+                        "on-primary-fixed-variant": "#93000d",
+                        "primary-container": "#d71920",
+                        "on-surface": "#1b1c1c",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#f5f3f3",
+                        "primary": "#ae0011",
+                        "primary-fixed": "#ffdad6",
+                        "secondary": "#5f5e5e",
+                        "surface": "#fbf9f9",
+                        "surface-container": "#efeded",
+                        "secondary-fixed": "#e4e2e1",
+                        "primary-fixed-dim": "#ffb4ab",
+                        "secondary-container": "#e4e2e1",
+                        "on-surface-variant": "#5d3f3c",
+                        "on-tertiary-container": "#eff0f1",
+                        "on-tertiary-fixed-variant": "#454748",
+                        "on-tertiary-fixed": "#191c1d",
+                        "tertiary-fixed": "#e1e3e4",
+                        "surface-variant": "#e3e2e2",
+                        "inverse-primary": "#ffb4ab",
+                        "surface-tint": "#c00014",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "inverse-surface": "#303031",
+                        "secondary-fixed-dim": "#c8c6c6",
+                        "surface-container-highest": "#e3e2e2",
+                        "tertiary": "#525556",
+                        "outline-variant": "#e6bdb8",
+                        "tertiary-container": "#6b6d6e",
+                        "background": "#fbf9f9",
+                        "tertiary-fixed-dim": "#c5c7c8",
+                        "on-secondary-fixed-variant": "#474747",
+                        "outline": "#926f6b",
+                        "surface-container-high": "#e9e8e7",
+                        "on-primary-container": "#ffece9",
+                        "on-secondary-container": "#656464",
+                        "error-container": "#ffdad6",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#f2f0f0"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "section-gap": "64px",
+                        "container-margin-mb": "20px",
+                        "stack-md": "16px",
+                        "container-margin-dt": "80px",
+                        "stack-lg": "32px",
+                        "stack-sm": "8px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "flexpay-badge": ["Montserrat"],
+                        "headline-lg": ["Montserrat"],
+                        "headline-lg-mobile": ["Montserrat"],
+                        "display-lg": ["Montserrat"],
+                        "body-lg": ["Inter"],
+                        "title-md": ["Inter"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "flexpay-badge": ["12px", {"lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "800"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-effect { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(8px); }
+        .shadow-soft { box-shadow: 0 16px 32px -4px rgba(51, 51, 51, 0.06); }
+        input:focus { outline: none; border-color: #333333 !important; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- Top App Bar -->
+<header class="bg-surface sticky top-0 w-full z-50 flex justify-between items-center px-container-margin-mb py-4 shadow-sm">
+<div class="flex items-center gap-4">
+<button class="hover:bg-surface-container-low transition-colors p-2 rounded-full active:scale-95 duration-150">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">Review &amp; Pay</h1>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary">verified_user</span>
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center overflow-hidden border border-outline-variant">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a middle-aged businessman with a confident and friendly expression, wearing a tailored charcoal suit and a crisp white shirt. The background is a blurred high-end office environment with soft natural lighting and neutral tones, evoking a sense of corporate trust and luxury banking style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCLErt9y3b-QUNN_RKdWh_ct32MGOnYMYx-XYlqgi5LzbgCLJcIVS7FvAyjcx2cfeB33k3CsP2s8_gC1n-lpkHUdNerSu828vrLmCeYFVQPfsQGIa-EHMQKvIXu_UpOmcqmN1zDYzEzoz5Nq7ZQ_xVYlbkyFCgwGrIpOcz6jjEnepJhN3bXupS5hfWSmhfAAMl0PhSCfs7tlB_ZqYo6x6pAZqq2mmL3mU-DhHgJ7LARxcS8mGgF4IJYRs8Vzvq7ZdbXAt8VXJ9bgnG"/>
+</div>
+</div>
+</header>
+<main class="max-w-[1280px] mx-auto px-container-margin-mb md:px-container-margin-dt py-stack-lg flex flex-col md:grid md:grid-cols-12 md:gap-stack-lg">
+<!-- Left Column: Summary & Options -->
+<div class="md:col-span-7 flex flex-col gap-stack-lg">
+<!-- Booking Summary Card -->
+<section class="bg-surface-container-lowest border border-surface-variant rounded-xl overflow-hidden shadow-soft">
+<div class="p-6 border-b border-surface-variant flex justify-between items-center">
+<h2 class="font-title-md text-title-md text-on-background">Booking Summary</h2>
+<span class="bg-surface-container text-secondary text-label-md font-label-md px-3 py-1 rounded-full border border-outline-variant">ID: #TRV-88219</span>
+</div>
+<div class="p-6 flex flex-col sm:flex-row gap-6">
+<div class="w-full sm:w-1/3 aspect-[4/3] rounded-lg overflow-hidden shrink-0">
+<img alt="Luxury Resort" class="w-full h-full object-cover" data-alt="A luxurious tropical resort at dusk, featuring an infinity pool overlooking a calm turquoise ocean. The architecture is modern and elegant, with warm interior lighting glowing through floor-to-ceiling windows. The sky is a gradient of deep violet and soft orange, creating an aspirational and serene mood consistent with premium travel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGczVeVM_epXY7vdgDYruSsK-XbFa9Nj7wXf4F2zU8lrPKBZKdOojny3oPz0tLxO64nxppXvB-pQi8APDfWQoJeBHqGvvA8Bvd5BD2HANi0uX34AsxHK7f9wHu3xm3tZSWym6MGa--_dSaHP6rgs-VXdRlzUnjsNWf70QVq38aJXdHZ3fpKQhBdMucM-RcpcTHBmgV0vpr67sCcxxCLnywNu41KXOkgd35QIrNjc2ilnwlj3KvB3ghMaW4W8jo_MAn0W25SrkqtLxN"/>
+</div>
+<div class="flex flex-col justify-between py-1">
+<div>
+<h3 class="font-title-md text-title-md mb-1">Eko Atlantic Grand Suite</h3>
+<p class="text-secondary font-label-md text-label-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">location_on</span> Lagos, Nigeria
+                            </p>
+</div>
+<div class="grid grid-cols-2 gap-4 mt-4">
+<div>
+<span class="text-secondary font-label-md text-[12px] uppercase tracking-wider">Check-in</span>
+<p class="font-body-md text-body-md font-semibold">Oct 12, 2024</p>
+</div>
+<div>
+<span class="text-secondary font-label-md text-[12px] uppercase tracking-wider">Duration</span>
+<p class="font-body-md text-body-md font-semibold">4 Nights, 2 Adults</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Payment Options Selection -->
+<section class="flex flex-col gap-stack-md">
+<h2 class="font-title-md text-title-md text-on-background px-1">Select Payment Plan</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<!-- Option 1: Pay in Full -->
+<label class="relative group cursor-pointer">
+<input checked="" class="peer sr-only" name="payment_plan" type="radio"/>
+<div class="h-full border-2 border-surface-variant peer-checked:border-primary rounded-xl p-6 bg-surface-container-lowest transition-all hover:shadow-md group-active:scale-[0.98]">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-surface-container-low rounded-lg text-primary">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</div>
+<div class="w-5 h-5 rounded-full border-2 border-outline flex items-center justify-center peer-checked:bg-primary peer-checked:border-primary transition-colors">
+<div class="w-2 h-2 bg-white rounded-full"></div>
+</div>
+</div>
+<h4 class="font-title-md text-title-md mb-1">Pay in Full</h4>
+<p class="text-secondary font-body-md text-body-md mb-4 leading-snug">Secure the best rate by paying the total amount today.</p>
+<p class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-on-background">₦145,000</p>
+</div>
+</label>
+<!-- Option 2: FlexPay -->
+<label class="relative group cursor-pointer">
+<input class="peer sr-only" name="payment_plan" type="radio"/>
+<div class="h-full border-2 border-surface-variant peer-checked:border-primary rounded-xl p-6 bg-surface-container-lowest transition-all hover:shadow-md group-active:scale-[0.98]">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-primary px-3 py-1 rounded-full">
+<span class="text-white font-flexpay-badge text-flexpay-badge">FLEXPAY</span>
+</div>
+<div class="w-5 h-5 rounded-full border-2 border-outline flex items-center justify-center peer-checked:bg-primary peer-checked:border-primary transition-colors">
+<div class="w-2 h-2 bg-white rounded-full"></div>
+</div>
+</div>
+<h4 class="font-title-md text-title-md mb-1">Installments</h4>
+<p class="text-secondary font-body-md text-body-md mb-4 leading-snug">Split your payment into manageable monthly plans.</p>
+<div class="flex items-baseline gap-1">
+<p class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-on-background">₦12,500</p>
+<span class="text-secondary font-label-md text-label-md">/month</span>
+</div>
+</div>
+</label>
+</div>
+<!-- FlexPay Detail Picker (Visible when FlexPay selected) -->
+<div class="bg-primary-fixed/30 rounded-xl p-6 border border-outline-variant flex flex-col gap-4">
+<div class="flex items-center gap-2 text-primary font-semibold">
+<span class="material-symbols-outlined">schedule</span>
+<span class="font-label-md text-label-md">Choose your tenure</span>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 py-3 px-4 rounded-lg border border-primary bg-white text-primary font-bold transition-colors">3 Months</button>
+<button class="flex-1 py-3 px-4 rounded-lg border border-outline-variant bg-surface-container-low text-secondary font-medium hover:bg-surface-container transition-colors">6 Months</button>
+<button class="flex-1 py-3 px-4 rounded-lg border border-outline-variant bg-surface-container-low text-secondary font-medium hover:bg-surface-container transition-colors">12 Months</button>
+</div>
+<p class="text-on-surface-variant font-label-md text-[12px] italic">Interest rates vary based on tenure. Terms and conditions apply.</p>
+</div>
+</section>
+</div>
+<!-- Right Column: Final Calculation & Action -->
+<aside class="md:col-span-5 mt-stack-lg md:mt-0">
+<div class="bg-surface-container-lowest border border-surface-variant rounded-xl shadow-soft p-6 md:sticky md:top-24">
+<h3 class="font-title-md text-title-md mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">receipt_long</span>
+                    Payment Summary
+                </h3>
+<div class="flex flex-col gap-4 mb-8">
+<div class="flex justify-between text-on-surface-variant font-body-md">
+<span>Base Fare</span>
+<span class="font-semibold text-on-background">₦128,500</span>
+</div>
+<div class="flex justify-between text-on-surface-variant font-body-md">
+<span>Service Fee</span>
+<span class="font-semibold text-on-background">₦12,000</span>
+</div>
+<div class="flex justify-between text-on-surface-variant font-body-md">
+<span>VAT (7.5%)</span>
+<span class="font-semibold text-on-background">₦4,500</span>
+</div>
+<div class="h-px bg-surface-variant my-2"></div>
+<div class="flex justify-between items-baseline">
+<span class="font-title-md text-title-md">Total Payable</span>
+<div class="text-right">
+<span class="block font-headline-lg text-headline-lg font-bold text-primary">₦145,000</span>
+<span class="text-secondary text-[12px] font-label-md">Secure Transaction via UBA</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<button class="w-full bg-primary text-white py-4 rounded-lg font-headline-lg-mobile text-headline-lg-mobile font-bold flex items-center justify-center gap-3 active:scale-[0.98] transition-all shadow-md hover:bg-primary-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">fingerprint</span>
+                        Authorize Payment
+                    </button>
+<div class="flex items-center justify-center gap-2 text-secondary py-2">
+<span class="material-symbols-outlined text-[16px]">lock</span>
+<span class="text-[12px] font-medium tracking-wide uppercase">PCI-DSS Compliant Security</span>
+</div>
+</div>
+<!-- Trusted Badges -->
+<div class="mt-8 flex justify-between items-center opacity-60 px-2 grayscale">
+<img alt="Visa" class="h-6" data-alt="The official Visa logo in high resolution, presented in a clean and minimal digital format on a white background. The logo signifies security, global acceptance, and financial trust." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBT6qq0Jv6FUAk2tEfmKx6jEU84poyGJ5hWKjRHjcRxmC7-ABJepM2FTaZ1Vg1mHrd6GMK7EzeQzD-9mn9iFfUQyQSWvySzc8TJ1S-gmHgo2DbIL3DOH4OouYzVHiq_47ocOgPGUoVlXxx5yoKwdyClGmgwxDyCNQedhigWO-OQDh7oJB9rm1_55AWuElL-ltYKoh3KGNj9znJvOpk3efIf6MTT3-60szP4CGy65JUyPRc9j3wpRWK6fmLyFNBew3LTlIA62-SJ35X6"/>
+<img alt="Mastercard" class="h-6" data-alt="The iconic Mastercard logo with its interlocking red and orange circles, rendered in a crisp, modern vector style against a pure white backdrop. It represents seamless international payment processing." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaoPNKhZMx1goCnPcN2776J2MNd5wpZXvJkRrqjCJYhL_xjKb31_j_46qZDbdET6XtIKPGaii5OLZ8DhTOv10RrxKmi7K31W4ztCTPo6H3EWnt8CzAYd4WGmKbwVh27zavcGxNMsG6p1DlsNhKJMJ9SJxLgRgo37XQDKoM9NDEJ86xILjl_sseFSkrnHs_ZfoV9qG0RpjjA-yzvFvk-RGQtLsZLT14o7t9y_-cEmL6NrH4aRTevp90pQALYrx_VWgJ2sK4DwqC9_Aq"/>
+<img alt="UBA" class="h-6" data-alt="The professional corporate logo of United Bank for Africa (UBA), featuring its distinct red typography and graphic element. The presentation is modern and authoritative, signaling a secure banking environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4zWB5wzJKpibfH8OkUFkLq2SzfjyoMT2YtbQKNIQUloXSzMpGgXmqaKMedL2L1JpSgVOYNIxbNKbTeMTO3Tqybvh6wrdnnviv3LPuajW7G-SAbHJnmZ04JpVBvgndZx1G8HKn3TQF14PjKey-mob0mliaqdFtECzZOyPPNBVtS1lhf4PrLCVkp-yU50orHbVPIwnn3C3wMn8jcDrPq09QleN081pa5fZ1mp7h18TyFoCsBkcSdTJibWZlFWnrQnxY3788bMo0_o--"/>
+<img alt="Verve" class="h-6" data-alt="The Verve card scheme logo, showcasing its vibrant color palette and modern design. It reflects domestic payment reliability and African fintech innovation." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBr4CVwUNqjpWncRw3v7Z4n7q-T9Hp_4bulh4k4Emfn8BC33ypnQ0N6-5JsAmCZFrBds68RUyvWxcgDxedv-B1Ftn1Xmi0sy-NZMAukrr33Hw7z0YZ6x6lgs99dByxbtLUu0A4OWeJiLl_H54S_lFgOiib-AoCIejggdrG3Eh-Pf6n42168ya0UEj_GZonlpUNyI_ZwvvPW4lGFXqaKXB8b8eIasMQ4bLYK_O-4Ytgdw2u2deVLIRF5cIZSze1rNQsy5txWseHJia9q"/>
+</div>
+</div>
+<!-- Security Tip -->
+<div class="mt-6 p-4 border border-outline-variant rounded-lg flex gap-4 bg-surface-container-low">
+<span class="material-symbols-outlined text-primary-container">info</span>
+<p class="text-[13px] text-on-surface-variant leading-tight">
+<strong>Safe Banking:</strong> We will never ask for your PIN or OTP via call or email. Ensure you are on our secure domain before completing this transaction.
+                </p>
+</div>
+</aside>
+</main>
+<footer class="mt-section-gap border-t border-surface-variant py-12 px-container-margin-mb md:px-container-margin-dt">
+<div class="max-w-[1280px] mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex flex-col items-center md:items-start">
+<span class="text-primary font-bold font-headline-lg-mobile text-headline-lg-mobile">TravelMarket</span>
+<p class="text-secondary text-label-md mt-1">© 2024 TravelMarket Nigeria. Powered by UBA.</p>
+</div>
+<div class="flex gap-8 text-secondary font-label-md">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-primary transition-colors" href="#">Help Center</a>
+</div>
+</div>
+</footer>
+<script>
+        // Simple interaction for plan selection
+        document.querySelectorAll('input[name="payment_plan"]').forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                const tenurePicker = document.querySelector('.bg-primary-fixed/30');
+                if (e.target.closest('label').textContent.includes('Installments')) {
+                    tenurePicker.style.opacity = '1';
+                    tenurePicker.style.pointerEvents = 'auto';
+                } else {
+                    tenurePicker.style.opacity = '0.5';
+                    tenurePicker.style.pointerEvents = 'none';
+                }
+            });
+        });
+
+        // Add micro-interaction to Authorize button
+        const authBtn = document.querySelector('button.bg-primary');
+        authBtn.addEventListener('click', function() {
+            this.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span> Processing...';
+            this.classList.add('opacity-80');
+            setTimeout(() => {
+                this.innerHTML = '<span class="material-symbols-outlined">check_circle</span> Payment Successful';
+                this.classList.remove('bg-primary');
+                this.classList.add('bg-green-600');
+            }, 2000);
+        });
+    </script>
+</body></html>

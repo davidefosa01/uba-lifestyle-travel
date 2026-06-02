@@ -23,7 +23,7 @@ export const TravelHome: React.FC = () => {
       {/* Welcome Banner */}
       <section className="mb-8 px-container-margin-mb mt-6">
         <h1 className="text-2xl font-semibold text-on-background mb-1">Discover your next escape,</h1>
-        <h2 className="text-5xl font-bold text-primary leading-tight font-montserrat">{currentUser?.name}</h2>
+        <h2 className="text-5xl font-bold text-primary leading-tight font-montserrat">{currentUser?.name?.split(' ')[0]}</h2>
       </section>
 
       {/* Search Bar */}

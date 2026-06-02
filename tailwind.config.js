@@ -43,6 +43,7 @@ export default {
         'background': '#fbf9f9',
         'on-background': '#1b1c1c',
         'surface-variant': '#e3e2e2',
+        'deep-slate': '#333333',
       },
       fontFamily: {
         'montserrat': ['Montserrat', 'sans-serif'],
@@ -64,6 +65,10 @@ export default {
         'md': '0.75rem',
         'lg': '1rem',
         'xl': '1.5rem',
+      },
+      boxShadow: {
+        'soft': '0 16px 32px 0 rgba(51, 51, 51, 0.06)',
+        'flexpay': '0 0 15px rgba(215, 25, 32, 0.1)',
       }
     },
   },

@@ -14,7 +14,7 @@ export const TopBar: React.FC = () => {
           <h1 className="text-sm font-bold text-gray-800 leading-tight">
             {role === 'CUSTOMER' ? 'Good Day,' : role === 'MERCHANT' ? 'Merchant Portal' : 'Admin Panel'}
           </h1>
-          <p className="text-xs text-gray-600">{currentUser?.name}</p>
+          <p className="text-xs text-gray-600">{currentUser?.name?.split(' ')[0]}</p>
         </div>
       </div>
 
