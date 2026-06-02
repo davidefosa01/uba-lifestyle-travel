@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TravelMarket - Category Selection</title>
+<!-- Google Fonts: Montserrat & Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+        }
+        .text-shadow-sm {
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#1b1c1c",
+                        "tertiary": "#525556",
+                        "primary": "#ae0011",
+                        "on-tertiary-fixed": "#191c1d",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#d71920",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#ffece9",
+                        "on-secondary-fixed-variant": "#474747",
+                        "tertiary-fixed-dim": "#c5c7c8",
+                        "on-primary-fixed-variant": "#93000d",
+                        "background": "#fbf9f9",
+                        "surface-container": "#efeded",
+                        "on-background": "#1b1c1c",
+                        "surface-container-highest": "#e3e2e2",
+                        "surface-variant": "#e3e2e2",
+                        "tertiary-fixed": "#e1e3e4",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#6b6d6e",
+                        "surface-container-low": "#f5f3f3",
+                        "primary-fixed-dim": "#ffb4ab",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-container": "#eff0f1",
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff",
+                        "surface-container-high": "#e9e8e7",
+                        "secondary": "#5f5e5e",
+                        "inverse-surface": "#303031",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "on-tertiary-fixed-variant": "#454748",
+                        "primary-fixed": "#ffdad6",
+                        "inverse-primary": "#ffb4ab",
+                        "on-primary-fixed": "#410002",
+                        "surface-dim": "#dbdad9",
+                        "on-surface-variant": "#5d3f3c",
+                        "surface-tint": "#c00014",
+                        "secondary-container": "#e4e2e1",
+                        "surface-bright": "#fbf9f9",
+                        "outline-variant": "#e6bdb8",
+                        "on-secondary-container": "#656464",
+                        "secondary-fixed": "#e4e2e1",
+                        "secondary-fixed-dim": "#c8c6c6",
+                        "inverse-on-surface": "#f2f0f0",
+                        "surface": "#fbf9f9",
+                        "on-tertiary": "#ffffff",
+                        "outline": "#926f6b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "container-margin-dt": "80px",
+                        "unit": "4px",
+                        "stack-lg": "32px",
+                        "gutter": "16px",
+                        "stack-md": "16px",
+                        "section-gap": "64px",
+                        "container-margin-mb": "20px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Montserrat"],
+                        "flexpay-badge": ["Montserrat"],
+                        "display-lg": ["Montserrat"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "title-md": ["Inter"],
+                        "headline-lg-mobile": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "flexpay-badge": ["12px", {"lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "800"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md text-body-md antialiased overflow-x-hidden">
+<!-- Top Navigation Anchor -->
+<header class="bg-surface dark:bg-surface shadow-sm dark:shadow-none flex justify-between items-center w-full px-container-margin-mb py-4 z-50 fixed top-0 docked full-width sticky" id="TopAppBar">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary dark:text-primary-fixed hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors active:scale-95 duration-150 p-2 rounded-full">menu</button>
+<h1 class="text-title-md font-headline-lg-mobile font-bold text-primary dark:text-primary-fixed">TravelMarket</h1>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex gap-6 mr-6">
+<a class="font-label-md text-label-md text-primary dark:text-primary-fixed font-bold" href="#">Home</a>
+<a class="font-label-md text-label-md text-secondary dark:text-secondary-fixed hover:text-primary transition-colors" href="#">Explore</a>
+<a class="font-label-md text-label-md text-secondary dark:text-secondary-fixed hover:text-primary transition-colors" href="#">Bookings</a>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center overflow-hidden border border-outline-variant">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="A clean, professional headshot of a smiling young professional man with short dark hair, wearing a neutral-toned shirt. The lighting is soft and corporate, set against a pristine, light gray studio background. The visual style is high-end and minimalist, reflecting the reliability and elite status of a premium travel and banking service ecosystem." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBr09lvV15zGGqjCGF2HOYpcu0tShe7OehTeRzNoapFBDTZB79avvMZ73DUSBAAr6UsH28JTHsDvPlcE7xP5KUt6lJlyPlo3oNnVLrGY7kGpF932iUWV5A0xo8WK5Pjg-TU5NYxCw5atcyXkduer6_LHhbqfgSho0RKmT6z0YfPQBffturCM7hLGRglNM3IZ-zXYfzk9VoHvQc2ivRNa67NrHII7dMkR5Zui6JDLMCvdjizKnpDCrMFvuzJcCVpLGGg9dr9nl8pyqyW"/>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="max-w-[1280px] mx-auto px-container-margin-mb md:px-container-margin-dt pt-24 pb-32">
+<!-- Hero Branding -->
+<section class="mb-section-gap">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 mb-2">
+<span class="bg-primary-container text-on-primary-container px-3 py-1 rounded-full font-flexpay-badge text-flexpay-badge uppercase tracking-widest">Lifestyle Travel</span>
+</div>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">Where would you like to go today?</h2>
+<p class="text-secondary font-body-lg text-body-lg max-w-2xl">Select a category to explore curated experiences, premium stays, and seamless financial flexibility with FlexPay.</p>
+</div>
+</section>
+<!-- Category Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Hotels & Resorts (Featured Large) -->
+<div class="md:col-span-8 group relative overflow-hidden rounded-xl border border-surface-variant shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1 cursor-pointer h-[400px]">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A luxurious infinity pool overlooking a pristine tropical ocean at sunset. High-end architectural resort details with wooden decks and minimalist loungers. The lighting is warm and golden, casting long shadows. The overall aesthetic is professional corporate travel minimalism with a focus on aspirational, high-net-worth experiences and serenity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQlOEmpqtWbSKN6smCScWo8hsVZ3bwEWgm1ZV8CJc6ftLErj5BYRyIxjgG4XSuaD_2Rw1aTsFo-EhobDabLmkPr7UeKpu-_x83pZiMl7qQP6dEZY3LLlUnSxurXZByHwQZgoBgTn1pCMNk2kReOem-B83srb8cmLPaAKtL-20O5076_zS-ndN18Gyl25QLmf1c8Ob8aInVvxf84Bjfwtn0IFRY_ccSQgVIR1kdcf1XrCrPrSSzdnrJFTdkGhqn71ss4CEw0za7Gz4-"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full flex justify-between items-end">
+<div>
+<h3 class="font-headline-lg text-headline-lg text-white text-shadow-sm">Hotels &amp; Resorts</h3>
+<p class="text-white/90 font-body-md text-body-md mt-2 max-w-md">Discover ultra-luxury stays and boutique resorts worldwide with exclusive banking benefits.</p>
+</div>
+<div class="hidden md:flex flex-col items-end">
+<span class="bg-primary-container text-on-primary-container px-4 py-2 rounded-lg font-flexpay-badge text-flexpay-badge mb-2">FLEXPAY AVAILABLE</span>
+<div class="bg-white/20 backdrop-blur-md p-3 rounded-full text-white">
+<span class="material-symbols-outlined">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Short-let Apartments -->
+<div class="md:col-span-4 group relative overflow-hidden rounded-xl border border-surface-variant shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1 cursor-pointer h-[400px]">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A sophisticated, sun-drenched modern apartment interior with high ceilings and floor-to-ceiling windows. The decor is minimalist and curated with premium materials like marble and light oak. Soft morning light fills the room, creating an effortless and professional living atmosphere. The color palette is composed of soft whites, grays, and subtle wooden textures." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_55C8fOf49XcHuQbhJvVLyEfzmMn4c7AkiFPwKJGEjglXAJCp0gegUfQSHtWHzBfOf962ekxF2MHBJWKYLvCHEOHYdXbYDlYypMZv80sVBnXAkGDBWK0nY9u7Yk8xaE2rYiHmvechXw5uBK5JyRoX7AI-z8nil6CjjaS6vbSHBzk-p_DJwbQCEez4fcMFE1HbZhkIq28FdYybrGFKcaM6RHOKQiFERTSH3wGRHi1Dr-qsEZsM7PUhXhOb7FgZ2Xi6VvYE-IDEEih2"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-6">
+<h3 class="font-title-md text-title-md text-white">Short-let Apartments</h3>
+<p class="text-white/80 font-label-md text-label-md mt-1">Premium urban living for modern travelers.</p>
+</div>
+</div>
+<!-- Tours & Travel Packages -->
+<div class="md:col-span-4 group relative overflow-hidden rounded-xl border border-surface-variant shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1 cursor-pointer h-[320px]">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A vintage luxury 4x4 vehicle driving through a breathtaking desert landscape during the blue hour. Professional travel photography with high contrast and sharp details. The mood is adventurous yet curated and safe. Accents of warm interior lights from the vehicle contrast against the cool, vast desert sky. Perfect for an elite travel marketplace." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD71GulhU8hFoeWpHY2c2v1DGobq7uLeHsKWX2cPuloNsM-rJbXu6J1TdZ7_fiM529aTMzJQC1Tii1KsSy-8U58m6uDasWdSKAExySfthVKY07RZ-x6vuUv6ePRGeyATFSiCUWO7AaD73gBf_Jz7Gy0yx_y9hxWexqKkoDXTplBhHPbh6Sed2uKd-_Dd4PT43taja9Fo03zi9Oro3k6V-ypDTnH_3xgUnPfBKH5_n8YLrlC_S5RUDuv3clmkezuFsOsONbuhbjyaSTg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-6">
+<h3 class="font-title-md text-title-md text-white">Tours &amp; Travel Packages</h3>
+<p class="text-white/80 font-label-md text-label-md mt-1">Curated journeys designed for discovery.</p>
+</div>
+</div>
+<!-- Tourist Sites -->
+<div class="md:col-span-4 group relative overflow-hidden rounded-xl border border-surface-variant shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1 cursor-pointer h-[320px]">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A majestic ancient monument under a clear, deep blue sky. The lighting is cinematic, highlighting the intricate architectural textures and historical grandeur. High-quality digital travel photography that emphasizes trust, heritage, and the wonder of global heritage sites. The composition is balanced and powerful, conveying a sense of luxury and cultural depth." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkSKteWP8RliCWir8fEq8VQSFrafRmf5QqY5NFSbrYvbxc63t1m5qdtfnUyrwbSbFC3-rWUk5sWRgPA3uznPwVjFVa9IMdb8WUd1_s9cwT_kNAbdv9Mb5DoNIvT6bZ8ayAUuzPFGGs2J2p0UksrFEfLquOODoCG3l5gJsG_Me_7iNlskntFHMNiC1G7Mbl_1RSr4On_4QECEIv8vMeO2R1b1upFBub7bqpN3XvIQQ_Qvv-IXsFVoNaI2o952SjvHmHoDlKzhw8XydN"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-6">
+<h3 class="font-title-md text-title-md text-white">Tourist Sites</h3>
+<p class="text-white/80 font-label-md text-label-md mt-1">Visit the world's most iconic landmarks.</p>
+</div>
+</div>
+<!-- Event Venues -->
+<div class="md:col-span-4 group relative overflow-hidden rounded-xl border border-surface-variant shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1 cursor-pointer h-[320px]">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A grand, high-ceilinged contemporary event hall decorated for a premium corporate gala. Soft atmospheric lighting with elegant table settings and sophisticated floral arrangements. The space is vast and impressive, signaling high-value corporate hosting and luxury event planning. The aesthetic is crisp, clean, and highly professional, utilizing a palette of whites and deep reds." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5WEaA5eG_XhhVQCgPRtuIL8A_coNNn27kxwouq5wvnLEz8u9SPLa9-KUwtdoZt2VdHxXUnZFcjOjvrg_5pRNZzeYHs_rweSbabME7l40KFUU7rdkR59gx2jF16LeTzmojE0QILhfg60S760LYkDIavErIe9CHNx4YxSpZEWiNnhCqkoISbfkAf10txnMktZ6aSMzP12qymSMkHLPlcBiSfyDMRg3axcS6G6J10lmkbgvpFOyoSprjNoAxG8bE8YyD6JH-bQR-fxU_"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-6">
+<h3 class="font-title-md text-title-md text-white">Event Venues</h3>
+<p class="text-white/80 font-label-md text-label-md mt-1">Find the perfect space for your occasions.</p>
+</div>
+</div>
+<!-- Event Organisers (Wide Footer) -->
+<div class="md:col-span-12 group relative overflow-hidden rounded-xl border border-surface-variant shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1 cursor-pointer h-[200px]">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A group of diverse, professionally dressed event planners collaborating in a modern, glass-walled office space. They are focused and engaged, using digital tablets to manage complex logistical layouts. The lighting is bright and energetic, with a high-key professional aesthetic. The mood is collaborative and effortless, reinforcing trust in the travel marketplace's partner network." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtzEQWLqHOjLl3Gmgk4zG4G_9EsiKdnvyuz0B2WUWzvvHGB15fdUw8zJVco3GzU-DBEhuY_fO_3G6m_Kjo5tEeveq-SoTPcV5mS9OmtaILA189gAjjymm8gOp9yOFJNzA4vuZ-Dky0GBaPDfryLRaFSW1I0pK0dTnutxnd0kBB_0AodSeEbhHkRLdsUBEAuwsIgK2KNGd28aHfP3QFzipq7u3h0pF_pGwAHfB7SB9wCoFFHUL__PiE3s9Ss5MNUrh_qffjGkSOWOVw"/>
+<div class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/40 to-transparent"></div>
+<div class="absolute inset-0 flex items-center p-8">
+<div class="max-w-md">
+<h3 class="font-headline-lg text-headline-lg text-white">Event Organisers</h3>
+<p class="text-white/90 font-body-md text-body-md mt-2">Connect with world-class professionals to execute your vision flawlessly.</p>
+</div>
+<div class="ml-auto hidden md:block">
+<button class="bg-white text-primary px-8 py-3 rounded-lg font-bold hover:bg-primary hover:text-white transition-all transform active:scale-95 shadow-lg">Browse Experts</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Trust Section -->
+<section class="mt-section-gap py-stack-lg border-y border-surface-variant flex flex-wrap justify-between items-center gap-8 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
+<span class="text-secondary font-bold tracking-widest text-label-md">POWERED BY UBA LIFESTYLE</span>
+<div class="flex gap-stack-lg">
+<span class="font-headline-lg-mobile text-secondary italic opacity-50">FlexPay</span>
+<span class="font-headline-lg-mobile text-secondary italic opacity-50">SecureBank</span>
+<span class="font-headline-lg-mobile text-secondary italic opacity-50">GlobalTravel</span>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Shell (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full flex justify-around items-center bg-surface dark:bg-surface px-4 py-2 border-t border-surface-variant dark:border-outline-variant shadow-[0_-4px_16px_rgba(51,51,51,0.04)] z-50" id="BottomNavBar">
+<div class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed font-bold font-label-md text-label-md transition-colors active:translate-y-0.5 duration-200">
+<span class="material-symbols-outlined">home</span>
+<span class="mt-1">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed font-label-md text-label-md hover:bg-surface-container-lowest dark:hover:bg-surface-container-low transition-colors active:translate-y-0.5 duration-200">
+<span class="material-symbols-outlined">explore</span>
+<span class="mt-1">Explore</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed font-label-md text-label-md hover:bg-surface-container-lowest dark:hover:bg-surface-container-low transition-colors active:translate-y-0.5 duration-200">
+<span class="material-symbols-outlined">confirmation_number</span>
+<span class="mt-1">Bookings</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed font-label-md text-label-md hover:bg-surface-container-lowest dark:hover:bg-surface-container-low transition-colors active:translate-y-0.5 duration-200">
+<span class="material-symbols-outlined">person</span>
+<span class="mt-1">Profile</span>
+</div>
+</nav>
+<!-- Interactive Layer: Hover Effects and Micro-interactions -->
+<script>
+        document.querySelectorAll('.group').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                const icon = card.querySelector('.material-symbols-outlined');
+                if (icon) {
+                    icon.style.transform = 'translateX(5px)';
+                    icon.style.transition = 'transform 0.3s ease';
+                }
+            });
+            card.addEventListener('mouseleave', () => {
+                const icon = card.querySelector('.material-symbols-outlined');
+                if (icon) {
+                    icon.style.transform = 'translateX(0)';
+                }
+            });
+        });
+
+        // Simple scroll reveal for cards
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.group').forEach(card => {
+            card.classList.add('opacity-0', 'translate-y-10', 'transition-all', 'duration-700');
+            observer.observe(card);
+        });
+    </script>
+</body></html>

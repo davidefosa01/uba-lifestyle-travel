@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Merchant Center | TravelMarket</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#1b1c1c",
+                        "tertiary": "#525556",
+                        "primary": "#ae0011",
+                        "on-tertiary-fixed": "#191c1d",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#d71920",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#ffece9",
+                        "on-secondary-fixed-variant": "#474747",
+                        "tertiary-fixed-dim": "#c5c7c8",
+                        "on-primary-fixed-variant": "#93000d",
+                        "background": "#fbf9f9",
+                        "surface-container": "#efeded",
+                        "on-background": "#1b1c1c",
+                        "surface-container-highest": "#e3e2e2",
+                        "surface-variant": "#e3e2e2",
+                        "tertiary-fixed": "#e1e3e4",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#6b6d6e",
+                        "surface-container-low": "#f5f3f3",
+                        "primary-fixed-dim": "#ffb4ab",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-container": "#eff0f1",
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff",
+                        "surface-container-high": "#e9e8e7",
+                        "secondary": "#5f5e5e",
+                        "inverse-surface": "#303031",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "on-tertiary-fixed-variant": "#454748",
+                        "primary-fixed": "#ffdad6",
+                        "inverse-primary": "#ffb4ab",
+                        "on-primary-fixed": "#410002",
+                        "surface-dim": "#dbdad9",
+                        "on-surface-variant": "#5d3f3c",
+                        "surface-tint": "#c00014",
+                        "secondary-container": "#e4e2e1",
+                        "surface-bright": "#fbf9f9",
+                        "outline-variant": "#e6bdb8",
+                        "on-secondary-container": "#656464",
+                        "secondary-fixed": "#e4e2e1",
+                        "secondary-fixed-dim": "#c8c6c6",
+                        "inverse-on-surface": "#f2f0f0",
+                        "surface": "#fbf9f9",
+                        "on-tertiary": "#ffffff",
+                        "outline": "#926f6b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "container-margin-dt": "80px",
+                        "unit": "4px",
+                        "stack-lg": "32px",
+                        "gutter": "16px",
+                        "stack-md": "16px",
+                        "section-gap": "64px",
+                        "container-margin-mb": "20px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Montserrat"],
+                        "flexpay-badge": ["Montserrat"],
+                        "display-lg": ["Montserrat"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "title-md": ["Inter"],
+                        "headline-lg-mobile": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "flexpay-badge": ["12px", {"lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "800"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #fbf9f9;
+            color: #1b1c1c;
+        }
+        .tonal-card {
+            background: #ffffff;
+            border: 1px solid #EEEEEE;
+            box-shadow: 0 16px 32px rgba(51, 51, 51, 0.04);
+        }
+        .flexpay-glow {
+            box-shadow: 0 4px 12px rgba(215, 25, 32, 0.08);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #e3e2e2;
+            border-radius: 4px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-body-md">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface shadow-sm dark:shadow-none docked full-width top-0 flex justify-between items-center w-full px-container-margin-mb md:px-container-margin-dt py-4 z-50 sticky">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary" data-icon="menu">menu</span>
+<div class="flex flex-col">
+<span class="text-title-md font-headline-lg-mobile font-bold text-primary dark:text-primary-fixed">Merchant Center</span>
+<span class="font-label-md text-label-md text-secondary">Eko Atlantic Suites &amp; Tours</span>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex gap-8">
+<a class="font-label-md text-label-md text-primary font-bold" href="#">Dashboard</a>
+<a class="font-label-md text-label-md text-secondary hover:text-primary transition-colors" href="#">Bookings</a>
+<a class="font-label-md text-label-md text-secondary hover:text-primary transition-colors" href="#">Revenue</a>
+</div>
+<img alt="User Profile" class="w-10 h-10 rounded-full object-cover border-2 border-primary-fixed" data-alt="A professional headshot of a confident African business manager in a crisp white shirt. The background is a brightly lit, high-end office environment with soft focus. The lighting is warm and natural, suggesting a morning at a luxury resort. The overall aesthetic is professional, modern, and trustworthy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqNNpDGtqTVZGLZq7rrQmBoTXnN6bnPkHC-8IMJlz6IPx0zufbtsr6IRouNy20LxpgpnJvHMhIl-fpCgLo_PSyHLy1KYbL2t7ODBADQNL2nTKVDr6lXbCLrMAqLIsYa_NWAl9ur_l_4YtimcnmweM2Dbx9wBRJTDV2fs8M53AxMAnPp6qXOBhC0xThm-B8URPlDJxq-pxtAn1lANGRkW1quDtMBBvvBsjDkbLx5rjqmZO5dsw6mIjwxGVBzFLkjylDpx4WBhf7SEfi"/>
+</div>
+</header>
+<main class="max-w-[1280px] mx-auto px-container-margin-mb md:px-container-margin-dt py-8 mb-24 md:mb-8">
+<!-- Welcome Section -->
+<section class="mb-stack-lg">
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-2">Morning, Merchant</h1>
+<p class="text-tertiary font-body-lg">Here is what's happening with your properties today.</p>
+</section>
+<!-- Key Metrics: Bento Grid Layout -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-section-gap">
+<!-- Metric Card 1: Pending -->
+<div class="tonal-card p-6 rounded-xl border-l-4 border-primary">
+<div class="flex justify-between items-start mb-stack-md">
+<span class="material-symbols-outlined text-primary bg-primary-container/10 p-2 rounded-lg" data-icon="pending_actions">pending_actions</span>
+<span class="text-xs font-bold text-primary uppercase tracking-wider">Urgent</span>
+</div>
+<div class="text-display-lg font-display-lg text-on-surface mb-1">3</div>
+<div class="font-title-md text-title-md text-secondary">Pending Requests</div>
+<div class="mt-4 flex items-center gap-1 text-label-md font-label-md text-error">
+<span class="material-symbols-outlined text-[16px]" data-icon="trending_up">trending_up</span>
+<span>2 from last hour</span>
+</div>
+</div>
+<!-- Metric Card 2: Confirmed -->
+<div class="tonal-card p-6 rounded-xl">
+<div class="flex justify-between items-start mb-stack-md">
+<span class="material-symbols-outlined text-tertiary-container bg-surface-container p-2 rounded-lg" data-icon="check_circle">check_circle</span>
+</div>
+<div class="text-display-lg font-display-lg text-on-surface mb-1">12</div>
+<div class="font-title-md text-title-md text-secondary">Confirmed Today</div>
+<div class="mt-4 flex items-center gap-1 text-label-md font-label-md text-primary">
+<span class="material-symbols-outlined text-[16px]" data-icon="auto_graph">auto_graph</span>
+<span>+15% vs yesterday</span>
+</div>
+</div>
+<!-- Metric Card 3: Total Revenue -->
+<div class="tonal-card p-6 rounded-xl bg-on-surface text-surface flexpay-glow">
+<div class="flex justify-between items-start mb-stack-md">
+<span class="material-symbols-outlined text-primary-fixed bg-primary-container/20 p-2 rounded-lg" data-icon="payments">payments</span>
+<div class="bg-primary px-2 py-1 rounded text-[10px] font-bold uppercase tracking-tighter">FlexPay Active</div>
+</div>
+<div class="text-display-lg font-display-lg text-surface mb-1">₦4.5M</div>
+<div class="font-title-md text-title-md text-surface-container-high">Total Revenue</div>
+<div class="mt-4 flex items-center gap-1 text-label-md font-label-md text-primary-fixed">
+<span class="material-symbols-outlined text-[16px]" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span>Next payout in 2 days</span>
+</div>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-section-gap items-start">
+<!-- Recent Activity: Asymmetric Layout -->
+<section class="lg:col-span-8">
+<div class="flex justify-between items-end mb-stack-md">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Recent Activity</h2>
+<button class="text-label-md font-label-md text-primary hover:underline">View All History</button>
+</div>
+<div class="space-y-gutter">
+<!-- Activity Item 1 -->
+<div class="tonal-card flex flex-col md:flex-row gap-gutter p-4 rounded-lg group transition-all hover:scale-[1.01]">
+<img class="w-full md:w-32 h-32 md:h-24 object-cover rounded-lg" data-alt="A luxury hotel suite with floor-to-ceiling windows overlooking the Lagos skyline. The room is decorated in neutral tones with rich textures, illuminated by soft golden hour sunlight. The image is clean, symmetrical, and exudes high-end comfort and exclusivity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0kJjyRnISd99TUAty_2h1niLBjgSZhFfVkSlslDr41U0qX889HRd0ItzR2lngQtjyAi4uCjkjDIJe-sk2SSf9ZqIb-9cUoXxqedrAAbv1oyEM1i53mRD1KqaZ1o-4UAxkz2T5D1yE4ayS7myL0jqCmVblEEVETWOlukQj4ElM5MNd89HTcji1FD25PkySnRQfseF-S7fx53WQ6JWI6anwVTDbBDiqi-w0ApxZe5ETgG1OCwBZtT-9y7RuwDAGZ3PrcydYJmtlfLy3"/>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<div>
+<div class="bg-secondary-container text-on-secondary-container text-[10px] font-bold uppercase px-2 py-0.5 rounded-full inline-block mb-1">Hotel Stay</div>
+<h3 class="font-title-md text-title-md text-on-surface">Deluxe Ocean View - Room 402</h3>
+<p class="text-label-md font-label-md text-tertiary">Guest: Mr. Olumide Bakare • 3 Nights</p>
+</div>
+<div class="text-right">
+<span class="text-title-md font-bold text-on-surface">₦450,000</span>
+<p class="text-xs text-primary font-bold">FlexPay: 3 installments</p>
+</div>
+</div>
+<div class="mt-stack-md flex gap-stack-sm">
+<button class="flex-1 bg-primary text-surface py-2 rounded font-label-md text-label-md hover:bg-primary-container active:scale-95 transition-all">Confirm</button>
+<button class="flex-1 border-1.5 border-secondary text-secondary py-2 rounded font-label-md text-label-md hover:bg-surface-container active:scale-95 transition-all">Decline</button>
+</div>
+</div>
+</div>
+<!-- Activity Item 2 -->
+<div class="tonal-card flex flex-col md:flex-row gap-gutter p-4 rounded-lg group transition-all hover:scale-[1.01]">
+<img class="w-full md:w-32 h-32 md:h-24 object-cover rounded-lg" data-alt="A premium safari vehicle in a lush savanna setting during a vibrant sunrise. The sky is painted in deep oranges and purples. The vehicle is high-end and suggests a luxury private tour experience. The overall mood is adventurous yet sophisticated." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQkNMmfHNfnmr7JfiwZUH7nV49ZoHcEjld_fV-vcauUhYqnXb0_w7bN1IXl8vUfI2a1HeAZ4FfsVDHhtpd5Bex-78haPZGiSDatrKu64rF8ms2218EUBlQ4-3l1F8rNYI0gXiuThuQgUr8MXgqWRdWkbSv7CmXlh3eXCiOvvFBFj2ZV2MxlXWyDnno7oTFwFCWjvtUEpjSI2Tdd9zqg-vj69emrrgLdCW9hrMQE1apSLKSFO5arL7oxY8a-bBZEY0Kw6T1yOgvgrhl"/>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<div>
+<div class="bg-primary-fixed text-on-primary-fixed-variant text-[10px] font-bold uppercase px-2 py-0.5 rounded-full inline-block mb-1">Private Tour</div>
+<h3 class="font-title-md text-title-md text-on-surface">Private Safari Experience</h3>
+<p class="text-label-md font-label-md text-tertiary">Guest: Sarah Jenkins • 2 Adults</p>
+</div>
+<div class="text-right">
+<span class="text-title-md font-bold text-on-surface">₦120,000</span>
+</div>
+</div>
+<div class="mt-stack-md flex gap-stack-sm">
+<button class="flex-1 bg-primary text-surface py-2 rounded font-label-md text-label-md hover:bg-primary-container active:scale-95 transition-all">Confirm</button>
+<button class="flex-1 border-1.5 border-secondary text-secondary py-2 rounded font-label-md text-label-md hover:bg-surface-container active:scale-95 transition-all">Decline</button>
+</div>
+</div>
+</div>
+<!-- Activity Item 3 -->
+<div class="tonal-card flex flex-col md:flex-row gap-gutter p-4 rounded-lg group transition-all hover:scale-[1.01]">
+<img class="w-full md:w-32 h-32 md:h-24 object-cover rounded-lg" data-alt="A modern minimalist villa pool at night, lit with soft blue underwater LEDs. The architecture is sharp and clean, with white surfaces and dark wood accents. The atmosphere is peaceful, quiet, and extremely high-end." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAfulsP124qbZosCNe-lb4bpbnoRAdPEyoPjHWKf92LG6dnlF0X2CYfqHkJBz6fSdyfQ16bhk0L51tUDMdGlhzBBFJ7DTDXmV_MMAl3AbcilMfuuySnvn57azUj-s9a_zhXXfnauJpUjlAgvsIZPs7S8i6ANpYIYk52lSyPzC-j4Vgw3mDem02JTXk6LYxjz8kWvhP5mTqyvi1sszqUbTFPN_o-hcBBWLN_7AOJFFZze0UA7M9pXtoUePpkW-bUG139JurjLLWXCYE"/>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<div>
+<div class="bg-secondary-container text-on-secondary-container text-[10px] font-bold uppercase px-2 py-0.5 rounded-full inline-block mb-1">Hotel Stay</div>
+<h3 class="font-title-md text-title-md text-on-surface">Executive Suite - Pool Side</h3>
+<p class="text-label-md font-label-md text-tertiary">Guest: Chidi Okoro • 1 Night</p>
+</div>
+<div class="text-right">
+<span class="text-title-md font-bold text-on-surface">₦185,000</span>
+</div>
+</div>
+<div class="mt-stack-md flex gap-stack-sm">
+<button class="flex-1 bg-primary text-surface py-2 rounded font-label-md text-label-md hover:bg-primary-container active:scale-95 transition-all">Confirm</button>
+<button class="flex-1 border-1.5 border-secondary text-secondary py-2 rounded font-label-md text-label-md hover:bg-surface-container active:scale-95 transition-all">Decline</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Side Panels: Notifications & Quick Actions -->
+<aside class="lg:col-span-4 space-y-stack-lg">
+<!-- Notification Settings -->
+<section class="tonal-card p-6 rounded-xl">
+<h2 class="font-title-md text-title-md text-on-surface mb-stack-md flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+                        Notification Settings
+                    </h2>
+<div class="space-y-4">
+<div class="flex items-center justify-between py-2 border-b border-surface-container">
+<div>
+<p class="font-label-md text-label-md text-on-surface">Email Notifications</p>
+<p class="text-xs text-tertiary">New requests &amp; reports</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between py-2 border-b border-surface-container">
+<div>
+<p class="font-label-md text-label-md text-on-surface">WhatsApp Alerts</p>
+<p class="text-xs text-tertiary">Instant booking pings</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between py-2">
+<div>
+<p class="font-label-md text-label-md text-on-surface">SMS Marketing</p>
+<p class="text-xs text-tertiary">Promotional updates</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</section>
+<!-- Quick Help / Support -->
+<section class="tonal-card p-6 rounded-xl bg-surface-container-lowest">
+<h2 class="font-title-md text-title-md text-on-surface mb-2">Need Help?</h2>
+<p class="text-label-md font-label-md text-secondary mb-4">Dedicated support for premium merchants available 24/7.</p>
+<button class="w-full border-1.5 border-primary text-primary py-3 rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-primary-container/5 transition-all active:scale-95">
+<span class="material-symbols-outlined text-[18px]" data-icon="support_agent">support_agent</span>
+                        Contact Partner Support
+                    </button>
+</section>
+</aside>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full flex justify-around items-center bg-surface dark:bg-surface px-4 py-2 shadow-[0_-4px_16px_rgba(51,51,51,0.04)] border-t border-surface-variant dark:border-outline-variant z-50">
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed font-bold" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed" href="#">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="font-label-md text-label-md">Explore</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed" href="#">
+<span class="material-symbols-outlined" data-icon="confirmation_number">confirmation_number</span>
+<span class="font-label-md text-label-md">Bookings</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+</nav>
+<script>
+        // Simple Interaction logic for buttons
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const originalText = this.innerText;
+                if(originalText === 'Confirm') {
+                    this.classList.replace('bg-primary', 'bg-tertiary');
+                    this.innerText = 'Confirmed';
+                    this.disabled = true;
+                } else if(originalText === 'Decline') {
+                    this.closest('.tonal-card').style.opacity = '0.5';
+                    this.innerText = 'Declined';
+                    this.disabled = true;
+                }
+            });
+        });
+
+        // Toggle Switch visual micro-interaction
+        document.querySelectorAll('input[type="checkbox"]').forEach(toggle => {
+            toggle.addEventListener('change', function() {
+                const parent = this.closest('label');
+                parent.classList.add('scale-95');
+                setTimeout(() => parent.classList.remove('scale-95'), 150);
+            });
+        });
+    </script>
+</body></html>

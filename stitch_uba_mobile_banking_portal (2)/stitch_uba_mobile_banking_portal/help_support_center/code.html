@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Customer Support | TravelMarket</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid #EEEEEE;
+        }
+        .flexpay-glow:hover {
+            box-shadow: 0 0 20px rgba(215, 25, 32, 0.15);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#1b1c1c",
+                        "tertiary": "#525556",
+                        "primary": "#ae0011",
+                        "on-tertiary-fixed": "#191c1d",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#d71920",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#ffece9",
+                        "on-secondary-fixed-variant": "#474747",
+                        "tertiary-fixed-dim": "#c5c7c8",
+                        "on-primary-fixed-variant": "#93000d",
+                        "background": "#fbf9f9",
+                        "surface-container": "#efeded",
+                        "on-background": "#1b1c1c",
+                        "surface-container-highest": "#e3e2e2",
+                        "surface-variant": "#e3e2e2",
+                        "tertiary-fixed": "#e1e3e4",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#6b6d6e",
+                        "surface-container-low": "#f5f3f3",
+                        "primary-fixed-dim": "#ffb4ab",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-container": "#eff0f1",
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff",
+                        "surface-container-high": "#e9e8e7",
+                        "secondary": "#5f5e5e",
+                        "inverse-surface": "#303031",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "on-tertiary-fixed-variant": "#454748",
+                        "primary-fixed": "#ffdad6",
+                        "inverse-primary": "#ffb4ab",
+                        "on-primary-fixed": "#410002",
+                        "surface-dim": "#dbdad9",
+                        "on-surface-variant": "#5d3f3c",
+                        "surface-tint": "#c00014",
+                        "secondary-container": "#e4e2e1",
+                        "surface-bright": "#fbf9f9",
+                        "outline-variant": "#e6bdb8",
+                        "on-secondary-container": "#656464",
+                        "secondary-fixed": "#e4e2e1",
+                        "secondary-fixed-dim": "#c8c6c6",
+                        "inverse-on-surface": "#f2f0f0",
+                        "surface": "#fbf9f9",
+                        "on-tertiary": "#ffffff",
+                        "outline": "#926f6b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "container-margin-dt": "80px",
+                        "unit": "4px",
+                        "stack-lg": "32px",
+                        "gutter": "16px",
+                        "stack-md": "16px",
+                        "section-gap": "64px",
+                        "container-margin-mb": "20px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Montserrat"],
+                        "flexpay-badge": ["Montserrat"],
+                        "display-lg": ["Montserrat"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "title-md": ["Inter"],
+                        "headline-lg-mobile": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "flexpay-badge": ["12px", {"lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "800"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md">
+<!-- Top Navigation -->
+<header class="bg-surface fixed top-0 w-full z-50 flex justify-between items-center px-container-margin-mb md:px-container-margin-dt py-4 shadow-sm">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary cursor-pointer" data-icon="menu">menu</span>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">TravelMarket</h1>
+</div>
+<div class="flex items-center gap-stack-md">
+<div class="hidden md:flex gap-gutter mr-stack-lg">
+<a class="font-label-md text-label-md text-secondary hover:text-primary transition-colors" href="#">Home</a>
+<a class="font-label-md text-label-md text-secondary hover:text-primary transition-colors" href="#">Explore</a>
+<a class="font-label-md text-label-md text-secondary hover:text-primary transition-colors" href="#">Bookings</a>
+</div>
+<img alt="Profile" class="w-10 h-10 rounded-full object-cover border border-surface-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4jOSlOH-gG33E_HRQ2THVhRSYOY17d6zC07jbu9CkIKu-Hma8TqdEUIFlxYyCL94NdYb8l9QGDR-B9iSdGel3aR8qcWdBD-pges6KEmQsUtcm9DYOOvu4yxStChfLuHWbFgTvUnYeqFzIXSGwdTZPi4XD72HHnn9muCHTRDJHhN_CzyOO8gI9muqyClfAFtOUZj-Oj5rNTOAzha0C_0Zpa_SzJ-WVAQ_BYafWeHWD_QwKhgLALvnZtBFM0Irj9ONhmTQdI1Mni89b"/>
+</div>
+</header>
+<main class="pt-24 pb-24 md:pb-12 max-w-[1280px] mx-auto px-container-margin-mb md:px-container-margin-dt">
+<!-- Hero Section -->
+<section class="mb-section-gap text-center max-w-2xl mx-auto">
+<h2 class="font-display-lg text-display-lg text-on-surface mb-stack-md">How can we help?</h2>
+<p class="font-body-lg text-body-lg text-tertiary mb-stack-lg">Our concierge team is available 24/7 to ensure your journey is seamless and stress-free.</p>
+<!-- Search Bar -->
+<div class="relative max-w-xl mx-auto group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-secondary group-focus-within:text-primary transition-colors" data-icon="search">search</span>
+<input class="w-full pl-12 pr-4 py-4 rounded-xl border border-surface-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all shadow-sm" placeholder="Search for FAQs, FlexPay info, or booking help..." type="text"/>
+</div>
+</section>
+<!-- Categories Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-section-gap">
+<!-- Category 1 -->
+<div class="group p-stack-lg bg-surface border border-surface-variant rounded-xl hover:shadow-xl transition-all duration-300 flex flex-col items-center text-center cursor-pointer">
+<div class="w-16 h-16 rounded-full bg-primary-container/10 flex items-center justify-center mb-stack-md group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-4xl" data-icon="confirmation_number">confirmation_number</span>
+</div>
+<h3 class="font-title-md text-title-md mb-stack-sm">Booking Issues</h3>
+<p class="font-body-md text-body-md text-tertiary">Modify dates, cancel trips, or update traveler information instantly.</p>
+</div>
+<!-- Category 2 -->
+<div class="group p-stack-lg bg-surface border border-primary/20 rounded-xl hover:shadow-xl transition-all duration-300 flex flex-col items-center text-center cursor-pointer relative overflow-hidden">
+<div class="absolute top-4 right-4 bg-primary-container px-3 py-1 rounded-full">
+<span class="font-flexpay-badge text-flexpay-badge text-white">FLEXPAY</span>
+</div>
+<div class="w-16 h-16 rounded-full bg-primary-container/10 flex items-center justify-center mb-stack-md group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-4xl" data-icon="payments">payments</span>
+</div>
+<h3 class="font-title-md text-title-md mb-stack-sm">FlexPay &amp; Payments</h3>
+<p class="font-body-md text-body-md text-tertiary">Manage installments, update payment cards, or check settlement status.</p>
+</div>
+<!-- Category 3 -->
+<div class="group p-stack-lg bg-surface border border-surface-variant rounded-xl hover:shadow-xl transition-all duration-300 flex flex-col items-center text-center cursor-pointer">
+<div class="w-16 h-16 rounded-full bg-primary-container/10 flex items-center justify-center mb-stack-md group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-4xl" data-icon="chat_bubble">chat_bubble</span>
+</div>
+<h3 class="font-title-md text-title-md mb-stack-sm">App Feedback</h3>
+<p class="font-body-md text-body-md text-tertiary">Suggest features or report technical issues to improve your experience.</p>
+</div>
+</section>
+<!-- Main Content Area: Split Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-section-gap items-start">
+<!-- Left: Complaint Form -->
+<section class="lg:col-span-7 bg-surface p-stack-lg md:p-12 rounded-xl border border-surface-variant shadow-sm">
+<h2 class="font-headline-lg text-headline-lg mb-stack-sm text-on-surface">Submit a Complaint</h2>
+<p class="font-body-md text-body-md text-tertiary mb-stack-lg">We take your concerns seriously. Please provide details below and we'll respond within 24 hours.</p>
+<form class="space-y-stack-md">
+<div>
+<label class="block font-label-md text-label-md text-tertiary mb-2">Category</label>
+<select class="w-full p-4 rounded-lg border border-surface-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none appearance-none bg-surface">
+<option>Select a category</option>
+<option>Booking Delay</option>
+<option>Payment Dispute</option>
+<option>Account Access</option>
+<option>Other</option>
+</select>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-tertiary mb-2">Booking Reference</label>
+<input class="w-full p-4 rounded-lg border border-surface-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none" placeholder="e.g. TRV-98234-AX" type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-tertiary mb-2">Description</label>
+<textarea class="w-full p-4 rounded-lg border border-surface-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none" placeholder="Please describe the issue in detail..." rows="5"></textarea>
+</div>
+<button class="w-full py-4 bg-primary text-white font-headline-lg-mobile text-headline-lg-mobile font-bold rounded-lg hover:bg-primary-container transition-all active:scale-95 duration-150 shadow-md" type="button">
+                        Submit Complaint
+                    </button>
+</form>
+</section>
+<!-- Right: Concierge & Support Card -->
+<section class="lg:col-span-5 space-y-gutter">
+<div class="bg-on-surface text-white p-stack-lg rounded-xl overflow-hidden relative">
+<div class="relative z-10">
+<span class="inline-block px-3 py-1 bg-primary text-[10px] font-bold tracking-widest uppercase rounded-full mb-stack-md">Priority Concierge</span>
+<h3 class="font-headline-lg text-headline-lg mb-stack-sm">Connect with a Live Concierge</h3>
+<p class="font-body-md text-body-md text-surface-container mb-stack-lg opacity-80">Our specialists are ready to help you with premium travel arrangements and complex issues.</p>
+<button class="flex items-center gap-2 px-8 py-4 bg-white text-on-surface font-bold rounded-full hover:bg-surface-container-low transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="support_agent">support_agent</span>
+                            Start Live Chat
+                        </button>
+</div>
+<div class="absolute -right-12 -bottom-12 opacity-10">
+<span class="material-symbols-outlined text-[200px]" data-icon="headset_mic">headset_mic</span>
+</div>
+</div>
+<!-- Quick Help List -->
+<div class="bg-surface p-stack-lg rounded-xl border border-surface-variant">
+<h4 class="font-title-md text-title-md mb-stack-md">Most Read FAQs</h4>
+<ul class="space-y-stack-md">
+<li class="flex items-center justify-between group cursor-pointer py-2">
+<span class="font-body-md text-body-md group-hover:text-primary transition-colors">How do I change my FlexPay card?</span>
+<span class="material-symbols-outlined text-secondary" data-icon="chevron_right">chevron_right</span>
+</li>
+<li class="flex items-center justify-between group cursor-pointer py-2 border-t border-surface-variant pt-stack-md">
+<span class="font-body-md text-body-md group-hover:text-primary transition-colors">Refund policy for international flights</span>
+<span class="material-symbols-outlined text-secondary" data-icon="chevron_right">chevron_right</span>
+</li>
+<li class="flex items-center justify-between group cursor-pointer py-2 border-t border-surface-variant pt-stack-md">
+<span class="font-body-md text-body-md group-hover:text-primary transition-colors">Verifying my identity for high-value trips</span>
+<span class="material-symbols-outlined text-secondary" data-icon="chevron_right">chevron_right</span>
+</li>
+</ul>
+</div>
+<!-- Reassuring Visual -->
+<div class="relative h-48 rounded-xl overflow-hidden shadow-sm border border-surface-variant">
+<img class="w-full h-full object-cover" data-alt="A diverse team of professional customer support representatives in a clean, modern glass-walled office. The lighting is bright and warm, creating a high-trust and welcoming atmosphere. The individuals are smiling subtly and focused on their screens, dressed in professional business casual attire that matches a premium corporate aesthetic. The overall mood is reassuring, competent, and efficient." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCE6LRSv3-XR73zXu93a287xxlnDnFMZqr1ZRfmjLsh-ZQrfQgMs6ZsQrQA9fJk7mK7-YkUMpQIZMh8tetUK7X35B_gi2TOkb3YY7FKtIVTt_4Smwf7JGwnpmmsT4J4IW-z7zPpJtUyK7ACHr6HM3Llbgi449mFP2iFTSB0z4S5gUajpqF4sHbQz8xmyCZkZapt028nD3U-Rn97SrrbEZs6hDcyD7WgkuSIIRn6Gs7BtUmAeCV7V8HVk0kKzOY7H0TAEb-XnPgEDXZI"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-stack-md">
+<p class="text-white font-label-md text-label-md italic">"Always here to help you move forward."</p>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Bottom Navigation (Mobile) -->
+<nav class="md:hidden fixed bottom-0 w-full flex justify-around items-center bg-surface px-4 py-2 border-t border-surface-variant shadow-[0_-4px_16px_rgba(51,51,51,0.04)] z-50">
+<div class="flex flex-col items-center justify-center text-secondary font-label-md text-label-md py-2">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span>Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary font-label-md text-label-md py-2">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span>Explore</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary font-label-md text-label-md py-2">
+<span class="material-symbols-outlined" data-icon="confirmation_number">confirmation_number</span>
+<span>Bookings</span>
+</div>
+<div class="flex flex-col items-center justify-center text-primary font-bold font-label-md text-label-md py-2">
+<span class="material-symbols-outlined" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+<span>Profile</span>
+</div>
+</nav>
+<script>
+        // Simple form interaction logic
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerText;
+            btn.innerText = 'Sending...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                btn.innerText = 'Success!';
+                btn.classList.replace('bg-primary', 'bg-green-600');
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.classList.replace('bg-green-600', 'bg-primary');
+                    btn.disabled = false;
+                    e.target.reset();
+                }, 2000);
+            }, 1500);
+        });
+    </script>
+</body></html>

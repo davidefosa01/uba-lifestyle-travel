@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TravelMarket | Discover your next escape</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-background": "#1b1c1c",
+                    "on-tertiary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed": "#410002",
+                    "surface-dim": "#dbdad9",
+                    "on-secondary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "surface-bright": "#fbf9f9",
+                    "on-primary-fixed-variant": "#93000d",
+                    "primary-container": "#d71920",
+                    "on-surface": "#1b1c1c",
+                    "on-error": "#ffffff",
+                    "surface-container-low": "#f5f3f3",
+                    "primary": "#ae0011",
+                    "primary-fixed": "#ffdad6",
+                    "secondary": "#5f5e5e",
+                    "surface": "#fbf9f9",
+                    "surface-container": "#efeded",
+                    "secondary-fixed": "#e4e2e1",
+                    "primary-fixed-dim": "#ffb4ab",
+                    "secondary-container": "#e4e2e1",
+                    "on-surface-variant": "#5d3f3c",
+                    "on-tertiary-container": "#eff0f1",
+                    "on-tertiary-fixed-variant": "#454748",
+                    "on-tertiary-fixed": "#191c1d",
+                    "tertiary-fixed": "#e1e3e4",
+                    "surface-variant": "#e3e2e2",
+                    "inverse-primary": "#ffb4ab",
+                    "surface-tint": "#c00014",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed": "#1b1c1c",
+                    "inverse-surface": "#303031",
+                    "secondary-fixed-dim": "#c8c6c6",
+                    "surface-container-highest": "#e3e2e2",
+                    "tertiary": "#525556",
+                    "outline-variant": "#e6bdb8",
+                    "tertiary-container": "#6b6d6e",
+                    "background": "#fbf9f9",
+                    "tertiary-fixed-dim": "#c5c7c8",
+                    "on-secondary-fixed-variant": "#474747",
+                    "outline": "#926f6b",
+                    "surface-container-high": "#e9e8e7",
+                    "on-primary-container": "#ffece9",
+                    "on-secondary-container": "#656464",
+                    "error-container": "#ffdad6",
+                    "on-primary": "#ffffff",
+                    "inverse-on-surface": "#f2f0f0"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "4px",
+                    "section-gap": "64px",
+                    "container-margin-mb": "20px",
+                    "stack-md": "16px",
+                    "container-margin-dt": "80px",
+                    "stack-lg": "32px",
+                    "stack-sm": "8px",
+                    "gutter": "16px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "flexpay-badge": ["Montserrat"],
+                    "headline-lg": ["Montserrat"],
+                    "headline-lg-mobile": ["Montserrat"],
+                    "display-lg": ["Montserrat"],
+                    "body-lg": ["Inter"],
+                    "title-md": ["Inter"],
+                    "label-md": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "flexpay-badge": ["12px", {"lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "800"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="bg-surface z-50 fixed top-0 w-full flex justify-between items-center px-container-margin-mb py-4 shadow-sm">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary hover:bg-surface-container-low transition-colors p-2 rounded-full active:scale-95 duration-150">menu</button>
+<span class="text-title-md font-headline-lg-mobile font-bold text-primary">TravelMarket</span>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-surface-variant">
+<img alt="User profile photo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAE7tvXNEKiOfsPzlGL-vzzZ7J0y9mYJN1a3dPfzNFj7yBkHyi3Zf7sH4T578PzqwoGMIolg7jW_hetdkDJAs7GNt9YaPE9ScXvshBWMx62YxTW4qeAFYGVT8qP0qrnhyge4rTTV8e6owUwB2UaiggoNBL3jVMQfCHZRfl7aZASe27LWjXgON22VluB8_JCkwcKHl4ahHk7mCk6nk2sdl-2tCSEfKOTQTwLFql1EBX72s0oYSKPZ6I5lZG17VQKV3t4dY_Yjpx3_L_j"/>
+</div>
+</header>
+<main class="mt-20 px-container-margin-mb">
+<!-- Welcome Banner -->
+<section class="mb-stack-lg">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-background mb-1">Discover your next escape,</h1>
+<h2 class="font-display-lg text-display-lg text-primary leading-tight">David</h2>
+</section>
+<!-- Search Bar -->
+<div class="relative mb-stack-lg">
+<div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-secondary">search</span>
+</div>
+<input class="w-full pl-12 pr-4 py-4 bg-surface-container-low border-none rounded-xl font-body-md text-on-surface focus:ring-2 focus:ring-primary/20 placeholder:text-secondary shadow-sm" placeholder="Where to next?" type="text"/>
+</div>
+<!-- Categories (Horizontal Scroll) -->
+<section class="mb-section-gap -mx-container-margin-mb px-container-margin-mb">
+<div class="flex gap-4 overflow-x-auto hide-scrollbar py-2">
+<div class="flex flex-col items-center gap-2 group cursor-pointer min-w-[72px]">
+<div class="w-14 h-14 rounded-2xl bg-primary flex items-center justify-center text-on-primary shadow-lg shadow-primary/20 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">hotel</span>
+</div>
+<span class="font-label-md text-label-md text-on-background font-semibold">Hotels</span>
+</div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer min-w-[72px]">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-high flex items-center justify-center text-secondary active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[28px]">apartment</span>
+</div>
+<span class="font-label-md text-label-md text-secondary">Short-lets</span>
+</div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer min-w-[72px]">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-high flex items-center justify-center text-secondary active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[28px]">explore</span>
+</div>
+<span class="font-label-md text-label-md text-secondary">Tours</span>
+</div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer min-w-[72px]">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-high flex items-center justify-center text-secondary active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[28px]">temple_buddhist</span>
+</div>
+<span class="font-label-md text-label-md text-secondary">Sites</span>
+</div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer min-w-[72px]">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-high flex items-center justify-center text-secondary active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[28px]">theater_comedy</span>
+</div>
+<span class="font-label-md text-label-md text-secondary">Venues</span>
+</div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer min-w-[72px]">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-high flex items-center justify-center text-secondary active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[28px]">groups</span>
+</div>
+<span class="font-label-md text-label-md text-secondary">Organisers</span>
+</div>
+</div>
+</section>
+<!-- Featured Listings (Asymmetric/Premium Layout) -->
+<section class="mb-section-gap">
+<div class="flex justify-between items-end mb-stack-md">
+<h3 class="font-title-md text-title-md text-on-background">Featured Experiences</h3>
+<button class="text-primary font-label-md text-label-md font-bold">See all</button>
+</div>
+<div class="grid grid-cols-1 gap-6">
+<!-- Large Card -->
+<div class="group relative bg-surface border border-surface-variant rounded-xl overflow-hidden shadow-soft active:scale-[0.98] transition-transform duration-200">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="A luxury resort infinity pool overlooking a crystal clear turquoise ocean at sunset. The sky is painted in soft oranges and deep purples, reflecting the calm high-trust banking aesthetic. The architectural lines are sharp and modern, emphasizing premium quality and professional curation. Soft lighting illuminates the poolside furniture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUQ2aYkPeWR5gV_BYJxcRaLHmkzfIlTxuLuMeFVzQD-tEEPXf06aSOGDCWd9XBJT2XiIZA-9D3VOqh8E8cQ26xJ_-in66cwcEbJhYqv0YqXoglcgpvbjUqGRfW9jsFvLTba37-uJp96A4srfi727LmXyy9oG8iMKI9VyLnVvAzQPirAxW4uf6h1UMYKF4A55JNxNj-SjFgylZI58I0fmXUBQZCdfJtt8pT61fB-bRoc4nQ9fs6GkZ43r_rhQhRBO1BOK3rs3hFCL_i"/>
+<div class="absolute top-4 right-4 bg-surface/90 backdrop-blur-md px-3 py-1 rounded-full flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-amber-500 text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md text-label-md font-bold">4.9</span>
+</div>
+<div class="absolute bottom-4 left-4">
+<span class="bg-primary text-on-primary font-flexpay-badge text-flexpay-badge px-3 py-1 rounded-full uppercase tracking-wider">FlexPay Available</span>
+</div>
+</div>
+<div class="p-4">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-title-md text-title-md text-on-surface">The Azure Sanctuary Resort</h4>
+<span class="font-title-md text-title-md text-primary font-bold">₦145,000<span class="text-secondary text-sm font-normal">/night</span></span>
+</div>
+<p class="font-body-md text-body-md text-secondary">Victoria Island, Lagos</p>
+</div>
+</div>
+<!-- Two Smaller Cards Grid -->
+<div class="grid grid-cols-2 gap-4">
+<div class="group bg-surface border border-surface-variant rounded-xl overflow-hidden shadow-soft">
+<div class="h-40 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A minimalist boutique hotel interior with clean white lines, natural oak wood furniture, and large windows allowing soft morning light to flood the room. The space is uncluttered and sophisticated, mirroring a professional financial lifestyle. A single splash of deep red from a designer vase adds a curated accent." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBE3KRt1pxxMdvnhJFpELV3L2NhPnzzKzjrxt-cFO5TlFFsQXPyMtcUZQ-H5FosN-zaf-px8WtmNJBNUqS6W39XCi5ufT6Z_wwXzP9dmedN5TSxOBzvZuftZqxGl9roqJlfPBEOktftjrt97Sc7pPTSZXLcEkoi3Jsxg3GNqguow7ApKnpJvPJ4NjwK-sug2I6axsfVJ3PITshiHHemDnsZoq1w_Mth_9adclBngC20KpGtB6soSaRJTORuWsZ1PIDDS2ZztrMo6Ju3"/>
+</div>
+<div class="p-3">
+<h5 class="font-label-md text-label-md font-bold truncate text-on-surface">Minimalist Zen Suite</h5>
+<p class="text-secondary text-xs mb-2">Ikoyi, Lagos</p>
+<p class="text-primary font-bold">₦85,000</p>
+</div>
+</div>
+<div class="group bg-surface border border-surface-variant rounded-xl overflow-hidden shadow-soft">
+<div class="h-40 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="An expansive beachfront villa deck with modern white loungers and an unobstructed view of a calm sea. The lighting is high-key and bright, evoking a sense of effortless luxury and security. The scene is serene, clean, and perfectly aligned with a corporate minimalism aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD45YIPqF8IO8fiksVB1bWMbwsSGZVo4c8yZ29MYjJn9L_qA8Z0tZMUAGhE7QjhUVf2OzLNHsuLSbOb3hOnBbSgNtETRZ1ySOlFK_SNstErKK5d6K2zhfM8i0yggh-Zw_OtZs-YscnnRnqmUx5AIBALIDP_Vadt3BSfNYe1qW6aP-mLw3AUMiSwxtGdKHk20u4-jGpVN1rn7ZTaovPnrzy0KLQK5fh3lJ1_qAs9s8WQl3ty6n6S-OyiqXxeKct_sNhll7LL1agy4uEI"/>
+</div>
+<div class="p-3">
+<h5 class="font-label-md text-label-md font-bold truncate text-on-surface">Ocean View Loft</h5>
+<p class="text-secondary text-xs mb-2">Lekki Phase 1</p>
+<p class="text-primary font-bold">₦110,000</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- FlexPay Promo Banner -->
+<section class="mb-section-gap">
+<div class="relative bg-gradient-to-r from-[#D71920] to-[#AE0011] rounded-2xl p-6 overflow-hidden shadow-xl shadow-primary/30">
+<div class="absolute -right-8 -top-8 w-40 h-40 bg-white/10 rounded-full blur-2xl"></div>
+<div class="relative z-10 flex flex-col items-start gap-4">
+<div class="flex items-center gap-2 bg-white/20 px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-white text-sm" style="font-variation-settings: 'FILL' 1;">payments</span>
+<span class="font-flexpay-badge text-flexpay-badge text-white uppercase tracking-widest">Financial Freedom</span>
+</div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-white leading-tight">Travel now, pay later with FlexPay</h3>
+<p class="font-body-md text-body-md text-white/90">Spread your travel costs into manageable monthly installments with UBA's secure credit facility.</p>
+<button class="bg-white text-primary px-6 py-3 rounded-xl font-body-md font-bold shadow-lg active:scale-95 transition-transform">Get Started</button>
+</div>
+</div>
+</section>
+<!-- Popular Destinations -->
+<section class="mb-section-gap">
+<h3 class="font-title-md text-title-md text-on-background mb-stack-md">Popular Destinations</h3>
+<div class="flex gap-4 overflow-x-auto hide-scrollbar -mx-container-margin-mb px-container-margin-mb py-2">
+<div class="min-w-[160px] relative rounded-2xl overflow-hidden aspect-[4/5] shadow-lg group">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="A lush tropical landscape in Mauritius with jagged volcanic mountains in the background and a turquoise lagoon in the foreground. The lighting is golden hour, creating a warm, aspirational mood that signals wealth and curated travel experiences. The image is crisp and professional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQzWKDZJbVRpqLM2HVqBBu8j28826loZEBNtyvVsKGVRpLgHcqPCjlgyDiOPUGXf7CtP0nwpBOKFqgkls-dGmnOZmfDCOG_QM0Xyh_PoWJUvZaMmGwh0wJjfnQSp2ZhaydUyrealgg7vHMJdW_7qNWiXM7rFm8SlJ9dXmFq4HxGtW5xhAo-90zI84Uvn0BBBvYyuGSQwTKEcAdXgP8VVDfCx5rAftM0o4ikZtnXhTZdHmNIj3X87THKoiSvjFVTOkPro6c90sGw-tc"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-4 left-4">
+<p class="text-white font-bold text-lg">Mauritius</p>
+<p class="text-white/70 text-sm">240+ properties</p>
+</div>
+</div>
+<div class="min-w-[160px] relative rounded-2xl overflow-hidden aspect-[4/5] shadow-lg group">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="The Taj Mahal reflecting in a still pool at dawn. The lighting is soft and ethereal, with pale pink and blue hues in the sky. This classic luxury travel imagery conveys a sense of timeless elegance and elite global curation, maintaining the professional and effortless brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCObhdjaI9xOmUDxTAVYoH5tNGnieY_p2eJuoZdaejrz2FiQPb20VlZRGJ5XQVQaVXI00VuLTW9oFGLdOX-riLB7WD2b4m1E91AgAuM46HcfrlUu6o9yE8XOH9AwFMZoM-i64Mi8UcLkdu9cDVfAUSDhmROHY52oMt6tYakaEMwoEiK0wcNLiWfpCerR_INAnUFSDNAHDXZw0sr4woHQevUwxfqb6UM5Pk8vwRAxEliruewNtHo3knAcwaxSTfPgX7GrsRsEYLnqFn"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-4 left-4">
+<p class="text-white font-bold text-lg">Dubai</p>
+<p class="text-white/70 text-sm">1.2k properties</p>
+</div>
+</div>
+<div class="min-w-[160px] relative rounded-2xl overflow-hidden aspect-[4/5] shadow-lg group">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="The iconic white buildings of Santorini overlooking the deep blue Aegean sea. The high-contrast bright sunlight and clean geometric architecture mirror the corporate minimalism of the design system. The atmosphere is one of serene luxury and high-net-worth leisure." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5xhgzGRHtIybiFniqZNuhyafnotjkqPrrANhc6kl4XoNLMmPLSA0KWEOFJzVNfRyMT7R-LQLMoesI0zkbEC9fcwVM-PP-zaYM4sX5C259VHV2QBxwi1qjiR48-mWcb_5Q_SrhexzesKUFxdDE4taxgUhRvBhYUds8WRj8vbyFdo769hU8j7rhrwD0Bch6z7K58FcVfugw7CqhcJKuhFFy1FZHQzbMf8MT8SAdAyIjYxAICSvO03y_ajNzkiV_qdENFsNy2QvvQLZ1"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-4 left-4">
+<p class="text-white font-bold text-lg">Santorini</p>
+<p class="text-white/70 text-sm">85 properties</p>
+</div>
+</div>
+</div>
+</section>
+<!-- UBA Verified Section -->
+<section class="mb-section-gap bg-surface-container-low -mx-container-margin-mb px-container-margin-mb py-12">
+<div class="flex flex-col items-center text-center max-w-sm mx-auto">
+<div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-background mb-4">Book with Confidence</h3>
+<p class="font-body-md text-body-md text-secondary mb-8">Every listing on TravelMarket is UBA Verified. We guarantee banking-grade security and hand-picked quality for every booking.</p>
+<div class="grid grid-cols-2 gap-4 w-full">
+<div class="bg-surface p-4 rounded-xl shadow-sm border border-surface-variant flex flex-col items-center">
+<span class="material-symbols-outlined text-primary mb-2">shield</span>
+<span class="font-label-md text-label-md font-bold">Secure Pay</span>
+</div>
+<div class="bg-surface p-4 rounded-xl shadow-sm border border-surface-variant flex flex-col items-center">
+<span class="material-symbols-outlined text-primary mb-2">support_agent</span>
+<span class="font-label-md text-label-md font-bold">24/7 Support</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full flex justify-around items-center bg-surface px-4 py-2 border-t border-surface-variant z-50 shadow-[0_-4px_16px_rgba(51,51,51,0.04)]">
+<a class="flex flex-col items-center justify-center text-primary font-bold active:translate-y-0.5 duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary hover:bg-surface-container-lowest active:translate-y-0.5 duration-200" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-label-md text-label-md">Explore</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary hover:bg-surface-container-lowest active:translate-y-0.5 duration-200" href="#">
+<span class="material-symbols-outlined">confirmation_number</span>
+<span class="font-label-md text-label-md">Bookings</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary hover:bg-surface-container-lowest active:translate-y-0.5 duration-200" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+</nav>
+<!-- FAB (Contextual for Search/Action) -->
+<button class="fixed bottom-24 right-6 w-14 h-14 bg-primary text-on-primary rounded-full shadow-xl shadow-primary/40 flex items-center justify-center active:scale-90 transition-transform z-40">
+<span class="material-symbols-outlined text-[28px]">map</span>
+</button>
+<script>
+        // Micro-interactions for scrolling effects
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.classList.add('shadow-md');
+                header.classList.remove('shadow-sm');
+            } else {
+                header.classList.remove('shadow-md');
+                header.classList.add('shadow-sm');
+            }
+        });
+
+        // Simple categories active state toggler
+        const categoryItems = document.querySelectorAll('.group.cursor-pointer');
+        categoryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                categoryItems.forEach(i => {
+                    const circle = i.querySelector('div');
+                    const label = i.querySelector('span:last-child');
+                    circle.classList.replace('bg-primary', 'bg-surface-container-high');
+                    circle.classList.replace('text-on-primary', 'text-secondary');
+                    label.classList.replace('text-on-background', 'text-secondary');
+                    label.classList.remove('font-semibold');
+                    const icon = circle.querySelector('span');
+                    icon.style.fontVariationSettings = "'FILL' 0";
+                });
+                const activeCircle = item.querySelector('div');
+                const activeLabel = item.querySelector('span:last-child');
+                const activeIcon = activeCircle.querySelector('span');
+                activeCircle.classList.replace('bg-surface-container-high', 'bg-primary');
+                activeCircle.classList.replace('text-secondary', 'text-on-primary');
+                activeLabel.classList.replace('text-secondary', 'text-on-background');
+                activeLabel.classList.add('font-semibold');
+                activeIcon.style.fontVariationSettings = "'FILL' 1";
+            });
+        });
+    </script>
+</body></html>

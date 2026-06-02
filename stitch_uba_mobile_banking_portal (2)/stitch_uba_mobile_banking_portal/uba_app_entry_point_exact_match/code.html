@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>UBA Mobile App Dashboard</title>
+<!-- Tailwind CSS v3 with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style data-purpose="custom-fonts">
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f7f7;
+            -webkit-tap-highlight-color: transparent;
+        }
+    </style>
+<style data-purpose="custom-colors">
+        /* UBA Branding Colors from Image 8 */
+        .uba-red-bg { background-color: #ba120e; }
+        .uba-red-text { color: #ba120e; }
+        .text-gray-sub { color: #6b7280; }
+        .card-shadow { box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen text-gray-900">
+<!-- BEGIN: Status Bar Placeholder -->
+<div class="w-full h-10 bg-white flex items-center justify-between px-6 text-[11px] font-semibold" data-purpose="status-bar">
+<span>1:26</span>
+<div class="flex items-center space-x-2">
+<div class="flex space-x-1">
+<span class="material-symbols-outlined text-[14px]">signal_cellular_4_bar</span>
+<span class="material-symbols-outlined text-[14px]">wifi</span>
+</div>
+<div class="flex items-center space-x-1">
+<span class="text-[10px]">96</span>
+<div class="w-5 h-2.5 border border-gray-400 rounded-[2px] relative flex items-center p-[1px]">
+<div class="bg-gray-800 h-full w-[85%] rounded-[1px]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- END: Status Bar Placeholder -->
+<!-- BEGIN: MainHeader -->
+<header class="bg-white px-4 py-3 border-b border-gray-100 sticky top-0 z-50">
+<div class="flex items-center justify-between">
+<!-- User Profile Circle -->
+<div class="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-[11px] text-gray-500 font-medium">
+                DE
+            </div>
+<!-- Center Greeting -->
+<div class="text-center">
+<h1 class="text-base font-bold text-[#1f2937] leading-tight">Good Morning</h1>
+<p class="text-sm text-gray-500 font-medium">David</p>
+</div>
+<!-- UBA Logo -->
+<div class="w-10 h-10 flex items-center justify-end">
+<img alt="UBA Logo" class="w-8 h-8 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFBSs0V2ryco82A6FyLmKDUee8v_vKPXv8WyCaT44no12rOAzzLJ_6Ycsz7T0bOerZpsEjNjjhG0IkfG_MYLgcmZ_310odCgVDVnYdWCLbpjCXYT1a15QBvKApqbt0toV29o1MMQ3neG6qEw3GSJo1Pv6B068479gu6dwupUcJ_GI-PmzQpe7QfUl7X2gNOoHtU0PN4YkN_kcAnq_mWTy1hfp81BAT1hWkmZODq7BhzK6rExIEi9ZXi0xQgO0D59hijZrNGvKgXG-2"/>
+</div>
+</div>
+</header>
+<!-- END: MainHeader -->
+<!-- BEGIN: MainContent -->
+<main class="flex-grow p-4 space-y-4">
+<!-- BEGIN: ShortcutsSection -->
+<section class="bg-white rounded-xl card-shadow p-5" data-purpose="shortcuts-container">
+<h2 class="text-base font-bold text-gray-800 mb-6">Shortcuts</h2>
+<div class="grid grid-cols-4 gap-2 mb-4">
+<!-- Transfer -->
+<div class="flex flex-col items-center">
+<div class="w-14 h-14 uba-red-bg rounded-full flex items-center justify-center mb-2 shadow-sm">
+<span class="material-symbols-outlined text-white text-2xl">sync_alt</span>
+</div>
+<span class="text-[11px] text-center font-medium text-gray-700">Transfer</span>
+</div>
+<!-- Cardless Withdrawal -->
+<div class="flex flex-col items-center">
+<div class="w-14 h-14 uba-red-bg rounded-full flex items-center justify-center mb-2 shadow-sm">
+<span class="material-symbols-outlined text-white text-2xl">atm</span>
+</div>
+<span class="text-[11px] text-center font-medium text-gray-700 leading-tight">Cardless<br/>Withdra...</span>
+</div>
+<!-- Bill -->
+<div class="flex flex-col items-center">
+<div class="w-14 h-14 uba-red-bg rounded-full flex items-center justify-center mb-2 shadow-sm">
+<span class="material-symbols-outlined text-white text-2xl">description</span>
+</div>
+<span class="text-[11px] text-center font-medium text-gray-700">Bill</span>
+</div>
+<!-- Top Up -->
+<div class="flex flex-col items-center">
+<div class="w-14 h-14 uba-red-bg rounded-full flex items-center justify-center mb-2 shadow-sm">
+<span class="material-symbols-outlined text-white text-2xl">arrow_upward</span>
+</div>
+<span class="text-[11px] text-center font-medium text-gray-700">Top Up</span>
+</div>
+</div>
+<!-- Lifestyle Travel Banner -->
+<div class="mt-8 border-t border-dashed border-gray-100 pt-6">
+<div class="w-full bg-[#fff5f5] border border-[#ffebeb] rounded-2xl p-4 flex items-center justify-between active:scale-[0.98] transition-transform" data-purpose="travel-marketplace-entry">
+<div class="flex items-center space-x-4">
+<div class="w-12 h-12 uba-red-bg rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-2xl">inventory_2</span>
+</div>
+<div>
+<p class="font-bold text-[#1f2937] text-sm">Lifestyle Travel</p>
+<p class="text-[11px] text-gray-500">Book flights, hotels &amp; more</p>
+</div>
+</div>
+<span class="material-symbols-outlined uba-red-text">chevron_right</span>
+</div>
+</div>
+</section>
+<!-- END: ShortcutsSection -->
+<!-- BEGIN: PFMSection -->
+<section class="bg-white rounded-xl card-shadow p-5" data-purpose="pfm-container">
+<h2 class="text-base font-bold text-gray-800 mb-4">Personal Financial Manager</h2>
+<!-- Icon Indicators (Styled as per Image 8) -->
+<div class="flex space-x-2 mb-4">
+<div class="w-10 h-10 rounded-full uba-red-bg flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-xl">restaurant</span>
+</div>
+<div class="w-10 h-10 rounded-full bg-[#2d3748] flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-xl">work</span>
+</div>
+<div class="w-10 h-10 rounded-full bg-[#718096] flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-xl">shopping_cart</span>
+</div>
+</div>
+<p class="text-[13px] text-gray-600 leading-relaxed mb-6">
+                Our PFM helps you track your expenses, set goals and set your monthly and daily limits easily.
+            </p>
+<div class="flex justify-center border-t border-gray-50 pt-4">
+<button class="uba-red-text font-bold text-[14px] flex items-center tracking-tight">
+                    Activate your PFM
+                    <span class="material-symbols-outlined text-base ml-1">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- END: PFMSection -->
+<!-- BEGIN: UpcomingPayments -->
+<section class="bg-white rounded-xl card-shadow p-5" data-purpose="upcoming-payments-container">
+<h2 class="text-base font-bold text-gray-800 mb-8">Upcoming Payments</h2>
+<div class="text-center pb-2">
+<p class="uba-red-text text-[13px] mb-8 font-medium">You have no upcoming payments</p>
+<div class="border-t border-gray-50 pt-4">
+<button class="uba-red-text font-bold text-[14px] flex items-center mx-auto tracking-tight">
+                        More
+                        <span class="material-symbols-outlined text-base ml-1">chevron_right</span>
+</button>
+</div>
+</div>
+</section>
+<!-- END: UpcomingPayments -->
+</main>
+<!-- END: MainContent -->
+<!-- BEGIN: BottomNavigation -->
+<nav class="bg-white border-t border-gray-100 py-3 px-6 fixed bottom-0 left-0 right-0 z-50" data-purpose="bottom-navigation">
+<div class="flex justify-between items-center max-w-md mx-auto">
+<!-- Dashboard -->
+<div class="flex flex-col items-center">
+<div class="relative mb-1">
+<div class="w-10 h-10 uba-red-bg rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-2xl">grid_view</span>
+</div>
+<div class="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 bg-[#f6ad55] border-2 border-white rounded-full"></div>
+</div>
+<span class="text-[11px] font-bold uba-red-text">Dashboard</span>
+</div>
+<!-- Transfer -->
+<div class="flex flex-col items-center opacity-30">
+<span class="material-symbols-outlined text-gray-600 text-2xl mb-1">swap_horiz</span>
+<span class="text-[11px] font-medium text-gray-600">Transfer</span>
+</div>
+<!-- Pay -->
+<div class="flex flex-col items-center opacity-30">
+<span class="material-symbols-outlined text-gray-600 text-2xl mb-1">credit_card</span>
+<span class="text-[11px] font-medium text-gray-600">Pay</span>
+</div>
+<!-- Top Up -->
+<div class="flex flex-col items-center opacity-30">
+<span class="material-symbols-outlined text-gray-600 text-2xl mb-1">phone_iphone</span>
+<span class="text-[11px] font-medium text-gray-600">Top Up</span>
+</div>
+<!-- More -->
+<div class="flex flex-col items-center opacity-30">
+<span class="material-symbols-outlined text-gray-600 text-2xl mb-1">widgets</span>
+<span class="text-[11px] font-medium text-gray-600">More</span>
+</div>
+</div>
+</nav>
+<!-- END: BottomNavigation -->
+<!-- Spacing for bottom nav -->
+<div class="h-24"></div>
+</body></html>
