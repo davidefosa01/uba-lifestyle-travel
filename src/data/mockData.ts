@@ -3,7 +3,7 @@ import type { Listing } from '../types';
 export const mockUsers = [
   {
     id: 'user-1',
-    name: 'David Olatunji',
+    name: 'David',
     email: 'david.o@uba.com',
     role: 'CUSTOMER' as const,
     avatar: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAE7tvXNEKiOfsPzlGL-vzzZ7J0y9mYJN1a3dPfzNFj7yBkHyi3Zf7sH4T578PzqwoGMIolg7jW_hetdkDJAs7GNt9YaPE9ScXvshBWMx62YxTW4qeAFYGVT8qP0qrnhyge4rTTV8e6owUwB2UaiggoNBL3jVMQfCHZRfl7aZASe27LWjXgON22VluB8_JCkwcKHl4ahHk7mCk6nk2sdl-2tCSEfKOTQTwLFql1EBX72s0oYSKPZ6I5lZG17VQKV3t4dY_Yjpx3_L_j',
@@ -12,7 +12,7 @@ export const mockUsers = [
   },
   {
     id: 'merchant-1',
-    name: 'Azure Sanctuary Resorts',
+    name: 'Azure',
     email: 'admin@azuresanctuary.com',
     role: 'MERCHANT' as const,
     avatar: 'https://ui-avatars.com/api/?name=Azure+Sanctuary&background=ae0011&color=fff',
@@ -21,7 +21,7 @@ export const mockUsers = [
   },
   {
     id: 'merchant-2',
-    name: 'Heritage Stays',
+    name: 'Heritage',
     email: 'info@heritagestays.com',
     role: 'MERCHANT' as const,
     avatar: 'https://ui-avatars.com/api/?name=Heritage+Stays&background=333&color=fff',
@@ -30,7 +30,7 @@ export const mockUsers = [
   },
   {
     id: 'admin-1',
-    name: 'UBA Admin',
+    name: 'UBA',
     email: 'admin@uba.com',
     role: 'ADMIN' as const,
     avatar: 'https://ui-avatars.com/api/?name=UBA+Admin&background=333&color=fff',
