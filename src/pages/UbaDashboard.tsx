@@ -14,49 +14,55 @@ export const UbaDashboard: React.FC = () => {
   return (
     <div className="flex flex-col h-screen overflow-hidden bg-[#f7f7f7]">
       {/* MainHeader */}
-      <header className="bg-white border-b border-gray-100 px-4 py-4 z-50">
-        <div className="flex items-center justify-between relative">
+      <div className="bg-white border-b border-gray-100 z-50">
+        <header className="px-4 py-4 relative">
+          <div className="flex items-center justify-between">
+            <div
+              onClick={() => setShowMenu(!showMenu)}
+              className="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center text-xs text-gray-500 font-bold bg-[#f0f0f0] cursor-pointer hover:bg-gray-200 transition-colors"
+            >
+              DE
+            </div>
+            {showMenu && (
+              <div className="absolute top-14 left-0 w-48 bg-white border border-gray-100 shadow-xl rounded-xl py-2 z-[60]">
+                <div className="px-4 py-2 border-b border-gray-50">
+                  <p className="text-xs font-bold text-gray-900">David Enabulele</p>
+                  <p className="text-[10px] text-gray-500">david.e@uba.com</p>
+                </div>
+                <button className="w-full text-left px-4 py-2 text-xs text-gray-700 hover:bg-gray-50 flex items-center gap-2">
+                  <span className="material-symbols-outlined text-sm">person</span> Profile
+                </button>
+                <button className="w-full text-left px-4 py-2 text-xs text-gray-700 hover:bg-gray-50 flex items-center gap-2">
+                  <span className="material-symbols-outlined text-sm">settings</span> Settings
+                </button>
+                <button
+                  onClick={() => logout()}
+                  className="w-full text-left px-4 py-2 text-xs text-uba-red font-bold hover:bg-red-50 flex items-center gap-2"
+                >
+                  <span className="material-symbols-outlined text-sm">logout</span> Logout
+                </button>
+              </div>
+            )}
+            <div className="text-center">
+              <h1 className="text-lg font-bold text-gray-900 leading-tight">Good Morning</h1>
+              <p className="text-sm text-gray-500 font-medium">David Enabulele</p>
+            </div>
+            <div className="w-12 h-12 flex items-center justify-end">
+              <img src="/logo.png" alt="UBA Logo" className="w-10 h-10 object-contain" />
+            </div>
+          </div>
+        </header>
+
+        {/* Back button below DE in blank space */}
+        <div className="px-4 py-2 bg-gray-50/50">
           <button
             onClick={() => navigate('/login')}
-            className="w-10 h-10 flex items-center justify-center text-gray-600 hover:bg-gray-100 rounded-full transition-colors"
+            className="w-10 h-10 flex items-center justify-center text-gray-600 bg-white shadow-sm border border-gray-200 rounded-full hover:bg-gray-100 transition-all active:scale-95"
           >
             <span className="material-symbols-outlined text-2xl">arrow_back</span>
           </button>
-          <div
-            onClick={() => setShowMenu(!showMenu)}
-            className="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center text-xs text-gray-500 font-bold bg-[#f0f0f0] cursor-pointer hover:bg-gray-200 transition-colors"
-          >
-            DE
-          </div>
-          {showMenu && (
-            <div className="absolute top-14 left-0 w-48 bg-white border border-gray-100 shadow-xl rounded-xl py-2 z-[60]">
-              <div className="px-4 py-2 border-b border-gray-50">
-                <p className="text-xs font-bold text-gray-900">David Enabulele</p>
-                <p className="text-[10px] text-gray-500">david.e@uba.com</p>
-              </div>
-              <button className="w-full text-left px-4 py-2 text-xs text-gray-700 hover:bg-gray-50 flex items-center gap-2">
-                <span className="material-symbols-outlined text-sm">person</span> Profile
-              </button>
-              <button className="w-full text-left px-4 py-2 text-xs text-gray-700 hover:bg-gray-50 flex items-center gap-2">
-                <span className="material-symbols-outlined text-sm">settings</span> Settings
-              </button>
-              <button
-                onClick={() => logout()}
-                className="w-full text-left px-4 py-2 text-xs text-uba-red font-bold hover:bg-red-50 flex items-center gap-2"
-              >
-                <span className="material-symbols-outlined text-sm">logout</span> Logout
-              </button>
-            </div>
-          )}
-          <div className="text-center">
-            <h1 className="text-lg font-bold text-gray-900 leading-tight">Good Morning</h1>
-            <p className="text-sm text-gray-500 font-medium">David Enabulele</p>
-          </div>
-          <div className="w-12 h-12 flex items-center justify-end">
-            <img src="/logo.png" alt="UBA Logo" className="w-10 h-10 object-contain" />
-          </div>
         </div>
-      </header>
+      </div>
 
       {/* MainContent */}
       <main className="flex-grow overflow-y-auto p-4 space-y-4 pb-24">
