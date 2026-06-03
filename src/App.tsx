@@ -37,32 +37,15 @@ const AppContent = () => {
   const { role, isAuthenticated } = useAppContext();
   const location = useLocation();
 
-  const renderRoutes = () => {
-    if (role === 'MERCHANT') return <Route path="*" element={<PageWrapper><MerchantDashboard /></PageWrapper>} />;
-    if (role === 'ADMIN') return <Route path="*" element={<PageWrapper><AdminDashboard /></PageWrapper>} />;
-
-    return (
-      <>
-        <Route path="/" element={<PageWrapper><TravelHome /></PageWrapper>} />
-        <Route path="/listing/:id" element={<PageWrapper><ListingDetails /></PageWrapper>} />
-        <Route path="/bookings" element={<PageWrapper><MyBookings /></PageWrapper>} />
-        <Route path="/explore" element={<PageWrapper><Explore /></PageWrapper>} />
-        <Route path="/profile" element={<PageWrapper><Profile /></PageWrapper>} />
-        <Route path="/payment/:id" element={<PageWrapper><PaymentFlow /></PageWrapper>} />
-        <Route path="/booking-submitted" element={<PageWrapper><BookingSubmitted /></PageWrapper>} />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </>
-    );
-  };
-
   const isUbaDashboard = location.pathname === '/dashboard';
   const isLogin = location.pathname === '/login';
   const showTravelChrome = isAuthenticated && !isUbaDashboard && !isLogin;
 
   return (
-    <div className={`min-h-screen bg-background ${showTravelChrome ? 'pb-20' : ''}`}>
-      {showTravelChrome && <TopBar />}
-      <main className={`${isAuthenticated ? 'max-w-md mx-auto bg-white min-h-screen shadow-xl relative overflow-hidden' : ''}`}>
+    <div className={`h-screen overflow-hidden bg-background`}>
+      <main className={`${isAuthenticated ? 'max-w-md mx-auto bg-white h-screen shadow-xl relative flex flex-col' : ''}`}>
+        {showTravelChrome && <TopBar />}
+        <div className="flex-grow overflow-y-auto">
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             <Route path="/login" element={<UbaLogin />} />
@@ -70,22 +53,32 @@ const AppContent = () => {
               path="/dashboard"
               element={
                 <ProtectedRoute>
-                  <UbaDashboard />
+                  <PageWrapper><UbaDashboard /></PageWrapper>
                 </ProtectedRoute>
               }
             />
-            <Route
-              path="*"
-              element={
-                <ProtectedRoute>
-                  <Routes>
-                    {renderRoutes()}
-                  </Routes>
-                </ProtectedRoute>
-              }
-            />
+
+            {/* Role-based entry */}
+            {role === 'MERCHANT' ? (
+              <Route path="*" element={<ProtectedRoute><PageWrapper><MerchantDashboard /></PageWrapper></ProtectedRoute>} />
+            ) : role === 'ADMIN' ? (
+              <Route path="*" element={<ProtectedRoute><PageWrapper><AdminDashboard /></PageWrapper></ProtectedRoute>} />
+            ) : (
+              <>
+                <Route path="/" element={<ProtectedRoute><PageWrapper><TravelHome /></PageWrapper></ProtectedRoute>} />
+                <Route path="/listing/:id" element={<ProtectedRoute><PageWrapper><ListingDetails /></PageWrapper></ProtectedRoute>} />
+                <Route path="/bookings" element={<ProtectedRoute><PageWrapper><MyBookings /></PageWrapper></ProtectedRoute>} />
+                <Route path="/explore" element={<ProtectedRoute><PageWrapper><Explore /></PageWrapper></ProtectedRoute>} />
+                <Route path="/profile" element={<ProtectedRoute><PageWrapper><Profile /></PageWrapper></ProtectedRoute>} />
+                <Route path="/payment/:id" element={<ProtectedRoute><PageWrapper><PaymentFlow /></PageWrapper></ProtectedRoute>} />
+                <Route path="/booking-submitted" element={<ProtectedRoute><PageWrapper><BookingSubmitted /></PageWrapper></ProtectedRoute>} />
+              </>
+            )}
+
+            <Route path="*" element={<Navigate to={isAuthenticated ? (role === 'CUSTOMER' ? "/" : "/dashboard") : "/login"} replace />} />
           </Routes>
         </AnimatePresence>
+        </div>
         {showTravelChrome && <BottomNav />}
       </main>
     </div>

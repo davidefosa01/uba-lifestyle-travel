@@ -12,10 +12,16 @@ export const UbaDashboard: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#f7f7f7]">
+    <div className="flex flex-col h-screen overflow-hidden bg-[#f7f7f7]">
       {/* MainHeader */}
-      <header className="bg-white border-b border-gray-100 px-4 py-4 sticky top-0 z-50">
+      <header className="bg-white border-b border-gray-100 px-4 py-4 z-50">
         <div className="flex items-center justify-between relative">
+          <button
+            onClick={() => navigate('/login')}
+            className="w-10 h-10 flex items-center justify-center text-gray-600 hover:bg-gray-100 rounded-full transition-colors"
+          >
+            <span className="material-symbols-outlined text-2xl">arrow_back</span>
+          </button>
           <div
             onClick={() => setShowMenu(!showMenu)}
             className="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center text-xs text-gray-500 font-bold bg-[#f0f0f0] cursor-pointer hover:bg-gray-200 transition-colors"
@@ -53,7 +59,7 @@ export const UbaDashboard: React.FC = () => {
       </header>
 
       {/* MainContent */}
-      <main className="flex-grow p-4 space-y-4 pb-24">
+      <main className="flex-grow overflow-y-auto p-4 space-y-4 pb-24">
         {/* Lifestyle Travel Entry (Added for Prototype flow) */}
         <section className="bg-white rounded-xl shadow-sm border border-red-50 p-1">
           <div
