@@ -3,8 +3,8 @@ import type { Listing } from '../types';
 export const mockUsers = [
   {
     id: 'user-1',
-    name: 'David',
-    email: 'david.o@uba.com',
+    name: 'David Enabulele',
+    email: 'david.e@uba.com',
     role: 'CUSTOMER' as const,
     avatar: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAE7tvXNEKiOfsPzlGL-vzzZ7J0y9mYJN1a3dPfzNFj7yBkHyi3Zf7sH4T578PzqwoGMIolg7jW_hetdkDJAs7GNt9YaPE9ScXvshBWMx62YxTW4qeAFYGVT8qP0qrnhyge4rTTV8e6owUwB2UaiggoNBL3jVMQfCHZRfl7aZASe27LWjXgON22VluB8_JCkwcKHl4ahHk7mCk6nk2sdl-2tCSEfKOTQTwLFql1EBX72s0oYSKPZ6I5lZG17VQKV3t4dY_Yjpx3_L_j',
     flexPayEligible: true,

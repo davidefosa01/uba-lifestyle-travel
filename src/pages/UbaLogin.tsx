@@ -31,13 +31,14 @@ export const UbaLogin: React.FC = () => {
     <div className="flex flex-col min-h-screen bg-[#f7f7f7] p-6 text-gray-800">
       {/* Header */}
       <div className="flex justify-between items-center mb-12 pt-4">
-        <h1 className="text-2xl font-semibold text-gray-800 font-inter tracking-tight">Enter Access Passcode</h1>
-        <div className="w-10 h-10 flex items-center justify-center">
-            {/* UBA Red Symbol Logo Placeholder */}
-            <svg width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20 20L80 20L50 80L20 20Z" fill="#D21F3C"/>
-                <path d="M40 20L100 20L70 80L40 20Z" fill="#D21F3C" fillOpacity="0.8"/>
-            </svg>
+        <div className="flex items-center gap-2">
+          <div className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-xs text-gray-500 font-bold bg-white">
+            DE
+          </div>
+          <h1 className="text-xl font-bold text-gray-800 font-inter tracking-tight">Enter Access Passcode</h1>
+        </div>
+        <div className="w-12 h-12 flex items-center justify-center">
+            <img src="/logo.png" alt="UBA Logo" className="w-full h-full object-contain" />
         </div>
       </div>
 
