@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAppContext } from '../context/AppContext';
 
 export const UbaDashboard: React.FC = () => {
   const navigate = useNavigate();
+  const { logout } = useAppContext();
+  const [showMenu, setShowMenu] = useState(false);
 
   const handleEnterTravel = () => {
     navigate('/');
@@ -10,34 +13,41 @@ export const UbaDashboard: React.FC = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-[#f7f7f7]">
-      {/* Status Bar Placeholder */}
-      <div className="w-full h-10 bg-white flex items-center justify-between px-4 text-xs font-semibold">
-        <span>{new Date().getHours()}:{new Date().getMinutes().toString().padStart(2, '0')}</span>
-        <div className="flex items-center space-x-1">
-          <span className="text-[10px]">4G</span>
-          <div className="w-5 h-3 border border-gray-400 rounded-sm relative">
-            <div className="absolute inset-y-0 left-0 bg-gray-600 w-3/4"></div>
-          </div>
-          <span>96</span>
-        </div>
-      </div>
-
       {/* MainHeader */}
       <header className="bg-white border-b border-gray-100 px-4 py-4 sticky top-0 z-50">
-        <div className="flex items-center justify-between">
-          <div className="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center text-xs text-gray-500 font-medium bg-[#f0f0f0]">
+        <div className="flex items-center justify-between relative">
+          <div
+            onClick={() => setShowMenu(!showMenu)}
+            className="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center text-xs text-gray-500 font-bold bg-[#f0f0f0] cursor-pointer hover:bg-gray-200 transition-colors"
+          >
             DE
           </div>
+          {showMenu && (
+            <div className="absolute top-14 left-0 w-48 bg-white border border-gray-100 shadow-xl rounded-xl py-2 z-[60]">
+              <div className="px-4 py-2 border-b border-gray-50">
+                <p className="text-xs font-bold text-gray-900">David Enabulele</p>
+                <p className="text-[10px] text-gray-500">david.e@uba.com</p>
+              </div>
+              <button className="w-full text-left px-4 py-2 text-xs text-gray-700 hover:bg-gray-50 flex items-center gap-2">
+                <span className="material-symbols-outlined text-sm">person</span> Profile
+              </button>
+              <button className="w-full text-left px-4 py-2 text-xs text-gray-700 hover:bg-gray-50 flex items-center gap-2">
+                <span className="material-symbols-outlined text-sm">settings</span> Settings
+              </button>
+              <button
+                onClick={() => logout()}
+                className="w-full text-left px-4 py-2 text-xs text-uba-red font-bold hover:bg-red-50 flex items-center gap-2"
+              >
+                <span className="material-symbols-outlined text-sm">logout</span> Logout
+              </button>
+            </div>
+          )}
           <div className="text-center">
             <h1 className="text-lg font-bold text-gray-900 leading-tight">Good Morning</h1>
-            <p className="text-sm text-gray-500">David</p>
+            <p className="text-sm text-gray-500 font-medium">David Enabulele</p>
           </div>
           <div className="w-12 h-12 flex items-center justify-end">
-            <svg width="24" height="24" viewBox="0 0 1024 1024" className="text-uba-red">
-              <path fill="currentColor" d="M512 0L0 1024h1024L512 0zM448 832h128v64H448v-64zm0-512h128v448H448V320z" />
-              {/* Simplified UBA-like red triangle/logo icon */}
-              <polygon points="512,128 128,896 896,896" fill="currentColor" />
-            </svg>
+            <img src="/logo.png" alt="UBA Logo" className="w-10 h-10 object-contain" />
           </div>
         </div>
       </header>
