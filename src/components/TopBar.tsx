@@ -1,14 +1,31 @@
 import type { UserRole } from '../types';
 import { useAppContext } from '../context/AppContext';
 import { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 export const TopBar: React.FC = () => {
   const { currentUser, role, switchRole, logout } = useAppContext();
   const [showMenu, setShowMenu] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleBack = () => {
+    if (location.pathname === '/') {
+      navigate('/dashboard');
+    } else {
+      navigate(-1);
+    }
+  };
 
   return (
-    <header className="bg-white border-b border-surface-variant px-container-margin-mb py-4 sticky top-0 z-50 flex items-center justify-between">
-      <div className="flex items-center gap-3 relative">
+    <header className="bg-white border-b border-surface-variant px-container-margin-mb py-4 z-50 flex items-center justify-between">
+      <div className="flex items-center gap-2 relative">
+        <button
+          onClick={handleBack}
+          className="w-8 h-8 flex items-center justify-center text-gray-600 hover:bg-gray-100 rounded-full transition-colors"
+        >
+          <span className="material-symbols-outlined text-xl">arrow_back</span>
+        </button>
         <div
           onClick={() => setShowMenu(!showMenu)}
           className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-xs text-gray-500 font-bold bg-[#f0f0f0] cursor-pointer hover:bg-gray-200 transition-colors"
