@@ -11,6 +11,8 @@ export const UbaDashboard: React.FC = () => {
     navigate('/');
   };
 
+  const { accountBalance, flexPayCapacity } = useAppContext();
+
   return (
     <div className="flex flex-col h-screen overflow-hidden bg-[#f7f7f7]">
       {/* MainHeader */}
@@ -66,6 +68,41 @@ export const UbaDashboard: React.FC = () => {
 
       {/* MainContent */}
       <main className="flex-grow overflow-y-auto p-4 space-y-4 pb-24">
+        {/* Account Balance Card */}
+        <section className="bg-uba-red rounded-2xl p-6 text-white shadow-xl relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 blur-2xl"></div>
+          <div className="relative z-10">
+            <p className="text-xs font-medium opacity-80 uppercase tracking-widest mb-1">Total Balance</p>
+            <h2 className="text-3xl font-bold font-montserrat">₦{accountBalance.toLocaleString()}</h2>
+            <div className="mt-6 flex justify-between items-end">
+              <div>
+                <p className="text-[10px] opacity-70 uppercase">Account Number</p>
+                <p className="font-mono text-sm tracking-widest">2039 **** 4822</p>
+              </div>
+              <div className="bg-white/20 px-3 py-1 rounded-full text-[10px] font-bold backdrop-blur-md">
+                Tier 3 Savings
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FlexPay Capacity Banner */}
+        <section className="bg-white rounded-xl border border-red-100 p-4 shadow-sm">
+          <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center gap-2">
+              <span className="material-symbols-outlined text-uba-red text-lg">credit_score</span>
+              <span className="text-xs font-bold text-gray-800 uppercase tracking-tight">FlexPay Limit</span>
+            </div>
+            <span className="text-xs font-bold text-uba-red">₦{flexPayCapacity.visible.toLocaleString()}</span>
+          </div>
+          <div className="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden">
+            <div className="bg-uba-red h-full w-[20%] transition-all duration-1000"></div>
+          </div>
+          <p className="text-[10px] text-gray-500 mt-2 italic">
+            Boost limit to <span className="font-bold text-gray-700">₦{(flexPayCapacity.visible + flexPayCapacity.potential).toLocaleString()}</span> after your first successful repayment.
+          </p>
+        </section>
+
         {/* Lifestyle Travel Entry (Added for Prototype flow) */}
         <section className="bg-white rounded-xl shadow-sm border border-red-50 p-1">
           <div

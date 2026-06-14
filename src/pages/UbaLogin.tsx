@@ -32,8 +32,8 @@ export const UbaLogin: React.FC = () => {
       {/* Header */}
       <div className="flex justify-between items-center mb-8 pt-2">
         <h1 className="text-xl font-bold text-gray-800 font-inter tracking-tight">Enter Access Passcode</h1>
-        <div className="w-12 h-12 flex items-center justify-center">
-            <img src="/logo.png" alt="UBA Logo" className="w-full h-full object-contain" />
+        <div className="w-10 h-10 flex items-center justify-center overflow-hidden">
+            <img src="/uba-logo-only.png" alt="UBA Logo" className="w-full h-full object-contain scale-150" />
         </div>
       </div>
 

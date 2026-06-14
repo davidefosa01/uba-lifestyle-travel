@@ -13,11 +13,14 @@ export const PaymentFlow: React.FC = () => {
   const [paymentMethod, setPaymentMethod] = useState<'FULL' | 'FLEXPAY'>('FULL');
   const [flexPayTenor, setFlexPayTenor] = useState<number>(3);
   const [flexPayStatus, setFlexPayStatus] = useState<'IDLE' | 'PROCESSING' | 'APPROVED' | 'DECLINED'>('IDLE');
+  const [showContract, setShowContract] = useState(false);
 
   if (!booking || !listing) return <div>Booking not found</div>;
 
+  const upfrontCommitment = booking.totalPrice * 0.3;
+  const remainingPrincipal = booking.totalPrice * 0.7;
   const interestRate = 0.18;
-  const totalWithInterest = booking.totalPrice * (1 + interestRate);
+  const totalWithInterest = remainingPrincipal * (1 + interestRate);
   const monthlyInstallment = totalWithInterest / flexPayTenor;
 
   const handleFlexPayCheck = () => {
@@ -107,11 +110,18 @@ export const PaymentFlow: React.FC = () => {
                 <span className="text-sm font-bold font-inter">FlexPay Approved!</span>
               </div>
 
-              <p className="text-[10px] font-extrabold text-secondary mb-3 tracking-widest font-inter uppercase">SELECT TENOR</p>
+              <div className="bg-blue-50 border border-blue-100 p-4 rounded-2xl mb-6">
+                 <p className="text-[10px] font-extrabold text-blue-800 mb-1 tracking-widest font-inter uppercase">REQUIRED UPFRONT COMMITMENT (30%)</p>
+                 <p className="text-xl font-bold text-blue-900 font-montserrat">₦{upfrontCommitment.toLocaleString()}</p>
+                 <p className="text-[10px] text-blue-600 mt-1">This amount will be debited immediately upon plan activation.</p>
+              </div>
+
+              <p className="text-[10px] font-extrabold text-secondary mb-3 tracking-widest font-inter uppercase">SELECT REPAYMENT TENOR</p>
               <div className="grid grid-cols-3 gap-2 mb-4">
                 {[3, 6, 12].map(t => (
                   <button
                     key={t}
+                    type="button"
                     onClick={() => setFlexPayTenor(t)}
                     className={`py-2 rounded-xl border text-sm font-bold transition-colors ${flexPayTenor === t ? 'border-uba-red bg-uba-red text-white' : 'border-surface-variant bg-white text-secondary'}`}
                   >
@@ -122,14 +132,25 @@ export const PaymentFlow: React.FC = () => {
 
               <div className="bg-surface-container-low p-4 rounded-xl border border-surface-variant/30">
                 <div className="flex justify-between text-xs mb-2 text-secondary font-medium font-inter">
+                  <span>Balance to Finance</span>
+                  <span>₦{remainingPrincipal.toLocaleString()}</span>
+                </div>
+                <div className="flex justify-between text-xs mb-2 text-secondary font-medium font-inter">
                   <span>Annual Interest Rate</span>
                   <span>18% p.a.</span>
                 </div>
                 <div className="flex justify-between font-bold text-base font-montserrat">
-                  <span className="text-deep-slate">Monthly Payment</span>
+                  <span className="text-deep-slate">Monthly Installment</span>
                   <span className="text-uba-red">₦{monthlyInstallment.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>
                 </div>
               </div>
+
+              <button
+                onClick={() => setShowContract(true)}
+                className="mt-4 text-xs font-bold text-blue-600 hover:underline flex items-center gap-1"
+              >
+                <span className="material-symbols-outlined text-sm">description</span> View Digital Contract
+              </button>
             </div>
           )}
 
@@ -155,6 +176,47 @@ export const PaymentFlow: React.FC = () => {
           {paymentMethod === 'FULL' ? `Pay ₦${booking.totalPrice.toLocaleString()}` : 'Confirm Installment Plan'}
         </Button>
       </div>
+
+      {/* Contract Modal Overlay */}
+      {showContract && (
+        <div className="fixed inset-0 z-[100] bg-black/60 flex items-end justify-center sm:items-center p-4">
+          <div className="bg-white w-full max-w-lg rounded-t-3xl sm:rounded-3xl p-6 overflow-y-auto max-h-[85vh] animate-fadeIn">
+            <div className="flex justify-between items-start mb-6">
+              <h2 className="text-lg font-bold font-montserrat text-uba-red uppercase tracking-tight">FlexPay Digital Contract</h2>
+              <button onClick={() => setShowContract(false)} className="material-symbols-outlined text-gray-400">close</button>
+            </div>
+
+            <div className="space-y-4 text-xs text-gray-700 leading-relaxed font-inter">
+              <div className="p-4 bg-gray-50 rounded-xl border border-gray-100">
+                 <p className="font-bold mb-2">PARTIES TO THE AGREEMENT</p>
+                 <p>This Digital Installment Agreement is made between <span className="font-bold">United Bank for Africa (UBA)</span> and <span className="font-bold">David Enabulele</span> regarding the booking for <span className="font-bold">{listing.name}</span>.</p>
+              </div>
+
+              <div className="p-4 bg-gray-50 rounded-xl border border-gray-100">
+                 <p className="font-bold mb-2">LOAN DETAILS</p>
+                 <div className="space-y-1">
+                    <div className="flex justify-between"><span>Principal Amount:</span><span className="font-bold font-mono">₦{remainingPrincipal.toLocaleString()}</span></div>
+                    <div className="flex justify-between"><span>Upfront Payment (30%):</span><span className="font-bold font-mono">₦{upfrontCommitment.toLocaleString()}</span></div>
+                    <div className="flex justify-between"><span>Tenor:</span><span className="font-bold font-mono">{flexPayTenor} Months</span></div>
+                    <div className="flex justify-between"><span>Interest Rate:</span><span className="font-bold font-mono">18% APR</span></div>
+                 </div>
+              </div>
+
+              <p className="font-bold">TERMS & CONDITIONS</p>
+              <ul className="list-disc pl-4 space-y-2">
+                <li>The Borrower agrees to pay the lender the principal sum plus interest in equal monthly installments.</li>
+                <li>Monthly installments will be automatically debited from the Borrower's UBA account on the 28th of every month.</li>
+                <li>Late payments will attract a penalty fee of 2.5% of the installment amount.</li>
+                <li>Borrower has the right to pre-liquidate the loan without early termination penalties after 3 successful installments.</li>
+              </ul>
+
+              <div className="pt-6 border-t border-gray-100 mt-6 flex gap-4">
+                <Button className="flex-grow" onClick={() => setShowContract(false)}>I Understand & Agree</Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
