@@ -67,11 +67,11 @@ export const TopBar: React.FC = () => {
               <option value="ADMIN">Admin</option>
             </select>
 
-            <div className="w-10 h-10 flex items-center justify-end">
+            <div className="w-10 h-10 flex items-center justify-end overflow-hidden">
               <img
                 alt="UBA Logo"
-                className="w-full h-full object-contain"
-                src="/logo.png"
+                className="w-full h-full object-contain scale-150"
+                src="/uba-logo-only.png"
               />
             </div>
           </div>

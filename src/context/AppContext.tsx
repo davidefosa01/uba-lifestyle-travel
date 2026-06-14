@@ -18,6 +18,13 @@ interface AppContextType {
   isAuthenticated: boolean;
   login: () => void;
   logout: () => void;
+  accountBalance: number;
+  sixMonthInflow: number;
+  flexPayCapacity: {
+    hidden: number;
+    visible: number;
+    potential: number;
+  };
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -34,6 +41,15 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   });
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [listings] = useState<Listing[]>(mockListings);
+
+  const [sixMonthInflow] = useState(4500000); // 4.5M NGN
+  const [accountBalance] = useState(1250000); // 1.25M NGN
+
+  const flexPayCapacity = {
+    hidden: sixMonthInflow / 10, // 450k
+    visible: (sixMonthInflow / 10) * 0.2, // 90k
+    potential: (sixMonthInflow / 10) * 0.5, // 225k extra
+  };
 
   useEffect(() => {
     localStorage.setItem('uba_bookings', JSON.stringify(bookings));
@@ -128,7 +144,10 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       bookings, addBooking, updateBookingStatus,
       notifications, addNotification, markNotificationRead,
       listings,
-      isAuthenticated, login, logout
+      isAuthenticated, login, logout,
+      accountBalance,
+      sixMonthInflow,
+      flexPayCapacity
     }}>
       {children}
     </AppContext.Provider>
