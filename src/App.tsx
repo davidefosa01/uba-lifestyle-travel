@@ -41,23 +41,11 @@ const AppContent = () => {
   const isLogin = location.pathname === '/login';
   const showTravelChrome = isAuthenticated && !isUbaDashboard && !isLogin;
 
-  // Lockscreen and Banking Dashboard should be phone-sized on PC
-  const isPhoneView = isLogin || isUbaDashboard;
-
   return (
-    <div className={`h-screen overflow-hidden bg-background flex justify-center items-center`}>
-      {/* Visual background decoration for PC */}
-      <div className="absolute inset-0 z-0 bg-gradient-to-br from-uba-red/5 to-gray-200 hidden md:block"></div>
-
-      <main className={`
-        z-10
-        ${isPhoneView ? 'max-w-md w-full h-[90vh] rounded-[3rem] border-[8px] border-gray-900 shadow-2xl relative overflow-hidden bg-white' : 'w-full h-full bg-white relative flex flex-col'}
-        ${!isPhoneView && isAuthenticated && role === 'CUSTOMER' ? 'md:max-w-4xl lg:max-w-6xl md:mx-auto md:my-4 md:rounded-3xl shadow-2xl overflow-hidden md:h-[95vh]' : ''}
-        ${!isPhoneView && isAuthenticated && (role === 'MERCHANT' || role === 'ADMIN') ? 'w-full h-full' : ''}
-        transition-all duration-500 ease-in-out
-      `}>
+    <div className="h-screen overflow-hidden bg-white flex flex-col">
+      <main className="flex-grow overflow-hidden relative flex flex-col w-full">
         {showTravelChrome && <TopBar />}
-        <div className="flex-grow overflow-y-auto hide-scrollbar">
+        <div className="flex-grow overflow-y-auto hide-scrollbar relative z-10">
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             <Route path="/login" element={<UbaLogin />} />

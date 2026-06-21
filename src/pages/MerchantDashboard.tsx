@@ -5,7 +5,8 @@ import { motion } from 'framer-motion';
 
 export const MerchantDashboard: React.FC = () => {
   const { bookings, listings, updateBookingStatus, role } = useAppContext();
-  const [activeTab, setActiveTab] = useState<'OVERVIEW' | 'ANALYTICS' | 'SUPPORT'>('OVERVIEW');
+  const [activeTab, setActiveTab] = useState<'OVERVIEW' | 'ANALYTICS' | 'LISTINGS' | 'SUPPORT'>('OVERVIEW');
+  const [showAddListing, setShowAddListing] = useState(false);
 
   if (role !== 'MERCHANT') return <div className="p-6">Access Denied</div>;
 
@@ -38,7 +39,7 @@ export const MerchantDashboard: React.FC = () => {
 
       {/* Tabs */}
       <div className="flex gap-4 border-b border-gray-100 mb-8">
-        {(['OVERVIEW', 'ANALYTICS', 'SUPPORT'] as const).map(tab => (
+        {(['OVERVIEW', 'ANALYTICS', 'LISTINGS', 'SUPPORT'] as const).map(tab => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
@@ -154,6 +155,38 @@ export const MerchantDashboard: React.FC = () => {
         </motion.div>
       )}
 
+      {activeTab === 'LISTINGS' && (
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-6">
+            <div className="flex justify-between items-center">
+                <h2 className="text-xl font-bold font-montserrat">Your Listings</h2>
+                <Button onClick={() => setShowAddListing(true)} size="sm" className="rounded-xl">Add New Listing</Button>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {listings.filter(l => l.merchantId === 'merchant-1').map(listing => (
+                    <div key={listing.id} className="bg-white rounded-3xl border border-gray-100 shadow-soft overflow-hidden group">
+                        <div className="relative h-40">
+                            <img src={listing.image} alt={listing.name} className="w-full h-full object-cover" />
+                            <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-md px-2 py-1 rounded-lg text-[10px] font-bold text-uba-red">
+                                {listing.category}
+                            </div>
+                        </div>
+                        <div className="p-5">
+                            <h3 className="font-bold text-gray-900 mb-1">{listing.name}</h3>
+                            <p className="text-xs text-gray-500 mb-4">{listing.location}</p>
+                            <div className="flex justify-between items-center">
+                                <p className="font-bold text-uba-red text-sm">₦{listing.price.toLocaleString()}</p>
+                                <button className="text-[10px] font-bold text-gray-400 hover:text-uba-red uppercase tracking-widest">Edit</button>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </motion.div>
+      )}
+
+      {showAddListing && <AddListingModal onClose={() => setShowAddListing(false)} />}
+
       {activeTab === 'SUPPORT' && (
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-6">
             <div className="bg-uba-red/5 p-8 rounded-3xl border border-uba-red/10">
@@ -201,3 +234,136 @@ const FAQItem = ({ question, answer }: { question: string, answer: string }) => 
         <p className="text-xs text-gray-500">{answer}</p>
     </div>
 );
+
+const AddListingModal = ({ onClose }: { onClose: () => void }) => {
+    const [step, setStep] = useState(1);
+    const [formData, setFormData] = useState({
+        name: '',
+        category: 'Hotels',
+        location: '',
+        price: '',
+        description: '',
+        image: ''
+    });
+
+    const handleNext = () => setStep(prev => prev + 1);
+    const handleBack = () => setStep(prev => prev - 1);
+    const handleSubmit = () => {
+        alert('Listing submitted for admin approval!');
+        onClose();
+    };
+
+    return (
+        <div className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+            <motion.div
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                className="bg-white w-full max-w-xl rounded-[2.5rem] p-10 overflow-hidden relative"
+            >
+                <button onClick={onClose} className="absolute top-8 right-8 text-gray-400 hover:text-gray-600 transition-colors">
+                    <span className="material-symbols-outlined">close</span>
+                </button>
+
+                <div className="mb-10">
+                    <div className="flex gap-2 mb-4">
+                        {[1, 2, 3].map(s => (
+                            <div key={s} className={`h-1 flex-grow rounded-full transition-colors ${step >= s ? 'bg-uba-red' : 'bg-gray-100'}`} />
+                        ))}
+                    </div>
+                    <h2 className="text-2xl font-bold font-montserrat">
+                        {step === 1 && "Basic Information"}
+                        {step === 2 && "Pricing & Location"}
+                        {step === 3 && "Photos & Details"}
+                    </h2>
+                    <p className="text-xs text-gray-500 mt-1">Step {step} of 3</p>
+                </div>
+
+                <div className="space-y-6 min-h-[300px]">
+                    {step === 1 && (
+                        <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-4">
+                            <div className="space-y-1">
+                                <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Listing Name</label>
+                                <input
+                                    type="text"
+                                    placeholder="e.g. Luxury Beach Villa"
+                                    className="w-full bg-gray-50 border border-gray-100 rounded-2xl p-4 text-sm font-bold outline-none focus:border-uba-red/30 transition-all"
+                                    value={formData.name}
+                                    onChange={e => setFormData({...formData, name: e.target.value})}
+                                />
+                            </div>
+                            <div className="space-y-1">
+                                <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Category</label>
+                                <select
+                                    className="w-full bg-gray-50 border border-gray-100 rounded-2xl p-4 text-sm font-bold outline-none focus:border-uba-red/30 appearance-none"
+                                    value={formData.category}
+                                    onChange={e => setFormData({...formData, category: e.target.value})}
+                                >
+                                    <option>Hotels</option>
+                                    <option>Short-lets</option>
+                                    <option>Tours</option>
+                                    <option>Flights</option>
+                                </select>
+                            </div>
+                        </motion.div>
+                    )}
+
+                    {step === 2 && (
+                        <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-4">
+                            <div className="space-y-1">
+                                <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Location</label>
+                                <input
+                                    type="text"
+                                    placeholder="e.g. Ikoyi, Lagos"
+                                    className="w-full bg-gray-50 border border-gray-100 rounded-2xl p-4 text-sm font-bold outline-none focus:border-uba-red/30 transition-all"
+                                    value={formData.location}
+                                    onChange={e => setFormData({...formData, location: e.target.value})}
+                                />
+                            </div>
+                            <div className="space-y-1">
+                                <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Price per Night (₦)</label>
+                                <input
+                                    type="number"
+                                    placeholder="0"
+                                    className="w-full bg-gray-50 border border-gray-100 rounded-2xl p-4 text-sm font-bold outline-none focus:border-uba-red/30 transition-all"
+                                    value={formData.price}
+                                    onChange={e => setFormData({...formData, price: e.target.value})}
+                                />
+                            </div>
+                        </motion.div>
+                    )}
+
+                    {step === 3 && (
+                        <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-4">
+                            <div className="space-y-1">
+                                <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Description</label>
+                                <textarea
+                                    rows={4}
+                                    placeholder="Tell us about this place..."
+                                    className="w-full bg-gray-50 border border-gray-100 rounded-2xl p-4 text-sm font-bold outline-none focus:border-uba-red/30 transition-all resize-none"
+                                    value={formData.description}
+                                    onChange={e => setFormData({...formData, description: e.target.value})}
+                                />
+                            </div>
+                            <div className="w-full h-32 border-2 border-dashed border-gray-200 rounded-2xl flex flex-col items-center justify-center text-gray-400 group hover:border-uba-red/30 cursor-pointer transition-all">
+                                <span className="material-symbols-outlined text-3xl mb-1">add_photo_alternate</span>
+                                <span className="text-[10px] font-bold uppercase tracking-widest">Upload Cover Photo</span>
+                            </div>
+                        </motion.div>
+                    )}
+                </div>
+
+                <div className="mt-10 flex gap-4">
+                    {step > 1 && (
+                        <Button variant="outline" className="flex-grow rounded-2xl" onClick={handleBack}>Back</Button>
+                    )}
+                    <Button
+                        className="flex-grow rounded-2xl shadow-lg shadow-uba-red/20"
+                        onClick={step === 3 ? handleSubmit : handleNext}
+                    >
+                        {step === 3 ? "Submit for Approval" : "Continue"}
+                    </Button>
+                </div>
+            </motion.div>
+        </div>
+    );
+};

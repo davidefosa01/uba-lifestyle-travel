@@ -86,7 +86,7 @@ export const ListingDetails: React.FC = () => {
                 </div>
                 <div className="flex-grow">
                     <p className="text-[10px] font-bold text-gray-900">Merchant Profile</p>
-                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-[10px] text-uba-red font-bold hover:underline">View on Instagram</a>
+                    <p className="text-[10px] text-secondary">Verified UBA Partner</p>
                 </div>
             </div>
           </div>
@@ -128,11 +128,11 @@ export const ListingDetails: React.FC = () => {
         </div>
       </div>
 
-      {/* Recommended for you AI simulation */}
+      {/* Recommended for you simulation */}
       <div className="px-container-margin-mb mt-8">
         <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
-            <span className="material-symbols-outlined text-uba-red text-lg">auto_awesome</span>
-            AI Recommended
+            <span className="material-symbols-outlined text-uba-red text-lg">travel_explore</span>
+            Recommended for You
         </h3>
         <div className="flex gap-4 overflow-x-auto pb-4 hide-scrollbar">
             {listings.slice(0, 3).filter(l => l.id !== id).map(rec => (
