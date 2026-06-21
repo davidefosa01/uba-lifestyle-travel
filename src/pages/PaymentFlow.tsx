@@ -14,13 +14,14 @@ export const PaymentFlow: React.FC = () => {
   const [flexPayTenor, setFlexPayTenor] = useState<number>(3);
   const [flexPayStatus, setFlexPayStatus] = useState<'IDLE' | 'PROCESSING' | 'APPROVED' | 'DECLINED'>('IDLE');
   const [showContract, setShowContract] = useState(false);
+  const [agreedToTerms, setAgreedToTerms] = useState(false);
 
   if (!booking || !listing) return <div>Booking not found</div>;
 
   const upfrontCommitment = booking.totalPrice * 0.3;
   const remainingPrincipal = booking.totalPrice * 0.7;
-  const interestRate = 0.18;
-  const totalWithInterest = remainingPrincipal * (1 + interestRate);
+  const annualInterestRate = 0.18;
+  const totalWithInterest = remainingPrincipal * (1 + (annualInterestRate * (flexPayTenor / 12)));
   const monthlyInstallment = totalWithInterest / flexPayTenor;
 
   const handleFlexPayCheck = () => {
@@ -136,8 +137,8 @@ export const PaymentFlow: React.FC = () => {
                   <span>₦{remainingPrincipal.toLocaleString()}</span>
                 </div>
                 <div className="flex justify-between text-xs mb-2 text-secondary font-medium font-inter">
-                  <span>Annual Interest Rate</span>
-                  <span>18% p.a.</span>
+                  <span>Monthly Interest</span>
+                  <span>1.5%</span>
                 </div>
                 <div className="flex justify-between font-bold text-base font-montserrat">
                   <span className="text-deep-slate">Monthly Installment</span>
@@ -171,7 +172,7 @@ export const PaymentFlow: React.FC = () => {
           className="w-full shadow-lg"
           size="lg"
           variant="primary"
-          disabled={paymentMethod === 'FLEXPAY' && flexPayStatus !== 'APPROVED'}
+          disabled={paymentMethod === 'FLEXPAY' && (flexPayStatus !== 'APPROVED' || !agreedToTerms)}
         >
           {paymentMethod === 'FULL' ? `Pay ₦${booking.totalPrice.toLocaleString()}` : 'Confirm Installment Plan'}
         </Button>
@@ -204,14 +205,32 @@ export const PaymentFlow: React.FC = () => {
 
               <p className="font-bold">TERMS & CONDITIONS</p>
               <ul className="list-disc pl-4 space-y-2">
-                <li>The Borrower agrees to pay the lender the principal sum plus interest in equal monthly installments.</li>
-                <li>Monthly installments will be automatically debited from the Borrower's UBA account on the 28th of every month.</li>
-                <li>Late payments will attract a penalty fee of 2.5% of the installment amount.</li>
+                <li>The Borrower agrees to pay the lender the principal sum plus interest of 18% per annum in equal monthly installments.</li>
+                <li>Monthly installments will be automatically debited from the Borrower's UBA account on the 28th of every month via <span className="font-bold">Auto-Debit</span>.</li>
+                <li>Late payments will attract a <span className="font-bold">daily penalty charge</span> for every day the payment remains unpaid after the due date.</li>
                 <li>Borrower has the right to pre-liquidate the loan without early termination penalties after 3 successful installments.</li>
               </ul>
 
-              <div className="pt-6 border-t border-gray-100 mt-6 flex gap-4">
-                <Button className="flex-grow" onClick={() => setShowContract(false)}>I Understand & Agree</Button>
+              <div className="pt-6 border-t border-gray-100 mt-6 space-y-4">
+                <label className="flex items-start gap-3 cursor-pointer group">
+                  <div className="relative flex items-center justify-center mt-0.5">
+                    <input
+                      type="checkbox"
+                      checked={agreedToTerms}
+                      onChange={(e) => setAgreedToTerms(e.target.checked)}
+                      className="peer appearance-none w-5 h-5 border-2 border-gray-300 rounded-md checked:bg-uba-red checked:border-uba-red transition-all"
+                    />
+                    <span className="material-symbols-outlined absolute text-white text-sm opacity-0 peer-checked:opacity-100 transition-opacity pointer-events-none">check</span>
+                  </div>
+                  <span className="text-[10px] font-bold text-gray-500 group-hover:text-gray-700 transition-colors">I hereby confirm that I have read, understood, and agreed to the terms and conditions of this installment agreement.</span>
+                </label>
+                <Button
+                  className="w-full"
+                  disabled={!agreedToTerms}
+                  onClick={() => setShowContract(false)}
+                >
+                  Confirm & Close
+                </Button>
               </div>
             </div>
           </div>

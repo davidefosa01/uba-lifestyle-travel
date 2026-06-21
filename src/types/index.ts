@@ -10,7 +10,7 @@ export interface User {
   balance: number;
 }
 
-export type ListingCategory = 'Hotels' | 'Short-lets' | 'Tours' | 'Sites' | 'Venues' | 'Organisers';
+export type ListingCategory = 'Hotels' | 'Short-lets' | 'Tours' | 'Sites' | 'Venues' | 'Organisers' | 'Flights';
 
 export interface Listing {
   id: string;

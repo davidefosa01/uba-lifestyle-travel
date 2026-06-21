@@ -24,6 +24,7 @@ interface AppContextType {
     hidden: number;
     visible: number;
     potential: number;
+    tier: number;
   };
 }
 
@@ -47,8 +48,9 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
 
   const flexPayCapacity = {
     hidden: sixMonthInflow / 10, // 450k
-    visible: (sixMonthInflow / 10) * 0.2, // 90k
-    potential: (sixMonthInflow / 10) * 0.5, // 225k extra
+    visible: 100000, // Tier 1 start at 100k
+    potential: 400000, // Tier 2 potential 500k
+    tier: 1,
   };
 
   useEffect(() => {

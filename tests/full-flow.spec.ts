@@ -93,6 +93,11 @@ test('FlexPay Flow', async ({ page }) => {
   // Select 6 Months
   await page.getByRole('button', { name: '6 Mo' }).click();
 
+  // Open Contract and Agree
+  await page.getByText('View Digital Contract').click();
+  await page.getByRole('checkbox').check();
+  await page.getByRole('button', { name: 'Confirm & Close' }).click();
+
   // Confirm
   await page.getByRole('button', { name: 'Confirm Installment Plan' }).click();
   await expect(page).toHaveURL('http://localhost:5173/bookings');
