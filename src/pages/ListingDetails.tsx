@@ -74,6 +74,26 @@ export const ListingDetails: React.FC = () => {
             </div>
           </div>
 
+          <div className="mb-6">
+            <h3 className="font-bold mb-3 text-sm">Merchant Reviews</h3>
+            <div className="space-y-3">
+                <div className="bg-gray-50 p-3 rounded-2xl border border-gray-100">
+                    <div className="flex justify-between items-center mb-1">
+                        <p className="text-[10px] font-bold text-gray-900">Bisi A.</p>
+                        <div className="flex text-amber-400"><span className="material-symbols-outlined text-xs">star</span><span className="material-symbols-outlined text-xs">star</span><span className="material-symbols-outlined text-xs">star</span><span className="material-symbols-outlined text-xs">star</span><span className="material-symbols-outlined text-xs">star</span></div>
+                    </div>
+                    <p className="text-[10px] text-gray-500 italic">"Exceptional service and beautiful views!"</p>
+                </div>
+                <div className="bg-gray-50 p-3 rounded-2xl border border-gray-100">
+                    <div className="flex justify-between items-center mb-1">
+                        <p className="text-[10px] font-bold text-gray-900">Chidi O.</p>
+                        <div className="flex text-amber-400"><span className="material-symbols-outlined text-xs">star</span><span className="material-symbols-outlined text-xs">star</span><span className="material-symbols-outlined text-xs">star</span><span className="material-symbols-outlined text-xs">star</span><span className="material-symbols-outlined text-xs text-gray-300">star</span></div>
+                    </div>
+                    <p className="text-[10px] text-gray-500 italic">"Very professional staff. Highly recommended."</p>
+                </div>
+            </div>
+          </div>
+
           <div className="border-t border-b border-surface-variant py-4 mb-6">
             <h3 className="font-bold mb-2">About this place</h3>
             <p className="text-sm text-secondary leading-relaxed mb-4">

@@ -2,11 +2,29 @@ import React from 'react';
 import { useAppContext } from '../context/AppContext';
 import { Button } from '../components/Button';
 
+import { useState } from 'react';
+
 export const Profile: React.FC = () => {
-  const { currentUser } = useAppContext();
+  const { currentUser, logout } = useAppContext();
+  const [activeTab, setActiveTab] = useState<'PROFILE' | 'SUPPORT' | 'FEEDBACK'>('PROFILE');
 
   return (
-    <div className="px-container-margin-mb py-6 pb-24 text-center">
+    <div className="px-container-margin-mb py-6 pb-24">
+      <div className="flex gap-6 border-b border-gray-100 mb-8 px-2">
+        {(['PROFILE', 'SUPPORT', 'FEEDBACK'] as const).map(tab => (
+          <button
+            key={tab}
+            onClick={() => setActiveTab(tab)}
+            className={`pb-4 text-[10px] font-bold transition-all relative ${activeTab === tab ? 'text-uba-red' : 'text-gray-400'}`}
+          >
+            {tab}
+            {activeTab === tab && <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-uba-red" />}
+          </button>
+        ))}
+      </div>
+
+      {activeTab === 'PROFILE' && (
+      <div className="text-center">
       <div className="relative inline-block mb-6">
         <div className="w-32 h-32 rounded-full border-4 border-white shadow-xl overflow-hidden mx-auto">
           <img src={currentUser?.avatar} alt={currentUser?.name} className="w-full h-full object-cover" />
@@ -47,8 +65,64 @@ export const Profile: React.FC = () => {
           </div>
         ))}
 
-        <Button variant="outline" className="w-full mt-4 text-uba-red border-uba-red">Logout</Button>
+        <Button variant="outline" onClick={logout} className="w-full mt-4 text-uba-red border-uba-red">Logout</Button>
       </div>
+      </div>
+      )}
+
+      {activeTab === 'SUPPORT' && (
+        <div className="space-y-6">
+            <div className="bg-uba-red/5 p-8 rounded-3xl border border-uba-red/10">
+                <h3 className="font-bold text-uba-red mb-2">Need help with your bookings?</h3>
+                <p className="text-sm text-gray-600 mb-6">Our dedicated customer support team is available 24/7 to assist you.</p>
+                <div className="flex flex-col gap-4">
+                    <a href="https://wa.me/2348000000000" target="_blank" rel="noopener noreferrer" className="bg-green-500 text-white px-6 py-3 rounded-2xl flex items-center justify-center gap-2 font-bold shadow-lg hover:bg-green-600 transition-colors">
+                        <span className="material-symbols-outlined">chat</span> WhatsApp Support
+                    </a>
+                    <button className="bg-white text-gray-900 border border-gray-200 px-6 py-3 rounded-2xl flex items-center justify-center gap-2 font-bold shadow-sm hover:bg-gray-50">
+                        <span className="material-symbols-outlined">mail</span> Raise a Ticket
+                    </button>
+                </div>
+            </div>
+
+            <div className="bg-white p-6 rounded-3xl border border-gray-100 shadow-soft">
+                <h3 className="font-bold mb-4">Frequently Asked Questions</h3>
+                <div className="space-y-4">
+                    <div className="border-b border-gray-50 pb-4">
+                        <p className="text-sm font-bold text-gray-900 mb-1">How do I cancel a booking?</p>
+                        <p className="text-xs text-gray-500">Go to My Bookings, select the booking and click Cancel.</p>
+                    </div>
+                    <div className="border-b border-gray-50 pb-4">
+                        <p className="text-sm font-bold text-gray-900 mb-1">Is my payment secure?</p>
+                        <p className="text-xs text-gray-500">Yes, all payments are processed securely through UBA's encrypted gateway.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+      )}
+
+      {activeTab === 'FEEDBACK' && (
+        <div className="space-y-6">
+            <div className="bg-white p-8 rounded-3xl border border-gray-100 shadow-soft">
+                <h3 className="font-bold mb-2 text-uba-red">Share your experience</h3>
+                <p className="text-xs text-gray-500 mb-6">Your feedback helps us improve the Lifestyle Travel experience.</p>
+
+                <div className="space-y-4">
+                    <div className="space-y-1">
+                        <label className="text-[10px] font-bold text-gray-400 uppercase">Rating</label>
+                        <div className="flex gap-2 text-amber-400">
+                            {[1, 2, 3, 4, 5].map(s => <span key={s} className="material-symbols-outlined cursor-pointer">star</span>)}
+                        </div>
+                    </div>
+                    <div className="space-y-1">
+                        <label className="text-[10px] font-bold text-gray-400 uppercase">Your Message</label>
+                        <textarea className="w-full bg-gray-50 border border-gray-100 rounded-2xl p-4 text-sm outline-none focus:border-uba-red/30 transition-all resize-none" rows={4} placeholder="What did you think of the service?" />
+                    </div>
+                    <Button className="w-full rounded-2xl" onClick={() => alert('Feedback submitted! Thank you.')}>Submit Feedback</Button>
+                </div>
+            </div>
+        </div>
+      )}
     </div>
   );
 };
