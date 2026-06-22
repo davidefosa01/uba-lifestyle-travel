@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 export const AdminDashboard: React.FC = () => {
   const { bookings, role } = useAppContext();
-  const [activeTab, setActiveTab] = useState<'STATS' | 'MERCHANTS' | 'RISK'>('STATS');
+  const [activeTab, setActiveTab] = useState<'STATS' | 'MERCHANTS' | 'APPROVALS' | 'RISK'>('STATS');
 
   if (role !== 'ADMIN') return <div className="p-6">Access Denied</div>;
 
@@ -17,12 +17,27 @@ export const AdminDashboard: React.FC = () => {
     flexpay: bookings.filter(b => b.paymentPlan === 'FLEXPAY').length,
   };
 
+  const [pendingListings, setPendingListings] = useState([
+    { id: 'new-1', name: 'Zuma Rock Luxury Resort', category: 'Resorts', merchant: 'Azure', price: 155000, date: '2024-11-20' },
+    { id: 'new-2', name: 'Gidi Culture Festival', category: 'Events', merchant: 'Heritage Stays', price: 75000, date: '2024-11-21' }
+  ]);
+
+  const approveListing = (id: string) => {
+    setPendingListings(prev => prev.filter(l => l.id !== id));
+    alert('Listing Approved!');
+  };
+
+  const declineListing = (id: string) => {
+    setPendingListings(prev => prev.filter(l => l.id !== id));
+    alert('Listing Declined.');
+  };
+
   return (
     <div className="p-6 max-w-6xl mx-auto">
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-2xl font-bold font-montserrat tracking-tight">Admin Overview</h1>
         <div className="flex items-center gap-2 bg-gray-100 p-1 rounded-xl">
-           {(['STATS', 'MERCHANTS', 'RISK'] as const).map(tab => (
+           {(['STATS', 'MERCHANTS', 'APPROVALS', 'RISK'] as const).map(tab => (
              <button
                key={tab}
                onClick={() => setActiveTab(tab)}
@@ -85,6 +100,37 @@ export const AdminDashboard: React.FC = () => {
                   <MerchantCard name="Federal Palace" email="sales@federalpalace.com" status="ACTIVE" rating="4.6" />
               </div>
           </motion.div>
+      )}
+
+      {activeTab === 'APPROVALS' && (
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-6">
+            <h2 className="text-lg font-bold mb-4">Pending Merchant Submissions</h2>
+            {pendingListings.length === 0 ? (
+                <div className="p-12 text-center bg-gray-50 rounded-3xl border-2 border-dashed border-gray-200">
+                    <p className="text-gray-400">All submissions have been processed.</p>
+                </div>
+            ) : (
+                <div className="space-y-4">
+                    {pendingListings.map(listing => (
+                        <div key={listing.id} className="bg-white p-6 rounded-3xl border border-gray-100 shadow-soft flex flex-col md:flex-row md:items-center justify-between gap-6">
+                            <div>
+                                <div className="flex items-center gap-2 mb-1">
+                                    <h3 className="font-bold text-gray-900">{listing.name}</h3>
+                                    <span className="text-[8px] bg-red-50 text-uba-red px-1.5 py-0.5 rounded font-bold uppercase">{listing.category}</span>
+                                </div>
+                                <p className="text-xs text-gray-500">Submitted by <span className="font-bold">{listing.merchant}</span> • {listing.date}</p>
+                                <p className="text-sm font-bold text-uba-red mt-2">₦{listing.price.toLocaleString()}</p>
+                            </div>
+                            <div className="flex gap-3">
+                                <Button size="sm" className="rounded-xl" onClick={() => approveListing(listing.id)}>Approve</Button>
+                                <Button size="sm" variant="outline" className="rounded-xl" onClick={() => declineListing(listing.id)}>Decline</Button>
+                                <button className="text-[10px] font-bold text-gray-400 hover:text-gray-600 px-2 uppercase tracking-widest underline decoration-dotted">Review Details</button>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            )}
+        </motion.div>
       )}
 
       {activeTab === 'RISK' && (
