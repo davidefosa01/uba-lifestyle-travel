@@ -14,11 +14,11 @@ export const UbaDashboard: React.FC = () => {
   const { accountBalance } = useAppContext();
 
   return (
-    <div className="flex flex-col h-full overflow-hidden bg-[#f7f7f7]">
+    <div className="flex flex-col h-screen overflow-hidden bg-[#f7f7f7]">
       {/* MainHeader */}
       <div className="bg-white border-b border-gray-100 z-50">
-        <header className="px-4 py-4 relative">
-          <div className="flex items-center justify-between">
+        <header className="px-4 md:px-12 py-4 relative">
+          <div className="flex items-center justify-between max-w-7xl mx-auto w-full">
             <div
               onClick={() => setShowMenu(!showMenu)}
               className="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center text-xs text-gray-500 font-bold bg-[#f0f0f0] cursor-pointer hover:bg-gray-200 transition-colors"
@@ -67,7 +67,7 @@ export const UbaDashboard: React.FC = () => {
       </div>
 
       {/* MainContent */}
-      <main className="flex-grow overflow-y-auto p-4 space-y-4 pb-24">
+      <main className="flex-grow overflow-y-auto p-4 space-y-4 pb-24 max-w-md mx-auto w-full">
         {/* Account Balance Card */}
         <section className="bg-uba-red rounded-2xl p-6 text-white shadow-xl relative overflow-hidden">
           <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 blur-2xl"></div>
