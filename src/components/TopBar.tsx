@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 export const TopBar: React.FC = () => {
-  const { currentUser, role, switchRole, logout } = useAppContext();
+  const { currentUser, role, switchRole, logout, flexPayCapacity } = useAppContext();
   const [showMenu, setShowMenu] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -66,6 +66,11 @@ export const TopBar: React.FC = () => {
               <option value="MERCHANT">Merchant</option>
               <option value="ADMIN">Admin</option>
             </select>
+
+            <div className="hidden md:flex flex-col items-end px-4 border-r border-gray-100 mr-2">
+                <p className="text-[8px] font-bold text-gray-400 uppercase tracking-widest">FlexPay Limit</p>
+                <p className="text-xs font-bold text-uba-red">₦{flexPayCapacity.visible.toLocaleString()}</p>
+            </div>
 
             <div className="w-20 h-10 flex items-center justify-end overflow-hidden">
               <img

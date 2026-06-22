@@ -28,18 +28,20 @@ export const UbaLogin: React.FC = () => {
   }, [passcode, login, navigate]);
 
   return (
-    <div className="flex flex-col h-full overflow-hidden bg-[#f7f7f7] text-gray-800 p-6">
+    <div className="flex flex-col h-screen overflow-hidden bg-[#f7f7f7] text-gray-800">
+        {/* Login Container */}
+        <div className="flex-grow flex flex-col p-6 max-w-md mx-auto w-full justify-center">
           {/* Header */}
-          <div className="flex justify-between items-center mb-8 pt-2">
+          <div className="flex justify-between items-center mb-12">
             <h1 className="text-xl font-bold text-gray-800 font-inter tracking-tight">Enter Access Passcode</h1>
-          <div className="w-20 h-10 flex items-center justify-center overflow-hidden">
-              <img src="/uba-logo-premium.png" alt="UBA Logo" className="w-full h-full object-contain" />
+            <div className="w-20 h-10 flex items-center justify-center overflow-hidden">
+                <img src="/uba-logo-premium.png" alt="UBA Logo" className="w-full h-full object-contain" />
             </div>
           </div>
 
           {/* Center Icon */}
-          <div className="flex flex-col items-center mb-6">
-            <div className="w-24 h-24 bg-[#f0f0f0] rounded-full flex items-center justify-center mb-6 relative">
+          <div className="flex flex-col items-center mb-8">
+            <div className="w-32 h-32 bg-[#f0f0f0] rounded-full flex items-center justify-center mb-6 relative">
             <div className="w-16 h-16 border-2 border-gray-800 rounded-2xl flex items-center justify-center">
                 <span className="material-symbols-outlined text-4xl text-gray-800">lock</span>
             </div>
@@ -70,7 +72,7 @@ export const UbaLogin: React.FC = () => {
           </div>
 
           {/* Number Pad */}
-          <div className="mt-auto grid grid-cols-3 gap-y-4 gap-x-8 max-w-xs mx-auto mb-8">
+          <div className="mt-auto grid grid-cols-3 gap-y-2 gap-x-8 max-w-xs mx-auto mb-8">
         {['1', '2', '3', '4', '5', '6', '7', '8', '9'].map(num => (
           <button
             key={num}
@@ -101,6 +103,7 @@ export const UbaLogin: React.FC = () => {
 
           {/* Footer bar */}
           <div className="w-32 h-1 bg-black rounded-full mx-auto mb-2 opacity-20"></div>
+        </div>
     </div>
   );
 };

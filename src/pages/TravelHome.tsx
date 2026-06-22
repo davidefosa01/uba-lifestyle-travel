@@ -5,7 +5,7 @@ import { ListingCard } from '../components/ListingCard';
 
 export const TravelHome: React.FC = () => {
   const navigate = useNavigate();
-  const { currentUser, listings, flexPayCapacity } = useAppContext();
+  const { currentUser, listings } = useAppContext();
 
   const categories = [
     { name: 'Hotels', icon: 'hotel' },
@@ -20,34 +20,10 @@ export const TravelHome: React.FC = () => {
 
   return (
     <div className="pb-24">
-      {/* Welcome Banner & FlexPay Capacity */}
-      <section className="mb-8 px-container-margin-mb mt-6 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-        <div>
-            <h1 className="text-2xl font-semibold text-on-background mb-1">Discover your next escape,</h1>
-            <h2 className="text-5xl font-bold text-primary leading-tight font-montserrat">{currentUser?.name?.split(' ')[0]}</h2>
-        </div>
-
-        {/* Relocated FlexPay Capacity */}
-        <div className="bg-uba-red rounded-3xl p-6 text-white shadow-xl relative overflow-hidden md:min-w-[320px]">
-            <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-8 -mt-8 blur-xl"></div>
-            <div className="relative z-10 flex justify-between items-center">
-                <div>
-                    <p className="text-[10px] font-bold opacity-80 uppercase tracking-widest mb-1">FlexPay Capacity</p>
-                    <h2 className="text-2xl font-bold font-montserrat">₦{flexPayCapacity.visible.toLocaleString()}</h2>
-                </div>
-                <div className="bg-white/20 px-3 py-1 rounded-full text-[10px] font-bold backdrop-blur-md">
-                    Tier {flexPayCapacity.tier}
-                </div>
-            </div>
-            <div className="mt-4">
-                <div className="w-full bg-white/20 h-1.5 rounded-full overflow-hidden">
-                    <div className="bg-white h-full w-[25%]" />
-                </div>
-                <p className="text-[9px] mt-2 opacity-80 italic font-inter">
-                    Seamless repayment without default will increase your capacity to Tier {flexPayCapacity.tier + 1}.
-                </p>
-            </div>
-        </div>
+      {/* Welcome Banner */}
+      <section className="mb-8 px-container-margin-mb mt-10">
+        <h1 className="text-3xl font-semibold text-on-background mb-1">Discover your next escape,</h1>
+        <h2 className="text-7xl font-bold text-primary leading-tight font-montserrat tracking-tighter">{currentUser?.name?.split(' ')[0]}</h2>
       </section>
 
       {/* Search Bar */}

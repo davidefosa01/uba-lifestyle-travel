@@ -5,7 +5,7 @@ import { Button } from '../components/Button';
 import { useState } from 'react';
 
 export const Profile: React.FC = () => {
-  const { currentUser, logout } = useAppContext();
+  const { currentUser, logout, flexPayCapacity } = useAppContext();
   const [activeTab, setActiveTab] = useState<'PROFILE' | 'SUPPORT' | 'FEEDBACK'>('PROFILE');
 
   return (
@@ -37,15 +37,25 @@ export const Profile: React.FC = () => {
       <h1 className="text-2xl font-bold mb-1">{currentUser?.name}</h1>
       <p className="text-secondary mb-8">{currentUser?.email}</p>
 
-      <div className="bg-surface-container-low rounded-3xl p-6 text-left mb-8">
-        <div className="flex justify-between items-center mb-4">
-          <p className="text-xs font-bold text-secondary uppercase">Account Balance</p>
-          <span className="material-symbols-outlined text-secondary">visibility</span>
-        </div>
-        <p className="text-3xl font-bold mb-2">₦{currentUser?.balance.toLocaleString()}</p>
-        <div className="flex gap-2">
-          <div className="bg-green-50 text-green-700 text-[10px] font-bold px-2 py-1 rounded">Savings</div>
-          <div className="bg-blue-50 text-blue-700 text-[10px] font-bold px-2 py-1 rounded">Verified</div>
+      {/* FlexPay Capacity replacing Account Balance */}
+      <div className="bg-uba-red rounded-[2rem] p-8 text-white shadow-xl relative overflow-hidden mb-8 text-left">
+        <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-8 -mt-8 blur-xl"></div>
+        <div className="relative z-10">
+            <div className="flex justify-between items-center mb-6">
+                <div>
+                    <p className="text-[10px] font-bold opacity-80 uppercase tracking-widest mb-1">FlexPay Capacity</p>
+                    <h2 className="text-3xl font-bold font-montserrat">₦{flexPayCapacity.visible.toLocaleString()}</h2>
+                </div>
+                <div className="bg-white/20 px-3 py-1 rounded-full text-[10px] font-bold backdrop-blur-md">
+                    Tier {flexPayCapacity.tier}
+                </div>
+            </div>
+            <div className="w-full bg-white/20 h-1.5 rounded-full overflow-hidden mb-3">
+                <div className="bg-white h-full w-[25%]" />
+            </div>
+            <p className="text-[9px] opacity-80 italic font-inter leading-relaxed">
+                Repay successfully to increase your capacity to Tier {flexPayCapacity.tier + 1}. Max limit: ₦{(flexPayCapacity.visible + flexPayCapacity.potential).toLocaleString()}
+            </p>
         </div>
       </div>
 

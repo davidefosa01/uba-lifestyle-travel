@@ -43,13 +43,10 @@ const AppContent = () => {
   const showTravelChrome = isAuthenticated && !isBankingApp;
 
   return (
-    <div className={`h-screen overflow-hidden flex flex-col ${isBankingApp ? 'bg-gray-100' : 'bg-white'}`}>
-      <main className={`
-        flex-grow overflow-hidden relative flex flex-col mx-auto transition-all duration-500
-        ${isBankingApp ? 'md:my-6 md:max-w-[400px] md:h-[800px] md:max-h-[90vh] md:rounded-[3rem] md:border-[12px] md:border-gray-900 md:shadow-2xl md:relative' : 'w-full'}
-      `}>
+    <div className="h-screen overflow-hidden flex flex-col bg-white">
+      <main className="flex-grow overflow-hidden relative flex flex-col w-full">
         {showTravelChrome && <TopBar />}
-        <div className="flex-grow overflow-y-auto hide-scrollbar relative z-10 bg-white">
+        <div className="flex-grow overflow-y-auto hide-scrollbar relative z-10">
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             <Route path="/login" element={<UbaLogin />} />
