@@ -3,21 +3,37 @@ import type { Listing } from '../types';
 export const mockUsers = [
   {
     id: 'user-1',
-    name: 'David',
-    email: 'david@uba.com',
+    name: 'David Enabulele',
+    email: 'david.e@uba.com',
     role: 'CUSTOMER' as const,
-    avatar: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAE7tvXNEKiOfsPzlGL-vzzZ7J0y9mYJN1a3dPfzNFj7yBkHyi3Zf7sH4T578PzqwoGMIolg7jW_hetdkDJAs7GNt9YaPE9ScXvshBWMx62YxTW4qeAFYGVT8qP0qrnhyge4rTTV8e6owUwB2UaiggoNBL3jVMQfCHZRfl7aZASe27LWjXgON22VluB8_JCkwcKHl4ahHk7mCk6nk2sdl-2tCSEfKOTQTwLFql1EBX72s0oYSKPZ6I5lZG17VQKV3t4dY_Yjpx3_L_j',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200&h=200',
     flexPayEligible: true,
     balance: 2500000,
   },
   {
     id: 'merchant-1',
-    name: 'Azure Sanctuary Resorts',
+    name: 'Azure',
     email: 'admin@azuresanctuary.com',
     role: 'MERCHANT' as const,
     avatar: 'https://ui-avatars.com/api/?name=Azure+Sanctuary&background=ae0011&color=fff',
     flexPayEligible: false,
     balance: 5000000,
+    reviews: [
+        { user: 'Bisi A.', rating: 5, comment: 'Exceptional service and beautiful views!' },
+        { user: 'Chidi O.', rating: 4, comment: 'Very professional staff. Highly recommended.' }
+    ]
+  },
+  {
+    id: 'merchant-2',
+    name: 'Heritage Stays',
+    email: 'info@heritagestays.com',
+    role: 'MERCHANT' as const,
+    avatar: 'https://ui-avatars.com/api/?name=Heritage+Stays&background=333&color=fff',
+    flexPayEligible: false,
+    balance: 1200000,
+    reviews: [
+        { user: 'Emeka N.', rating: 5, comment: 'The best tour experience in Lagos.' }
+    ]
   },
   {
     id: 'admin-1',
@@ -31,76 +47,91 @@ export const mockUsers = [
 ];
 
 export const mockListings: Listing[] = [
+  // --- HOTELS ---
   {
-    id: 'listing-1',
+    id: 'hotel-1',
     name: 'The Azure Sanctuary Resort',
-    description: 'A luxury resort infinity pool overlooking a crystal clear turquoise ocean at sunset. The architectural lines are sharp and modern, emphasizing premium quality and professional curation.',
+    description: 'A luxury resort infinity pool overlooking a crystal clear turquoise ocean at sunset. Sharp architectural lines and premium service.',
     location: 'Victoria Island, Lagos',
     price: 145000,
     rating: 4.9,
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBUQ2aYkPeWR5gV_BYJxcRaLHmkzfIlTxuLuMeFVzQD-tEEPXf06aSOGDCWd9XBJT2XiIZA-9D3VOqh8E8cQ26xJ_-in66cwcEbJhYqv0YqXoglcgpvbjUqGRfW9jsFvLTba37-uJp96A4srfi727LmXyy9oG8iMKI9VyLnVvAzQPirAxW4uf6h1UMYKF4A55JNxNj-SjFgylZI58I0fmXUBQZCdfJtt8pT61fB-bRoc4nQ9fs6GkZ43r_rhQhRBO1BOK3rs3hFCL_i',
+    image: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&q=80&w=1000',
     category: 'Hotels',
     flexPayAvailable: true,
+    instantBooking: false,
     merchantId: 'merchant-1',
   },
   {
-    id: 'listing-2',
-    name: 'Minimalist Zen Suite',
-    description: 'A minimalist boutique hotel interior with clean white lines, natural oak wood furniture, and large windows allowing soft morning light to flood the room.',
-    location: 'Ikoyi, Lagos',
-    price: 85000,
-    rating: 4.7,
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBE3KRt1pxxMdvnhJFpELV3L2NhPnzzKzjrxt-cFO5TlFFsQXPyMtcUZQ-H5FosN-zaf-px8WtmNJBNUqS6W39XCi5ufT6Z_wwXzP9dmedN5TSxOBzvZuftZqxGl9roqJlfPBEOktftjrt97Sc7pPTSZXLcEkoi3Jsxg3GNqguow7ApKnpJvPJ4NjwK-sug2I6axsfVJ3PITshiHHemDnsZoq1w_Mth_9adclBngC20KpGtB6soSaRJTORuWsZ1PIDDS2ZztrMo6Ju3',
-    category: 'Hotels',
-    flexPayAvailable: true,
-    merchantId: 'merchant-1',
-  },
-  {
-    id: 'listing-3',
-    name: 'Ocean View Loft',
-    description: 'An expansive beachfront villa deck with modern white loungers and an unobstructed view of a calm sea. The lighting is high-key and bright, evoking a sense of effortless luxury.',
-    location: 'Lekki Phase 1, Lagos',
-    price: 110000,
-    rating: 4.8,
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD45YIPqF8IO8fiksVB1bWMbwsSGZVo4c8yZ29MYjJn9L_qA8Z0tZMUAGhE7QjhUVf2OzLNHsuLSbOb3hOnBbSgNtETRZ1ySOlFK_SNstErKK5d6K2zhfM8i0yggh-Zw_OtZs-YscnnRnqmUx5AIBALIDP_Vadt3BSfNYe1qW6aP-mLw3AUMiSwxtGdKHk20u4-jGpVN1rn7ZTaovPnrzy0KLQK5fh3lJ1_qAs9s8WQl3ty6n6S-OyiqXxeKct_sNhll7LL1agy4uEI',
-    category: 'Short-lets',
-    flexPayAvailable: false,
-    merchantId: 'merchant-1',
-  },
-  {
-    id: 'listing-4',
-    name: 'Obudu Mountain Peak',
-    description: 'Breathtaking views from the famous Obudu ranch. Experience the clouds from your balcony in this premium mountain resort.',
-    location: 'Cross River State',
-    price: 65000,
-    rating: 4.6,
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDQzWKDZJbVRpqLM2HVqBBu8j28826loZEBNtyvVsKGVRpLgHcqPCjlgyDiOPUGXf7CtP0nwpBOKFqgkls-dGmnOZmfDCOG_QM0Xyh_PoWJUvZaMmGwh0wJjfnQSp2ZhaydUyrealgg7vHMJdW_7qNWiXM7rFm8SlJ9dXmFq4HxGtW5xhAo-90zI84Uvn0BBBvYyuGSQwTKEcAdXgP8VVDfCx5rAftM0o4ikZtnXhTZdHmNIj3X87THKoiSvjFVTOkPro6c90sGw-tc',
-    category: 'Tours',
-    flexPayAvailable: true,
-    merchantId: 'merchant-1',
-  },
-  {
-    id: 'listing-5',
+    id: 'hotel-2',
     name: 'Transcorp Hilton Abuja',
-    description: 'The standard for luxury in the capital. Featuring world-class dining, secure grounds, and premium executive suites.',
+    description: 'The standard for luxury in the capital. Secure grounds and premium executive suites.',
     location: 'Maitama, Abuja',
     price: 120000,
     rating: 4.9,
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBE3KRt1pxxMdvnhJFpELV3L2NhPnzzKzjrxt-cFO5TlFFsQXPyMtcUZQ-H5FosN-zaf-px8WtmNJBNUqS6W39XCi5ufT6Z_wwXzP9dmedN5TSxOBzvZuftZqxGl9roqJlfPBEOktftjrt97Sc7pPTSZXLcEkoi3Jsxg3GNqguow7ApKnpJvPJ4NjwK-sug2I6axsfVJ3PITshiHHemDnsZoq1w_Mth_9adclBngC20KpGtB6soSaRJTORuWsZ1PIDDS2ZztrMo6Ju3',
+    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=1000',
     category: 'Hotels',
     flexPayAvailable: true,
+    instantBooking: false,
     merchantId: 'merchant-1',
   },
+
+  // --- SHORTLETS ---
   {
-    id: 'listing-6',
-    name: 'Eko Hotels & Suites',
-    description: 'Iconic hospitality in the heart of Victoria Island. Home to the city’s major events and finest cuisine.',
-    location: 'Victoria Island, Lagos',
+    id: 'shortlet-1',
+    name: 'Ikoyi Zen Suite',
+    description: 'Minimalist boutique shortlet with clean lines and natural oak furniture.',
+    location: 'Ikoyi, Lagos',
+    price: 85000,
+    rating: 4.7,
+    image: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1000',
+    category: 'Short-lets',
+    flexPayAvailable: true,
+    instantBooking: true,
+    merchantId: 'merchant-1',
+  },
+
+  // --- TOURS ---
+  {
+    id: 'tour-1',
+    name: 'Obudu Mountain Package',
+    description: 'Experience the clouds from your balcony in this premium mountain resort tour.',
+    location: 'Cross River State',
+    price: 265000,
+    rating: 4.6,
+    image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=1000',
+    category: 'Tours',
+    flexPayAvailable: true,
+    instantBooking: false,
+    merchantId: 'merchant-2',
+  },
+
+  // --- RESORTS ---
+  {
+    id: 'resort-1',
+    name: 'La Campagne Tropicana',
+    description: 'African themed forest, beach and lagoon resort. Experience nature in its purest form.',
+    location: 'Ibeju-Lekki, Lagos',
     price: 95000,
     rating: 4.8,
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBUQ2aYkPeWR5gV_BYJxcRaLHmkzfIlTxuLuMeFVzQD-tEEPXf06aSOGDCWd9XBJT2XiIZA-9D3VOqh8E8cQ26xJ_-in66cwcEbJhYqv0YqXoglcgpvbjUqGRfW9jsFvLTba37-uJp96A4srfi727LmXyy9oG8iMKI9VyLnVvAzQPirAxW4uf6h1UMYKF4A55JNxNj-SjFgylZI58I0fmXUBQZCdfJtt8pT61fB-bRoc4nQ9fs6GkZ43r_rhQhRBO1BOK3rs3hFCL_i',
-    category: 'Hotels',
+    image: 'https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&q=80&w=1000',
+    category: 'Resorts',
     flexPayAvailable: true,
+    instantBooking: true,
     merchantId: 'merchant-1',
   },
+
+  // --- EVENTS ---
+  {
+    id: 'event-1',
+    name: 'Gidi Culture Festival VIP',
+    description: 'Multi-stage music festival celebrating the best of African talent. VIP access included.',
+    location: 'Landmark Beach, Lagos',
+    price: 75000,
+    rating: 4.9,
+    image: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=80&w=1000',
+    category: 'Events',
+    flexPayAvailable: true,
+    instantBooking: false,
+    merchantId: 'merchant-1',
+  }
 ];

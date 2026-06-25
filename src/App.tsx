@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { TopBar } from './components/TopBar';
 import { BottomNav } from './components/BottomNav';
 import { TravelHome } from './pages/TravelHome';
@@ -11,6 +11,8 @@ import { Explore } from './pages/Explore';
 import { Profile } from './pages/Profile';
 import { MerchantDashboard } from './pages/MerchantDashboard';
 import { AdminDashboard } from './pages/AdminDashboard';
+import { UbaLogin } from './pages/UbaLogin';
+import { UbaDashboard } from './pages/UbaDashboard';
 import { useAppContext } from './context/AppContext';
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -25,36 +27,60 @@ const PageWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   </motion.div>
 );
 
+const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { isAuthenticated } = useAppContext();
+  if (!isAuthenticated) return <Navigate to="/login" replace />;
+  return <>{children}</>;
+};
+
 const AppContent = () => {
-  const { role } = useAppContext();
+  const { role, isAuthenticated } = useAppContext();
   const location = useLocation();
 
-  const renderContent = () => {
-    if (role === 'MERCHANT') return <PageWrapper><MerchantDashboard /></PageWrapper>;
-    if (role === 'ADMIN') return <PageWrapper><AdminDashboard /></PageWrapper>;
-
-    return (
-      <AnimatePresence mode="wait">
-        <Routes location={location} key={location.pathname}>
-          <Route path="/" element={<PageWrapper><TravelHome /></PageWrapper>} />
-          <Route path="/listing/:id" element={<PageWrapper><ListingDetails /></PageWrapper>} />
-          <Route path="/bookings" element={<PageWrapper><MyBookings /></PageWrapper>} />
-          <Route path="/explore" element={<PageWrapper><Explore /></PageWrapper>} />
-          <Route path="/profile" element={<PageWrapper><Profile /></PageWrapper>} />
-          <Route path="/payment/:id" element={<PageWrapper><PaymentFlow /></PageWrapper>} />
-          <Route path="/booking-submitted" element={<PageWrapper><BookingSubmitted /></PageWrapper>} />
-          <Route path="*" element={<PageWrapper><TravelHome /></PageWrapper>} />
-        </Routes>
-      </AnimatePresence>
-    );
-  };
+  const isUbaDashboard = location.pathname === '/dashboard';
+  const isLogin = location.pathname === '/login';
+  const isBankingApp = isLogin || isUbaDashboard;
+  const showTravelChrome = isAuthenticated && !isBankingApp;
 
   return (
-    <div className="min-h-screen bg-background pb-20">
-      <TopBar />
-      <main className="max-w-md mx-auto bg-white min-h-[calc(100vh-64px)] shadow-xl relative overflow-hidden">
-        {renderContent()}
-        <BottomNav />
+    <div className="h-screen overflow-hidden flex flex-col bg-white">
+      <main className="flex-grow overflow-hidden relative flex flex-col w-full">
+        {showTravelChrome && <TopBar />}
+        <div className="flex-grow overflow-y-auto hide-scrollbar relative z-10">
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
+            <Route path="/login" element={<UbaLogin />} />
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedRoute>
+                  <PageWrapper><UbaDashboard /></PageWrapper>
+                </ProtectedRoute>
+              }
+            />
+
+            {/* Role-based entry */}
+            {role === 'MERCHANT' ? (
+              <Route path="*" element={<ProtectedRoute><PageWrapper><MerchantDashboard /></PageWrapper></ProtectedRoute>} />
+            ) : role === 'ADMIN' ? (
+              <Route path="*" element={<ProtectedRoute><PageWrapper><AdminDashboard /></PageWrapper></ProtectedRoute>} />
+            ) : (
+              <>
+                <Route path="/" element={<ProtectedRoute><PageWrapper><TravelHome /></PageWrapper></ProtectedRoute>} />
+                <Route path="/listing/:id" element={<ProtectedRoute><PageWrapper><ListingDetails /></PageWrapper></ProtectedRoute>} />
+                <Route path="/bookings" element={<ProtectedRoute><PageWrapper><MyBookings /></PageWrapper></ProtectedRoute>} />
+                <Route path="/explore" element={<ProtectedRoute><PageWrapper><Explore /></PageWrapper></ProtectedRoute>} />
+                <Route path="/profile" element={<ProtectedRoute><PageWrapper><Profile /></PageWrapper></ProtectedRoute>} />
+                <Route path="/payment/:id" element={<ProtectedRoute><PageWrapper><PaymentFlow /></PageWrapper></ProtectedRoute>} />
+                <Route path="/booking-submitted" element={<ProtectedRoute><PageWrapper><BookingSubmitted /></PageWrapper></ProtectedRoute>} />
+              </>
+            )}
+
+            <Route path="*" element={<Navigate to={isAuthenticated ? (role === 'CUSTOMER' ? "/" : "/dashboard") : "/login"} replace />} />
+          </Routes>
+        </AnimatePresence>
+        </div>
+        {showTravelChrome && <BottomNav />}
       </main>
     </div>
   );

@@ -11,9 +11,9 @@ export const TravelHome: React.FC = () => {
     { name: 'Hotels', icon: 'hotel' },
     { name: 'Short-lets', icon: 'apartment' },
     { name: 'Tours', icon: 'explore' },
+    { name: 'Resorts', icon: 'pool' },
+    { name: 'Events', icon: 'confirmation_number' },
     { name: 'Sites', icon: 'temple_buddhist' },
-    { name: 'Venues', icon: 'theater_comedy' },
-    { name: 'Organisers', icon: 'groups' },
   ];
 
   const featured = listings.slice(0, 3);
@@ -21,9 +21,9 @@ export const TravelHome: React.FC = () => {
   return (
     <div className="pb-24">
       {/* Welcome Banner */}
-      <section className="mb-8 px-container-margin-mb mt-6">
-        <h1 className="text-2xl font-semibold text-on-background mb-1">Discover your next escape,</h1>
-        <h2 className="text-5xl font-bold text-primary leading-tight font-montserrat">{currentUser?.name}</h2>
+      <section className="mb-8 px-container-margin-mb mt-10">
+        <h1 className="text-3xl font-semibold text-on-background mb-1">Discover your next escape,</h1>
+        <h2 className="text-7xl font-bold text-primary leading-tight font-montserrat tracking-tighter">{currentUser?.name?.split(' ')[0]}</h2>
       </section>
 
       {/* Search Bar */}

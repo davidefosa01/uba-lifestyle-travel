@@ -1,42 +1,97 @@
 import type { UserRole } from '../types';
 import { useAppContext } from '../context/AppContext';
+import { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 export const TopBar: React.FC = () => {
-  const { currentUser, role, switchRole } = useAppContext();
+  const { currentUser, role, switchRole, logout, flexPayCapacity } = useAppContext();
+  const [showMenu, setShowMenu] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleBack = () => {
+    if (location.pathname === '/') {
+      navigate('/dashboard');
+    } else {
+      navigate(-1);
+    }
+  };
 
   return (
-    <header className="bg-white border-b border-surface-variant px-container-margin-mb py-3 sticky top-0 z-50 flex items-center justify-between">
-      <div className="flex items-center gap-3">
-        <div className="w-10 h-10 rounded-full border-2 border-surface-variant overflow-hidden">
-          <img src={currentUser?.avatar} alt={currentUser?.name} className="w-full h-full object-cover" />
-        </div>
-        <div>
-          <h1 className="text-sm font-bold text-gray-800 leading-tight">
-            {role === 'CUSTOMER' ? 'Good Day,' : role === 'MERCHANT' ? 'Merchant Portal' : 'Admin Panel'}
-          </h1>
-          <p className="text-xs text-gray-600">{currentUser?.name}</p>
-        </div>
-      </div>
+    <div className="bg-white border-b border-surface-variant z-50">
+      <header className="px-container-margin-mb py-4 relative">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3 relative">
+            <div
+              onClick={() => setShowMenu(!showMenu)}
+              className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-xs text-gray-500 font-bold bg-[#f0f0f0] cursor-pointer hover:bg-gray-200 transition-colors"
+            >
+              DE
+            </div>
+            {showMenu && (
+              <div className="absolute top-12 left-0 w-48 bg-white border border-gray-100 shadow-xl rounded-xl py-2 z-[60]">
+                <div className="px-4 py-2 border-b border-gray-50">
+                  <p className="text-xs font-bold text-gray-900">{currentUser?.name}</p>
+                  <p className="text-[10px] text-gray-500">{currentUser?.email}</p>
+                </div>
+                <button className="w-full text-left px-4 py-2 text-xs text-gray-700 hover:bg-gray-50 flex items-center gap-2">
+                  <span className="material-symbols-outlined text-sm">person</span> Profile
+                </button>
+                <button className="w-full text-left px-4 py-2 text-xs text-gray-700 hover:bg-gray-50 flex items-center gap-2">
+                  <span className="material-symbols-outlined text-sm">settings</span> Settings
+                </button>
+                <button
+                  onClick={() => logout()}
+                  className="w-full text-left px-4 py-2 text-xs text-uba-red font-bold hover:bg-red-50 flex items-center gap-2"
+                >
+                  <span className="material-symbols-outlined text-sm">logout</span> Logout
+                </button>
+              </div>
+            )}
+            <div>
+              <h1 className="text-sm font-bold text-gray-800 leading-tight">
+                {role === 'CUSTOMER' ? 'Good Day,' : role === 'MERCHANT' ? 'Merchant Portal' : 'Admin Panel'}
+              </h1>
+              <p className="text-xs text-gray-600 font-medium">{currentUser?.name}</p>
+            </div>
+          </div>
 
-      <div className="flex items-center gap-2">
-        <select
-          value={role}
-          onChange={(e) => switchRole(e.target.value as UserRole)}
-          className="text-xs border-none bg-surface-container-low rounded-lg py-1.5 pl-2 pr-8 focus:ring-1 focus:ring-primary/20 font-medium"
+          <div className="flex items-center gap-2">
+            <select
+              value={role}
+              onChange={(e) => switchRole(e.target.value as UserRole)}
+              className="text-[10px] border-none bg-surface-container-low rounded-lg py-1 pl-1 pr-6 focus:ring-1 focus:ring-primary/20 font-bold text-uba-red uppercase tracking-tighter"
+            >
+              <option value="CUSTOMER">Customer</option>
+              <option value="MERCHANT">Merchant</option>
+              <option value="ADMIN">Admin</option>
+            </select>
+
+            <div className="hidden md:flex flex-col items-end px-4 border-r border-gray-100 mr-2">
+                <p className="text-[8px] font-bold text-gray-400 uppercase tracking-widest">FlexPay Limit</p>
+                <p className="text-xs font-bold text-uba-red">₦{flexPayCapacity.visible.toLocaleString()}</p>
+            </div>
+
+            <div className="w-20 h-10 flex items-center justify-end overflow-hidden">
+              <img
+                alt="UBA Logo"
+                className="w-full h-full object-contain"
+                src="/uba-logo-premium.png"
+              />
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Back button below DE in the blank space */}
+      <div className="px-container-margin-mb py-2 bg-gray-50/50">
+        <button
+          onClick={handleBack}
+          className="w-10 h-10 flex items-center justify-center text-gray-600 bg-white shadow-sm border border-gray-200 rounded-full hover:bg-gray-100 transition-all active:scale-95"
         >
-          <option value="CUSTOMER">Customer View</option>
-          <option value="MERCHANT">Merchant View</option>
-          <option value="ADMIN">Admin View</option>
-        </select>
-
-        <div className="w-8 h-8 flex items-center justify-center">
-          <img
-            alt="UBA Logo"
-            className="w-6 h-6 object-contain"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4XxIHiaRGjFAzA2xHJ-57JXynepJ1Voy-0z5zBx35N5M-n5QOhrnjoOZ2uyClyNIG41sXrEg4v4f0uDhMCZO2yAj7aKzs6mkxe6753oA3Ldhc-kPhQUtg6YsyhejKV0i1KV9UoJjwmgVj_8XPRElQchlM112wrfFdNxciVtMZSFSqfk1XFelb-Q2S58xjnjJ2c4TiGPbSrH7oKTodtv7ccRTLmJBFSa7KoYeipALKmP_T4YtEF2yE8ienYnjBlG-18q1JvEYDVuM3"
-          />
-        </div>
+          <span className="material-symbols-outlined text-2xl">arrow_back</span>
+        </button>
       </div>
-    </header>
+    </div>
   );
 };

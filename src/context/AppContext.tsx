@@ -1,5 +1,5 @@
 import type { UserRole, User, Booking, Notification, Listing } from '../types';
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 import type { ReactNode } from 'react';
 import { mockUsers, mockListings } from '../data/mockData';
 
@@ -9,35 +9,102 @@ interface AppContextType {
   role: UserRole;
   switchRole: (role: UserRole) => void;
   bookings: Booking[];
-  addBooking: (booking: Booking) => void;
+  addBooking: (booking: Omit<Booking, 'id' | 'bookingReference' | 'status' | 'createdAt' | 'expiresAt'>) => void;
   updateBookingStatus: (id: string, status: Booking['status']) => void;
   notifications: Notification[];
   addNotification: (notification: Omit<Notification, 'id' | 'createdAt' | 'read'>) => void;
   markNotificationRead: (id: string) => void;
   listings: Listing[];
+  isAuthenticated: boolean;
+  login: () => void;
+  logout: () => void;
+  accountBalance: number;
+  sixMonthInflow: number;
+  flexPayCapacity: {
+    hidden: number;
+    visible: number;
+    potential: number;
+    tier: number;
+  };
+  activeMerchantId: string;
+  setActiveMerchantId: (id: string) => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState<User | null>(mockUsers[0]);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
+    return localStorage.getItem('uba_auth') === 'true';
+  });
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [role, setRole] = useState<UserRole>('CUSTOMER');
-  const [bookings, setBookings] = useState<Booking[]>([]);
+  const [bookings, setBookings] = useState<Booking[]>(() => {
+    const saved = localStorage.getItem('uba_bookings');
+    return saved ? JSON.parse(saved) : [];
+  });
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [listings] = useState<Listing[]>(mockListings);
+  const [activeMerchantId, setActiveMerchantId] = useState<string>('merchant-1');
+
+  const [sixMonthInflow] = useState(4500000); // 4.5M NGN
+  const [accountBalance] = useState(1250000); // 1.25M NGN
+
+  const flexPayCapacity = {
+    hidden: sixMonthInflow / 10, // 450k
+    visible: 100000, // Tier 1 start at 100k
+    potential: 150000, // Tier 2 potential 250k
+    tier: 1,
+  };
+
+  useEffect(() => {
+    localStorage.setItem('uba_bookings', JSON.stringify(bookings));
+  }, [bookings]);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      const user = mockUsers.find(u => u.role === role) || mockUsers[0];
+      setCurrentUser(user);
+    } else {
+      setCurrentUser(null);
+    }
+  }, [isAuthenticated, role]);
+
+  const login = () => {
+    setIsAuthenticated(true);
+    localStorage.setItem('uba_auth', 'true');
+  };
+
+  const logout = () => {
+    setIsAuthenticated(false);
+    localStorage.removeItem('uba_auth');
+  };
 
   const switchRole = (newRole: UserRole) => {
     setRole(newRole);
-    const user = mockUsers.find(u => u.role === newRole) || null;
-    setCurrentUser(user);
   };
 
-  const addBooking = (booking: Booking) => {
-    setBookings(prev => [booking, ...prev]);
+  const addBooking = (booking: Omit<Booking, 'id' | 'bookingReference' | 'status' | 'createdAt' | 'expiresAt'>) => {
+    const listing = listings.find(l => l.id === booking.listingId);
+    const isInstant = listing?.instantBooking;
+    const now = new Date();
+
+    const newBooking: Booking = {
+      ...booking,
+      id: Math.random().toString(36).substr(2, 9),
+      bookingReference: `UBA-${Math.random().toString(36).toUpperCase().substr(2, 6)}`,
+      status: isInstant ? 'CONFIRMED' : 'PENDING',
+      createdAt: now.toISOString(),
+      expiresAt: isInstant ? undefined : new Date(now.getTime() + 60 * 60 * 1000).toISOString(), // 60 mins
+    };
+
+    setBookings(prev => [newBooking, ...prev]);
+
     addNotification({
-      userId: booking.customerId,
-      title: 'Booking Requested',
-      message: `Your booking for ${mockListings.find(l => l.id === booking.listingId)?.name} is pending merchant confirmation.`,
+      userId: newBooking.customerId,
+      title: isInstant ? 'Booking Confirmed!' : 'Booking Requested',
+      message: isInstant
+        ? `Your instant booking for ${listing?.name} is confirmed. Proceed to payment.`
+        : `Your booking for ${listing?.name} is pending merchant confirmation (expires in 60 mins).`,
       type: 'INFO'
     });
   };
@@ -97,7 +164,13 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       role, switchRole,
       bookings, addBooking, updateBookingStatus,
       notifications, addNotification, markNotificationRead,
-      listings
+      listings,
+      isAuthenticated, login, logout,
+      accountBalance,
+      sixMonthInflow,
+      flexPayCapacity,
+      activeMerchantId,
+      setActiveMerchantId
     }}>
       {children}
     </AppContext.Provider>

@@ -10,7 +10,7 @@ export interface User {
   balance: number;
 }
 
-export type ListingCategory = 'Hotels' | 'Short-lets' | 'Tours' | 'Sites' | 'Venues' | 'Organisers';
+export type ListingCategory = 'Hotels' | 'Short-lets' | 'Tours' | 'Resorts' | 'Events' | 'Sites' | 'Venues' | 'Organisers';
 
 export interface Listing {
   id: string;
@@ -22,6 +22,7 @@ export interface Listing {
   image: string;
   category: ListingCategory;
   flexPayAvailable: boolean;
+  instantBooking: boolean;
   merchantId: string;
 }
 
@@ -40,6 +41,7 @@ export interface Booking {
   paymentPlan?: 'FULL' | 'FLEXPAY';
   flexPayTenor?: number;
   createdAt: string;
+  expiresAt?: string;
 }
 
 export interface Notification {

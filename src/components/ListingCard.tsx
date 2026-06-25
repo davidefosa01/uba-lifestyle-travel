@@ -11,7 +11,7 @@ export const ListingCard: React.FC<ListingCardProps> = ({ listing, onClick, vari
     return (
       <div
         onClick={onClick}
-        className="group bg-surface border border-surface-variant rounded-xl overflow-hidden shadow-sm active:scale-[0.98] transition-transform cursor-pointer"
+        className="group bg-surface border border-surface-variant rounded-xl overflow-hidden shadow-soft active:scale-[0.98] transition-all cursor-pointer hover:shadow-lg"
       >
         <div className="h-40 overflow-hidden relative">
           <img
@@ -32,7 +32,7 @@ export const ListingCard: React.FC<ListingCardProps> = ({ listing, onClick, vari
   return (
     <div
       onClick={onClick}
-      className="group relative bg-surface border border-surface-variant rounded-xl overflow-hidden shadow-sm active:scale-[0.98] transition-transform duration-200 cursor-pointer"
+      className={`group relative bg-surface border border-surface-variant rounded-xl overflow-hidden shadow-soft active:scale-[0.98] transition-all duration-200 cursor-pointer hover:shadow-lg ${listing.flexPayAvailable ? 'hover:shadow-flexpay border-primary/10' : ''}`}
     >
       <div className="relative h-64 overflow-hidden">
         <img
@@ -44,13 +44,18 @@ export const ListingCard: React.FC<ListingCardProps> = ({ listing, onClick, vari
           <span className="material-symbols-outlined text-amber-500 text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
           <span className="text-xs font-bold">{listing.rating}</span>
         </div>
-        {listing.flexPayAvailable && (
-          <div className="absolute bottom-4 left-4">
-            <span className="bg-primary text-on-primary text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
-              FlexPay Available
-            </span>
-          </div>
-        )}
+        <div className="absolute bottom-4 left-4 flex gap-2">
+            {listing.flexPayAvailable && (
+                <span className="bg-primary text-on-primary text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider font-montserrat shadow-lg">
+                    FlexPay Available
+                </span>
+            )}
+            {listing.instantBooking && (
+                <span className="bg-green-600 text-white text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider font-montserrat shadow-lg flex items-center gap-1">
+                    <span className="material-symbols-outlined text-[12px]">bolt</span> Instant
+                </span>
+            )}
+        </div>
       </div>
       <div className="p-4">
         <div className="flex justify-between items-start mb-1">
