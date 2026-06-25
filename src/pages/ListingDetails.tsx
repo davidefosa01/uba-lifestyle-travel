@@ -18,18 +18,13 @@ export const ListingDetails: React.FC = () => {
   const totalPrice = listing.price * days;
 
   const handleBookNow = () => {
-    const bookingId = Math.random().toString(36).substr(2, 9);
     addBooking({
-      id: bookingId,
       listingId: listing.id,
       customerId: currentUser?.id || '',
       checkIn,
       checkOut,
       guests: 2,
       totalPrice,
-      status: 'PENDING',
-      bookingReference: `UBA-${Math.random().toString(36).toUpperCase().substr(2, 6)}`,
-      createdAt: new Date().toISOString(),
     });
     navigate('/booking-submitted');
   };
@@ -171,19 +166,31 @@ export const ListingDetails: React.FC = () => {
         </div>
       </div>
 
-      {listing.flexPayAvailable && (
-        <div className="px-container-margin-mb mt-4">
-          <div className="bg-red-50 border border-red-100 rounded-2xl p-4 flex items-center gap-4">
-            <div className="w-12 h-12 bg-uba-red rounded-full flex items-center justify-center text-white shrink-0">
-              <span className="material-symbols-outlined">payments</span>
+      <div className="px-container-margin-mb mt-4 flex flex-col gap-4">
+        {listing.flexPayAvailable && (
+            <div className="bg-red-50 border border-red-100 rounded-2xl p-4 flex items-center gap-4">
+                <div className="w-12 h-12 bg-uba-red rounded-full flex items-center justify-center text-white shrink-0">
+                <span className="material-symbols-outlined">payments</span>
+                </div>
+                <div>
+                <p className="font-bold text-uba-red text-sm">FlexPay Available</p>
+                <p className="text-xs text-gray-600">Pay as low as ₦{((totalPrice * 1.18) / 12).toLocaleString(undefined, { maximumFractionDigits: 0 })}/month</p>
+                </div>
             </div>
-            <div>
-              <p className="font-bold text-uba-red text-sm">FlexPay Available</p>
-              <p className="text-xs text-gray-600">Pay as low as ₦{((totalPrice * 1.18) / 12).toLocaleString(undefined, { maximumFractionDigits: 0 })}/month</p>
+        )}
+
+        {listing.instantBooking && (
+            <div className="bg-green-50 border border-green-100 rounded-2xl p-4 flex items-center gap-4">
+                <div className="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white shrink-0">
+                <span className="material-symbols-outlined">bolt</span>
+                </div>
+                <div>
+                <p className="font-bold text-green-700 text-sm">Instant Booking</p>
+                <p className="text-xs text-gray-600">Your reservation will be confirmed immediately after booking.</p>
+                </div>
             </div>
-          </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

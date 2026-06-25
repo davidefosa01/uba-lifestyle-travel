@@ -44,13 +44,18 @@ export const ListingCard: React.FC<ListingCardProps> = ({ listing, onClick, vari
           <span className="material-symbols-outlined text-amber-500 text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
           <span className="text-xs font-bold">{listing.rating}</span>
         </div>
-        {listing.flexPayAvailable && (
-          <div className="absolute bottom-4 left-4">
-            <span className="bg-primary text-on-primary text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider font-montserrat shadow-lg">
-              FlexPay Available
-            </span>
-          </div>
-        )}
+        <div className="absolute bottom-4 left-4 flex gap-2">
+            {listing.flexPayAvailable && (
+                <span className="bg-primary text-on-primary text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider font-montserrat shadow-lg">
+                    FlexPay Available
+                </span>
+            )}
+            {listing.instantBooking && (
+                <span className="bg-green-600 text-white text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider font-montserrat shadow-lg flex items-center gap-1">
+                    <span className="material-symbols-outlined text-[12px]">bolt</span> Instant
+                </span>
+            )}
+        </div>
       </div>
       <div className="p-4">
         <div className="flex justify-between items-start mb-1">

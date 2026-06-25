@@ -9,7 +9,7 @@ interface AppContextType {
   role: UserRole;
   switchRole: (role: UserRole) => void;
   bookings: Booking[];
-  addBooking: (booking: Booking) => void;
+  addBooking: (booking: Omit<Booking, 'id' | 'bookingReference' | 'status' | 'createdAt' | 'expiresAt'>) => void;
   updateBookingStatus: (id: string, status: Booking['status']) => void;
   notifications: Notification[];
   addNotification: (notification: Omit<Notification, 'id' | 'createdAt' | 'read'>) => void;
@@ -49,7 +49,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   const flexPayCapacity = {
     hidden: sixMonthInflow / 10, // 450k
     visible: 100000, // Tier 1 start at 100k
-    potential: 400000, // Tier 2 potential 500k
+    potential: 150000, // Tier 2 potential 250k
     tier: 1,
   };
 
@@ -80,12 +80,28 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     setRole(newRole);
   };
 
-  const addBooking = (booking: Booking) => {
-    setBookings(prev => [booking, ...prev]);
+  const addBooking = (booking: Omit<Booking, 'id' | 'bookingReference' | 'status' | 'createdAt' | 'expiresAt'>) => {
+    const listing = listings.find(l => l.id === booking.listingId);
+    const isInstant = listing?.instantBooking;
+    const now = new Date();
+
+    const newBooking: Booking = {
+      ...booking,
+      id: Math.random().toString(36).substr(2, 9),
+      bookingReference: `UBA-${Math.random().toString(36).toUpperCase().substr(2, 6)}`,
+      status: isInstant ? 'CONFIRMED' : 'PENDING',
+      createdAt: now.toISOString(),
+      expiresAt: isInstant ? undefined : new Date(now.getTime() + 60 * 60 * 1000).toISOString(), // 60 mins
+    };
+
+    setBookings(prev => [newBooking, ...prev]);
+
     addNotification({
-      userId: booking.customerId,
-      title: 'Booking Requested',
-      message: `Your booking for ${mockListings.find(l => l.id === booking.listingId)?.name} is pending merchant confirmation.`,
+      userId: newBooking.customerId,
+      title: isInstant ? 'Booking Confirmed!' : 'Booking Requested',
+      message: isInstant
+        ? `Your instant booking for ${listing?.name} is confirmed. Proceed to payment.`
+        : `Your booking for ${listing?.name} is pending merchant confirmation (expires in 60 mins).`,
       type: 'INFO'
     });
   };
