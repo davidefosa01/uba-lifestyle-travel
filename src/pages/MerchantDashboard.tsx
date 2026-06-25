@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAppContext } from '../context/AppContext';
 import { Button } from '../components/Button';
 import { motion } from 'framer-motion';
+import type { Booking } from '../types';
 
 export const MerchantDashboard: React.FC = () => {
   const { bookings, listings, updateBookingStatus, role } = useAppContext();
@@ -82,32 +83,13 @@ export const MerchantDashboard: React.FC = () => {
               {pending.map(booking => {
                 const listing = listings.find(l => l.id === booking.listingId);
                 return (
-                  <div key={booking.id} className="bg-white p-5 rounded-3xl border border-gray-100 shadow-soft">
-                    <div className="flex justify-between items-start mb-4">
-                      <div>
-                        <h3 className="font-bold text-gray-900">{listing?.name}</h3>
-                        <p className="text-[10px] text-gray-500 font-mono tracking-tighter uppercase">{booking.bookingReference}</p>
-                      </div>
-                      <p className="font-bold text-uba-red">₦{booking.totalPrice.toLocaleString()}</p>
-                    </div>
-                    <div className="flex gap-2">
-                      <Button
-                        className="flex-grow rounded-xl"
-                        size="sm"
-                        onClick={() => updateBookingStatus(booking.id, 'CONFIRMED')}
-                      >
-                        Confirm
-                      </Button>
-                      <Button
-                        className="flex-grow rounded-xl"
-                        variant="outline"
-                        size="sm"
-                        onClick={() => updateBookingStatus(booking.id, 'DECLINED')}
-                      >
-                        Decline
-                      </Button>
-                    </div>
-                  </div>
+                  <BookingRequestCard
+                    key={booking.id}
+                    booking={booking}
+                    listing={listing}
+                    onConfirm={() => updateBookingStatus(booking.id, 'CONFIRMED')}
+                    onDecline={() => updateBookingStatus(booking.id, 'DECLINED')}
+                  />
                 );
               })}
             </div>
@@ -227,6 +209,79 @@ const DemoRow = ({ label, value, width }: { label: string, value: string, width:
         </div>
     </div>
 );
+
+const BookingRequestCard = ({ booking, listing, onConfirm, onDecline }: { booking: Booking, listing: any, onConfirm: () => void, onDecline: () => void }) => {
+    const { updateBookingStatus } = useAppContext();
+    const [timeLeft, setTimeLeft] = useState<string>('');
+    const [isExpired, setIsExpired] = useState(false);
+
+    useEffect(() => {
+        if (!booking.expiresAt) return;
+
+        const interval = setInterval(() => {
+            const now = new Date().getTime();
+            const end = new Date(booking.expiresAt!).getTime();
+            const diff = end - now;
+
+            if (diff <= 0) {
+                clearInterval(interval);
+                setTimeLeft('00:00');
+                setIsExpired(true);
+                updateBookingStatus(booking.id, 'DECLINED'); // Auto-cancel
+            } else {
+                const mins = Math.floor(diff / 60000);
+                const secs = Math.floor((diff % 60000) / 1000);
+                setTimeLeft(`${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`);
+            }
+        }, 1000);
+
+        return () => clearInterval(interval);
+    }, [booking.expiresAt, booking.id]);
+
+    return (
+        <div className="bg-white p-5 rounded-3xl border border-gray-100 shadow-soft relative overflow-hidden">
+            {isExpired && (
+                <div className="absolute inset-0 bg-white/80 backdrop-blur-[2px] z-10 flex items-center justify-center">
+                    <p className="text-uba-red font-bold uppercase tracking-widest text-xs">Booking Cancelled (Expired)</p>
+                </div>
+            )}
+            <div className="flex justify-between items-start mb-4">
+                <div>
+                    <h3 className="font-bold text-gray-900">{listing?.name}</h3>
+                    <p className="text-[10px] text-gray-500 font-mono tracking-tighter uppercase">{booking.bookingReference}</p>
+                </div>
+                <div className="text-right">
+                    <p className="font-bold text-uba-red mb-1">₦{booking.totalPrice.toLocaleString()}</p>
+                    {booking.expiresAt && !isExpired && (
+                        <div className="flex items-center justify-end gap-1 text-amber-600 font-mono text-[10px] font-bold">
+                            <span className="material-symbols-outlined text-[12px]">timer</span>
+                            {timeLeft}
+                        </div>
+                    )}
+                </div>
+            </div>
+            <div className="flex gap-2">
+                <Button
+                    className="flex-grow rounded-xl"
+                    size="sm"
+                    onClick={onConfirm}
+                    disabled={isExpired}
+                >
+                    Confirm
+                </Button>
+                <Button
+                    className="flex-grow rounded-xl"
+                    variant="outline"
+                    size="sm"
+                    onClick={onDecline}
+                    disabled={isExpired}
+                >
+                    Decline
+                </Button>
+            </div>
+        </div>
+    );
+};
 
 const FAQItem = ({ question, answer }: { question: string, answer: string }) => (
     <div className="border-b border-gray-50 pb-4">

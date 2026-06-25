@@ -58,6 +58,7 @@ export const mockListings: Listing[] = [
     image: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&q=80&w=1000',
     category: 'Hotels',
     flexPayAvailable: true,
+    instantBooking: false,
     merchantId: 'merchant-1',
   },
   {
@@ -70,6 +71,7 @@ export const mockListings: Listing[] = [
     image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=1000',
     category: 'Hotels',
     flexPayAvailable: true,
+    instantBooking: false,
     merchantId: 'merchant-1',
   },
 
@@ -84,6 +86,7 @@ export const mockListings: Listing[] = [
     image: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1000',
     category: 'Short-lets',
     flexPayAvailable: true,
+    instantBooking: true,
     merchantId: 'merchant-1',
   },
 
@@ -98,6 +101,7 @@ export const mockListings: Listing[] = [
     image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=1000',
     category: 'Tours',
     flexPayAvailable: true,
+    instantBooking: false,
     merchantId: 'merchant-2',
   },
 
@@ -112,6 +116,7 @@ export const mockListings: Listing[] = [
     image: 'https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&q=80&w=1000',
     category: 'Resorts',
     flexPayAvailable: true,
+    instantBooking: true,
     merchantId: 'merchant-1',
   },
 
@@ -126,6 +131,7 @@ export const mockListings: Listing[] = [
     image: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=80&w=1000',
     category: 'Events',
     flexPayAvailable: true,
+    instantBooking: false,
     merchantId: 'merchant-1',
   }
 ];
