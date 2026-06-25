@@ -5,15 +5,15 @@ import { motion } from 'framer-motion';
 import type { Booking } from '../types';
 
 export const MerchantDashboard: React.FC = () => {
-  const { bookings, listings, updateBookingStatus, role } = useAppContext();
-  const [activeTab, setActiveTab] = useState<'OVERVIEW' | 'ANALYTICS' | 'LISTINGS' | 'SUPPORT'>('OVERVIEW');
+  const { bookings, listings, updateBookingStatus, role, activeMerchantId, setActiveMerchantId } = useAppContext();
+  const [activeTab, setActiveTab] = useState<'OVERVIEW' | 'ANALYTICS' | 'AUTHENTICATION' | 'LISTINGS' | 'SUPPORT'>('OVERVIEW');
   const [showAddListing, setShowAddListing] = useState(false);
 
   if (role !== 'MERCHANT') return <div className="p-6">Access Denied</div>;
 
   const merchantBookings = bookings.filter(b => {
     const listing = listings.find(l => l.id === b.listingId);
-    return listing?.merchantId === 'merchant-1';
+    return listing?.merchantId === activeMerchantId;
   });
 
   const pending = merchantBookings.filter(b => b.status === 'PENDING');
@@ -23,9 +23,26 @@ export const MerchantDashboard: React.FC = () => {
   return (
     <div className="p-6 max-w-5xl mx-auto">
       <div className="flex justify-between items-center mb-8">
-        <div>
-          <h1 className="text-2xl font-bold font-montserrat">Merchant Dashboard</h1>
-          <p className="text-xs text-gray-500 font-inter">Transcorp Hilton Lagos • 4.8★</p>
+        <div className="flex items-center gap-6">
+            <div>
+            <h1 className="text-2xl font-bold font-montserrat">Merchant Dashboard</h1>
+            <p className="text-xs text-gray-500 font-inter">{activeMerchantId === 'merchant-1' ? 'Azure Sanctuary' : 'Heritage Stays'} • 4.8★</p>
+            </div>
+
+            <div className="bg-gray-100 p-1 rounded-xl flex gap-1">
+                <button
+                    onClick={() => setActiveMerchantId('merchant-1')}
+                    className={`px-3 py-1.5 rounded-lg text-[10px] font-bold transition-all ${activeMerchantId === 'merchant-1' ? 'bg-white shadow-sm text-uba-red' : 'text-gray-400'}`}
+                >
+                    Azure
+                </button>
+                <button
+                    onClick={() => setActiveMerchantId('merchant-2')}
+                    className={`px-3 py-1.5 rounded-lg text-[10px] font-bold transition-all ${activeMerchantId === 'merchant-2' ? 'bg-white shadow-sm text-uba-red' : 'text-gray-400'}`}
+                >
+                    Heritage
+                </button>
+            </div>
         </div>
         <div className="flex gap-2">
             <div className="text-right">
@@ -40,7 +57,7 @@ export const MerchantDashboard: React.FC = () => {
 
       {/* Tabs */}
       <div className="flex gap-4 border-b border-gray-100 mb-8">
-        {(['OVERVIEW', 'ANALYTICS', 'LISTINGS', 'SUPPORT'] as const).map(tab => (
+        {(['OVERVIEW', 'ANALYTICS', 'AUTHENTICATION', 'LISTINGS', 'SUPPORT'] as const).map(tab => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
@@ -101,16 +118,20 @@ export const MerchantDashboard: React.FC = () => {
       {activeTab === 'ANALYTICS' && (
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-6">
             <div className="bg-white p-8 rounded-3xl border border-gray-100 shadow-soft">
-                <h3 className="font-bold mb-6">Booking Performance (Last 30 Days)</h3>
-                <div className="h-48 flex items-end justify-between gap-2">
-                    {[40, 70, 45, 90, 65, 80, 100].map((h, i) => (
+                <h3 className="font-bold mb-6 font-montserrat">Revenue Stream (Last 7 Days)</h3>
+                <div className="h-48 flex items-end justify-between gap-4">
+                    {[0.2, 0.5, 0.3, 0.8, 0.4, 0.6, 1].map((factor, i) => {
+                        const dayRevenue = revenue * factor * 0.3;
+                        return (
                         <div key={i} className="flex-grow group relative">
-                            <div style={{ height: `${h}%` }} className="bg-red-100 rounded-t-lg group-hover:bg-uba-red transition-all duration-300" />
-                            <div className="absolute -top-6 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-[8px] px-1 rounded opacity-0 group-hover:opacity-100">₦{Math.floor(Math.random() * 500)}k</div>
+                            <div style={{ height: `${Math.max(5, factor * 100)}%` }} className="bg-red-100 rounded-t-xl group-hover:bg-uba-red transition-all duration-300" />
+                            <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-[9px] px-2 py-1 rounded-lg opacity-0 group-hover:opacity-100 shadow-xl z-20 whitespace-nowrap">
+                                ₦{Math.floor(dayRevenue).toLocaleString()}
+                            </div>
                         </div>
-                    ))}
+                    )})}
                 </div>
-                <div className="flex justify-between mt-4 text-[10px] font-bold text-gray-400">
+                <div className="flex justify-between mt-4 text-[10px] font-extrabold text-gray-400 font-inter">
                     <span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span><span>SAT</span><span>SUN</span>
                 </div>
             </div>
@@ -126,11 +147,73 @@ export const MerchantDashboard: React.FC = () => {
                     </div>
                 </div>
                 <div className="bg-white p-6 rounded-3xl border border-gray-100 shadow-soft">
-                    <h3 className="font-bold mb-4 text-sm uppercase text-gray-400 tracking-widest">Top Listings</h3>
+                    <h3 className="font-bold mb-4 text-sm uppercase text-gray-400 tracking-widest">Top Performance</h3>
                     <div className="space-y-4">
-                        <p className="text-xs font-bold flex justify-between"><span>Luxury Resort Suite</span> <span className="text-uba-red">₦1.2M</span></p>
-                        <p className="text-xs font-bold flex justify-between"><span>Minimalist Zen Den</span> <span className="text-uba-red">₦450k</span></p>
-                        <p className="text-xs font-bold flex justify-between"><span>Ocean View Loft</span> <span className="text-uba-red">₦320k</span></p>
+                        {listings.filter(l => l.merchantId === activeMerchantId).slice(0, 3).map(listing => (
+                            <p key={listing.id} className="text-xs font-bold flex justify-between">
+                                <span className="truncate pr-4">{listing.name}</span>
+                                <span className="text-uba-red whitespace-nowrap">₦{(listing.price * 8).toLocaleString()}</span>
+                            </p>
+                        ))}
+                        {listings.filter(l => l.merchantId === activeMerchantId).length === 0 && (
+                            <p className="text-xs text-gray-400 italic">No data yet</p>
+                        )}
+                    </div>
+                </div>
+            </div>
+        </motion.div>
+      )}
+
+      {activeTab === 'AUTHENTICATION' && (
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-6">
+            <div className="bg-white p-8 rounded-[2.5rem] border border-gray-100 shadow-soft max-w-2xl mx-auto">
+                <div className="text-center mb-8">
+                    <div className="w-16 h-16 bg-uba-red/10 text-uba-red rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <span className="material-symbols-outlined text-3xl">qr_code_scanner</span>
+                    </div>
+                    <h2 className="text-2xl font-bold font-montserrat">Authenticate Booking</h2>
+                    <p className="text-xs text-gray-500 mt-1">Enter the booking code provided by the customer to verify reservation.</p>
+                </div>
+
+                <div className="space-y-6">
+                    <div className="space-y-2">
+                        <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block text-center">Booking Reference Code</label>
+                        <input
+                            type="text"
+                            placeholder="e.g. UBA-X1Y2Z3"
+                            className="w-full bg-gray-50 border border-gray-100 rounded-2xl p-5 text-center text-xl font-mono font-bold outline-none focus:border-uba-red/30 transition-all uppercase"
+                            id="auth-code-input"
+                        />
+                    </div>
+                    <Button
+                        className="w-full rounded-2xl py-4 shadow-lg shadow-uba-red/20"
+                        onClick={() => {
+                            const val = (document.getElementById('auth-code-input') as HTMLInputElement).value;
+                            const b = bookings.find(x => x.bookingReference === val.toUpperCase());
+                            if (b) {
+                                const l = listings.find(lx => lx.id === b.listingId);
+                                if (l?.merchantId === activeMerchantId) {
+                                    alert(`Verification Successful!\n\nBooking: ${l.name}\nStatus: ${b.status}\nCustomer ID: ${b.customerId}`);
+                                } else {
+                                    alert('Unauthorized: This booking belongs to another merchant.');
+                                }
+                            } else {
+                                alert('Invalid Code: No booking found with this reference.');
+                            }
+                        }}
+                    >
+                        Verify & Authenticate
+                    </Button>
+                </div>
+
+                <div className="mt-12 pt-8 border-t border-gray-50 grid grid-cols-2 gap-4 text-center">
+                    <div>
+                        <p className="text-[10px] font-bold text-gray-400 uppercase mb-1">Today's Check-ins</p>
+                        <p className="text-xl font-bold text-gray-900">12</p>
+                    </div>
+                    <div>
+                        <p className="text-[10px] font-bold text-gray-400 uppercase mb-1">Verified Today</p>
+                        <p className="text-xl font-bold text-green-600">8</p>
                     </div>
                 </div>
             </div>
@@ -248,7 +331,7 @@ const BookingRequestCard = ({ booking, listing, onConfirm, onDecline }: { bookin
             <div className="flex justify-between items-start mb-4">
                 <div>
                     <h3 className="font-bold text-gray-900">{listing?.name}</h3>
-                    <p className="text-[10px] text-gray-500 font-mono tracking-tighter uppercase">{booking.bookingReference}</p>
+                    <p className="text-[10px] text-gray-500 font-mono tracking-tighter uppercase font-bold">RESERVATION REQUEST</p>
                 </div>
                 <div className="text-right">
                     <p className="font-bold text-uba-red mb-1">₦{booking.totalPrice.toLocaleString()}</p>

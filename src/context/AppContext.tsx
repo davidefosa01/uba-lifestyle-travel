@@ -26,6 +26,8 @@ interface AppContextType {
     potential: number;
     tier: number;
   };
+  activeMerchantId: string;
+  setActiveMerchantId: (id: string) => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -42,6 +44,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   });
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [listings] = useState<Listing[]>(mockListings);
+  const [activeMerchantId, setActiveMerchantId] = useState<string>('merchant-1');
 
   const [sixMonthInflow] = useState(4500000); // 4.5M NGN
   const [accountBalance] = useState(1250000); // 1.25M NGN
@@ -165,7 +168,9 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       isAuthenticated, login, logout,
       accountBalance,
       sixMonthInflow,
-      flexPayCapacity
+      flexPayCapacity,
+      activeMerchantId,
+      setActiveMerchantId
     }}>
       {children}
     </AppContext.Provider>
